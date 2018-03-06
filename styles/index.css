@@ -30,6 +30,7 @@
     top: -0.25em;
     height: 1em;
     font-size: 1em;
+    font-weight: 700;
 }
 
 /* Content */
@@ -52,7 +53,7 @@
     height: 30vh;
     width: 30vw;
     margin: -10vh 0 0 -15vw;
-    background-color: rgba(38, 50, 56, 1);
+    background-color: rgba(69, 90, 100, 1);
 }
 
 #greetBoxUsernameInputWrap {
