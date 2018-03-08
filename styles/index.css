@@ -53,7 +53,24 @@
     height: 30vh;
     width: 30vw;
     margin: -10vh 0 0 -15vw;
-    background-color: rgba(69, 90, 100, 1);
+}
+
+#greetBoxWelcomeText {
+    position: absolute;
+    top: -100%;
+    left: calc(-50vw + 50%);
+    height: 100%;
+    width: 100vw;
+    text-align: center;
+    overflow: hidden;
+}
+
+#greetBoxWelcomeText p {
+    margin: 0;
+    padding-top: 0.3em;
+    font-size: 3em;
+    font-weight: 700;
+    color: rgba(55, 71, 79, 1);
 }
 
 #greetBoxUsernameInputWrap {
@@ -73,25 +90,27 @@
     margin: 0 0 0 -40%;
     border: none;
     font-size: 1.5em;
+    text-align: center;
 }
 
 #greetBoxStartButtonWrap {
     position: absolute;
     top: 55%;
     height: 25%;
+    text-align: center;
     width: 100%;
 }
 
 #greetBoxStartButton {
-    position: absolute;
+    display: inline-block;
+    position: relative;
     box-sizing: border-box;
-    padding: 1% 5%;
-    left: 50%;
-    height: 100%;
-    width: 30%;
-    margin: 0 0 0 -15%;
+    padding: 0 5%;
+    height: 2em;
+    width: fit-content;
     border: none;
     font-size: 1.5em;
     text-align: center;
     font-weight: 700;
+    line-height: 2em;
 }
