@@ -28,9 +28,11 @@ app.listen(8080, () => {
 
     // Dummy code to generate a list of action movie
 
-    for (var i = 1; i <= 5; i++) {
-        tmdb.getMovieListByGenre(28, i).then((result) => {
-            currentMovieList = currentMovieList.concat(result);
-        });
-    }
+    var currentFullMovieList = []
+
+    tmdb.getMovieListByGenre().then((result) => {
+        return tmdb.getMovieDetailList(result);
+    }).then((result) => {
+        currentMovieList = result;
+    })
 });
