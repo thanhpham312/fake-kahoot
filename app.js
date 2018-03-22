@@ -16,7 +16,12 @@ app.get('/', (request, response) => {
 });
 
 app.get('/test', (request, response) => {
-    response.send(currentMovieList);
+    tmdb.getMovieListByGenre().then((result) => {
+        return tmdb.getMovieDetailList(result);
+    }).then((result) => {
+        currentMovieList = result;
+        response.send(currentMovieList);
+    })
 });
 
 app.get('/about', (request, response) => {
@@ -27,12 +32,4 @@ app.listen(8080, () => {
     console.log(`Server is up on port 8080`);
 
     // Dummy code to generate a list of action movie
-
-    var currentFullMovieList = []
-
-    tmdb.getMovieListByGenre().then((result) => {
-        return tmdb.getMovieDetailList(result);
-    }).then((result) => {
-        currentMovieList = result;
-    })
 });
