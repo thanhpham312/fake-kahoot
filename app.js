@@ -1,12 +1,12 @@
 const express = require('express');
 const hbs = require('hbs');
 const request = require('request');
-const _ = require('lodash')
+const _ = require('lodash');
 const tmdb = require('./tmdb');
 
 let app = express();
 
-var currentMovieList = []
+let currentMovieList = [];
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.static(__dirname + '/public'));

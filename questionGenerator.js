@@ -1,13 +1,13 @@
 const tmdb = require('./tmdb');
 
-var generateDirectorQuestion = (director, answer) => {
+let generateDirectorQuestion = (director, answer) => {
     
-}
+};
 
-var generateQuestions = (movieList) => {
+let generateQuestions = (movieList) => {
     questionList = []
-}
+};
 
 module.exports = {
     generateQuestions
-}
+};
