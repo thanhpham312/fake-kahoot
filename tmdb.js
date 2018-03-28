@@ -25,6 +25,25 @@ var getMovie = (movieID = 0) => {
     });
 };
 
+var getCastCrewDetail = (movieID) => {
+    return new Promise((resolve, reject) => {
+        request({
+            url: 'https://api.themoviedb.org/3/movie/' + movieID + '?api_key=686d996b7a847930b2a9d18cec90cad3',
+            json: true
+        }, (error, response, body) => {
+            if(error) {
+                reject('Cannot connect to TMDB.');
+            }
+            else if(body.code == 400) {
+                reject('Invalid query.');
+            }
+            else {
+                resolve(body);   
+            }
+        });
+    });
+}
+
 var getMovieDetailList = (movieList) => {
     movieDetailList = [];
     selectedMovieList = _.sampleSize(movieList, 10)
@@ -41,7 +60,7 @@ var getMovieDetailList = (movieList) => {
             })
         }
     });
-}
+};
 
 var getMovieListByGenrePerPage = (genreID, pageCount) => {
     
@@ -61,7 +80,7 @@ var getMovieListByGenrePerPage = (genreID, pageCount) => {
             }
         });
     });
-}
+};
 
 var getMovieListByGenre = () => {
     return new Promise((resolve, reject) => {
@@ -77,11 +96,11 @@ var getMovieListByGenre = () => {
             });
         }
     });
-}
+};
 
 module.exports = {
     getMovie,
     getMovieDetailList,
     getMovieListByGenrePerPage,
     getMovieListByGenre
-}
+};

@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Fake Kahoot</title>
+        <title>Fakoot</title>
         <link rel="stylesheet" type="text/css" href="styles/general.css">
         <link rel="stylesheet" type="text/css" href="styles/index.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     </head>
     <body>
-        <div class="cards" id="header">
-            <div class="headerButtons"><p>HOME</p></div>
-            <div class="headerButtons"><p>LEADERBOARD</p></div>
-            <div class="headerButtons"><p>ABOUT</p></div>
-        </div>
+        {{> menu}}
         <div id="content">
             <div class="background" id="contentBackground"></div>
             <div id="greetBox">
@@ -23,12 +19,14 @@
                     <input class="cards" id="greetBoxUsernameInput" placeholder="Enter a username" />
                 </div>
                 <div id="greetBoxStartButtonWrap">
-                    <div class="cards buttons" id="greetBoxStartButton">BEGIN</div>
+                    <div class="cards buttons" id="greetBoxStartButton" onclick="loadDoc();">BEGIN</div>
                 </div>
             </div>
         </div>
         <div id="footer">
 
         </div>
+        {{> questionView}}
+        <script src="javascripts/index.js"></script>
     </body>
 </html>
