@@ -9,7 +9,12 @@ let app = express();
 let currentMovieList = [];
 
 hbs.registerPartials(__dirname + '/views/partials');
+app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
+
+hbs.registerHelper('dummy', () => {
+    return undefined;
+});
 
 app.get('/', (request, response) => {
     response.render('index.hbs');
