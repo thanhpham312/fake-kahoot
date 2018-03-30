@@ -2,30 +2,31 @@ const fs = require('fs');
 
 
 var userFileJson = {
-    user = []
+    user : []
 };
 
 
 var readFile = () => {
-    var readUserFile = fs.readFileSync('user_data.json');
+    var readUserFile = fs.readFileSync('users_data.json');
     userFileJson = JSON.parse(readUserFile)
+    console.log(readUserFile)
+    return userFileJson
 }
 
-var writeToFile = (user) =>{
+var writeFile = (user) =>{
     var writeUser = JSON.stringify(user)
-    fs.writeToFile('users_data.json', writeUser)
+    fs.writeFileSync('users_data.json', writeUser)
 }
 
-var addNewUser = (user, score, streak, time) => {
-    readFile()
-    newUser = {
-        userData = user,
-        scoreData = score,
-        streakData = streak,
-        timeData = time
-    }
-    userFileJson.user.push(newUser)
-    writeToFile(userFileJson)
+var addNewUser = (new_user, score, streak) => {
+    var userFileJson = readFile();
+    var newUser = {
+        "userData" : new_user,
+        "scoreData" : score,
+        "streakData" : streak
+        };
+    userFileJson.user.push(newUser);
+    writeFile(userFileJson);
 };
 
 var displayAllUsers = () => {
@@ -36,9 +37,20 @@ var displayAllUsers = () => {
     }
 };
 
-var sort = (sortOption) =>{
+
+var sortScoresDescending = (sortOption) =>{
     listofUser = readFile()
-    listofUser.sort((a, b)=> {
-    return a[sortOption].localeCompare(b[sortOption]);
+    listofUser.user.sort((a, b)=> {
+        return b[sortOption] - a[sortOption];
     })
+    return listofUser.user
 }
+var sortScoresAscending = (sortOption) =>{
+    listofUser = readFile()
+    listofUser.user.sort((a, b)=> {
+        return a[sortOption] - b[sortOption];
+    })
+    return listofUser.user
+}
+
+
