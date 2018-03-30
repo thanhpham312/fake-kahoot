@@ -38,4 +38,3 @@ app.listen(8080, () => {
 
     // Dummy code to generate a list of action movie
 });
->>>>>>> 07202c8f1f49632bf2c7447150d4839f4cee2429
