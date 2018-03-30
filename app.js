@@ -1,8 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
 const request = require('request');
-const _ = require('lodash')
+const _ = require('lodash');
 const tmdb = require('./tmdb');
+const qriusity = require('./qriusity');
 
 let app = express();
 
@@ -20,13 +21,10 @@ app.get('/', (request, response) => {
     response.render('index.hbs');
 });
 
-app.get('/test', (request, response) => {
-    tmdb.getMovieListByGenre().then((result) => {
-        return tmdb.getMovieDetailList(result);
-    }).then((result) => {
-        currentMovieList = result;
-        response.send(currentMovieList);
-    })
+app.post('/getquestions', (request, response) => {
+    qriusity.getQuestionByCategory(17, 0).then((result) => {
+        response.send(result);
+    });
 });
 
 app.get('/about', (request, response) => {
@@ -35,6 +33,4 @@ app.get('/about', (request, response) => {
 
 app.listen(8080, () => {
     console.log(`Server is up on port 8080`);
-
-    // Dummy code to generate a list of action movie
 });
