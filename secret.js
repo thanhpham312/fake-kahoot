@@ -24,6 +24,6 @@ let secret = () => {
     })
 };
 
-modules.exports = {
+module.exports = {
     secret
 };

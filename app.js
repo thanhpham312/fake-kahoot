@@ -1,12 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
 const request = require('request');
-const _ = require('lodash')
+const _ = require('lodash');
 const tmdb = require('./tmdb');
-
 let app = express();
-
-var currentMovieList = []
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
@@ -24,8 +21,7 @@ app.get('/test', (request, response) => {
     tmdb.getMovieListByGenre().then((result) => {
         return tmdb.getMovieDetailList(result);
     }).then((result) => {
-        currentMovieList = result;
-        response.send(currentMovieList);
+        response.send(result);
     })
 });
 
@@ -35,6 +31,4 @@ app.get('/about', (request, response) => {
 
 app.listen(8080, () => {
     console.log(`Server is up on port 8080`);
-
-    // Dummy code to generate a list of action movie
 });
