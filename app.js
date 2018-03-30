@@ -3,6 +3,8 @@ const hbs = require('hbs');
 const request = require('request');
 const _ = require('lodash');
 const tmdb = require('./tmdb');
+const qriusity = require('./qriusity');
+
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -17,12 +19,10 @@ app.get('/', (request, response) => {
     response.render('index.hbs');
 });
 
-app.get('/test', (request, response) => {
-    tmdb.getMovieListByGenre().then((result) => {
-        return tmdb.getMovieDetailList(result);
-    }).then((result) => {
+app.post('/getquestions', (request, response) => {
+    qriusity.getQuestionByCategory(17, 0).then((result) => {
         response.send(result);
-    })
+    });
 });
 
 app.get('/about', (request, response) => {

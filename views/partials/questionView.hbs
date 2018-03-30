@@ -4,23 +4,23 @@
         <h1 id="questionNumber"></h1>
         <h1 id="userInfo">USERNAME - SCORE</h1>
         <hr/>
-        <p>This is a question</p>
+        <p id="questionContent">This is a question</p>
     </div>
     <div id="questionViewAnswersWrap">
         <div class="questionViewAnswersWrapInner">
             <div class="answersWrap">
-                <div class="cards buttons" id="answer1">Answer 1</div>
+                <div class="cards buttons" id="answer1" onclick="assessQuestionResult(1); nextQuestion();">Answer 1</div>
             </div>
             <div class="answersWrap">
-                <div class="cards buttons" id="answer2">Answer 3</div>
+                <div class="cards buttons" id="answer3" onclick="assessQuestionResult(3); nextQuestion();">Answer 3</div>
             </div>
         </div>
         <div class="questionViewAnswersWrapInner">
             <div class="answersWrap">
-                <div class="cards buttons" id="answer3">Answer 2</div>
+                <div class="cards buttons" id="answer2" onclick="assessQuestionResult(2); nextQuestion();">Answer 2</div>
             </div>
             <div class="answersWrap">
-                <div class="cards buttons" id="answer4">Answer 4</div>
+                <div class="cards buttons" id="answer4" onclick="assessQuestionResult(4); nextQuestion();">Answer 4</div>
             </div>
         </div>
     </div>
