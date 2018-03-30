@@ -15,7 +15,7 @@ var getMovie = (movieID = 0) => {
             if(error) {
                 reject('Cannot connect to TMDB.');
             }
-            else if(body.code == 400) {
+            else if(body.code === 400) {
                 reject('Invalid query.');
             }
             else {
@@ -34,7 +34,7 @@ var getCastCrewDetail = (movieID) => {
             if(error) {
                 reject('Cannot connect to TMDB.');
             }
-            else if(body.code == 400) {
+            else if(body.code === 400) {
                 reject('Invalid query.');
             }
             else {
@@ -42,11 +42,11 @@ var getCastCrewDetail = (movieID) => {
             }
         });
     });
-}
+};
 
 var getMovieDetailList = (movieList) => {
     movieDetailList = [];
-    selectedMovieList = _.sampleSize(movieList, 10)
+    selectedMovieList = _.sampleSize(movieList, 10);
     return new Promise((resolve, reject) => {
         movieCount = 0;
         currentFullMovieList = [];
@@ -54,7 +54,7 @@ var getMovieDetailList = (movieList) => {
             getMovie(selectedMovieList[i].id).then((result) => {
                 movieDetailList.push(result);
                 movieCount++;
-                if(movieCount == 10) {
+                if(movieCount === 10) {
                     resolve(movieDetailList);
                 }
             })
@@ -72,7 +72,7 @@ var getMovieListByGenrePerPage = (genreID, pageCount) => {
             if(error) {
                 reject('Cannot connect to TMDB.');
             }
-            else if(body.code == 400) {
+            else if(body.code === 400) {
                 reject('Invalid query.');
             }
             else {
@@ -90,7 +90,7 @@ var getMovieListByGenre = () => {
             getMovieListByGenrePerPage(28, i).then((result) => {
                 currentFullMovieList = currentFullMovieList.concat(result);
                 pageCount++;
-                if(pageCount == 5) {
+                if(pageCount === 5) {
                     resolve(currentFullMovieList)
                 }
             });
@@ -102,5 +102,6 @@ module.exports = {
     getMovie,
     getMovieDetailList,
     getMovieListByGenrePerPage,
-    getMovieListByGenre
+    getMovieListByGenre,
+
 };

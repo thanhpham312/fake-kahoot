@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const request = require('request');
 const _ = require('lodash');
 const tmdb = require('./tmdb');
+const q_gen = require('./question_generator');
 
 let app = express();
 
@@ -13,20 +14,22 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('dummy', () => {
-    return undefined;
+    return undefined
+});
+
+app.get('/questions', (request, response) => {
+    tmdb.getMovieListByGenre().then((result) => {
+        return tmdb.getMovieDetailList(result)
+    }).then((result) => {
+        return q_gen.question_generator(result)
+    }).then((result) => {
+        // console.log(result);
+        response.send(result)
+    });
 });
 
 app.get('/', (request, response) => {
     response.render('index.hbs');
-});
-
-app.get('/test', (request, response) => {
-    tmdb.getMovieListByGenre().then((result) => {
-        return tmdb.getMovieDetailList(result);
-    }).then((result) => {
-        currentMovieList = result;
-        response.send(currentMovieList);
-    })
 });
 
 app.get('/about', (request, response) => {
