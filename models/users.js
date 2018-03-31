@@ -38,7 +38,7 @@ var displayAllUsers = () => {
 };
 
 var sortScoresDescending = (sortOption) =>{
-    listofUser = readFile();
+    let listofUser = readFile();
     listofUser.user.sort((a, b)=> {
         return b[sortOption] - a[sortOption];
     });
@@ -46,11 +46,18 @@ var sortScoresDescending = (sortOption) =>{
 };
 
 var sortScoresAscending = (sortOption) =>{
-    listofUser = readFile();
-    listofUser.user.sort((a, b)=> {
+    let listofUser = readFile();
+    let sort = listofUser.user.sort((a, b)=> {
         return a[sortOption] - b[sortOption];
     });
     return listofUser.user
 };
 
-
+module.exports = {
+    addNewUser,
+    displayAllUsers,
+    sortScoresAscending,
+    sortScoresDescending,
+    readFile,
+    writeFile
+};
