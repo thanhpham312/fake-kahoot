@@ -2,8 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const request = require('request');
 const _ = require('lodash');
-const tmdb = require('./tmdb');
-const qriusity = require('./qriusity');
+const tmdb = require('./controllers/tmdb');
+const qriusity = require('./controllers/qriusity');
 
 let app = express();
 
