@@ -6,6 +6,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     answer1 = document.getElementById('answer1'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
+    user_name = document.getElementById('greetBoxUsernameInput'),
     answer4 = document.getElementById('answer4');
 
 // Server requests and display:
@@ -27,7 +28,7 @@ var assessQuestionResult = (option) => {
         streakList.push(currentStreak);
         currentStreak = 0;
     }
-}
+};
 
 var assessQuizResult = () => {
     var quizTime = new Date().getDate();
@@ -40,7 +41,7 @@ var assessQuizResult = () => {
             // questionList = JSON.parse(xmlhttp.responseText);
             // console.log(questionList)
         }
-    }
+    };
     console.log("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
     xmlhttp.send("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
 }
@@ -54,7 +55,7 @@ var nextQuestion = () => {
         assessQuizResult();
     }
     
-}
+};
 
 var fetchQuestions = () => {
     var xmlhttp = new XMLHttpRequest();
@@ -65,9 +66,25 @@ var fetchQuestions = () => {
             questionList = JSON.parse(xmlhttp.responseText);
             console.log(questionList)
         }
-    }
+    };
     xmlhttp.send();
-}
+};
+
+let fetchingUsername = () => {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST","/username", true);
+    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = () =>{
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText)
+            // // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
+            // questionList = JSON.parse(xmlhttp.responseText);
+            // console.log(questionList)
+
+        }
+    };
+    xmlhttp.send(`user_name=${user_name.value}`);
+};
 
 var displayQuestion = () => {
     questionViewWrap.style.top = '-100vh';
@@ -81,7 +98,7 @@ var displayQuestion = () => {
         answer4.innerHTML = questionList[currentQuestion].option4;
         questionViewWrap.removeAttribute('style');
     }, 300)
-}
+};
 
 fetchQuestions();
 displayQuestion();

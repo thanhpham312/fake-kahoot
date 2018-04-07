@@ -15,13 +15,15 @@
                     <p>Welcome to Fake Kahoot!</p>
                     <p>Enter a username and press 'START' to begin</p>
                 </div>
-
+                <form action="/" method="post">
                     <div id="greetBoxUsernameInputWrap">
                         <input name="user_name" class="cards" id="greetBoxUsernameInput" placeholder="Enter a username" />
                     </div>
                     <div id="greetBoxStartButtonWrap">
-                        <div class="cards buttons" id="greetBoxStartButton" onclick="fetchingUsername();">BEGIN</div>
+                        <button type="submit" class="cards buttons" id="greetBoxStartButton" onclick="loadDoc();">BEGIN</button>
                     </div>
+                </form>
+
             </div>
         </div>
         <div id="footer">
