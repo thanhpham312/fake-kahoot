@@ -1,0 +1,27 @@
+#userName {
+    position: absolute;
+    width: 20%;
+    height: auto;
+    left: 0%;
+}
+
+#userScore {
+    position: absolute;
+    width: 20%;
+    height: auto;
+    left: 25%;
+}
+
+#userStreak {
+    position: absolute;
+    width: 20%;
+    height: auto;
+    left: 50%;
+}
+
+#userDate {
+    position: absolute;
+    width: 20%;
+    height: auto;
+    left: 75%;
+}
