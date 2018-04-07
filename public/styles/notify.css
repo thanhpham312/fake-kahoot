@@ -1,0 +1,21 @@
+#notify {
+    border-radius: 100px    ;
+    position: absolute;
+    width: 175px;
+    height: 175px;
+    background-color: black;
+    top: 85vh; /*85vh*/
+    left: 92vw; /*92vw*/
+    margin: -87.5px 0 0 -87.5px;
+    color: limegreen;
+    text-align: center;
+}
+
+#tooltip {
+    position: relative;
+    height: 88px;
+    width: 88px;
+    display: table;
+    margin: 0 auto;
+    background: url(/assets/images/icons/thumb-up.svg) no-repeat;
+}

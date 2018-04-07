@@ -64,7 +64,9 @@ var fetchQuestions = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
             questionList = JSON.parse(xmlhttp.responseText);
-            console.log(questionList)
+            console.log(questionList);
+
+            displayQuestion();
         }
     };
     xmlhttp.send();
@@ -77,6 +79,7 @@ let fetchingUsername = () => {
     xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log(xmlhttp.responseText)
+            fetchQuestions();
             // // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
             // questionList = JSON.parse(xmlhttp.responseText);
             // console.log(questionList)
@@ -96,9 +99,8 @@ var displayQuestion = () => {
         answer2.innerHTML = questionList[currentQuestion].option2;
         answer3.innerHTML = questionList[currentQuestion].option3;
         answer4.innerHTML = questionList[currentQuestion].option4;
-        questionViewWrap.removeAttribute('style');
+        questionViewWrap.style.top = "50vh"
     }, 300)
 };
 
-fetchQuestions();
-displayQuestion();
+
