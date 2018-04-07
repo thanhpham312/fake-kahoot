@@ -44,7 +44,7 @@ var assessQuizResult = () => {
     };
     console.log("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
     xmlhttp.send("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
-}
+};
 
 var nextQuestion = () => {
     if (currentQuestion < 9) {
