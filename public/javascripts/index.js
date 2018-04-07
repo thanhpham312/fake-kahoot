@@ -47,7 +47,7 @@ var assessQuizResult = () => {
 }
 
 var nextQuestion = () => {
-    if (currentQuestion < 10) {
+    if (currentQuestion < 9) {
         currentQuestion++;
         displayQuestion();
     }
