@@ -37,6 +37,10 @@ app.post('/username', (request, response) => {
     }
 });
 
+app.post('/storeuser', (request, response) => {
+    
+})
+
 app.get('/leaderboard', (request, response) => {
    response.render('leaderboard.hbs')
 });
