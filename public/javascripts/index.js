@@ -3,6 +3,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     userInfo = document.getElementById('userInfo'),
     questionNumber = document.getElementById('questionNumber'),
     questionContent = document.getElementById('questionContent'),
+    greetBox = document.getElementById('greetBox');
     answer1 = document.getElementById('answer1'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
@@ -87,6 +88,10 @@ var fetchQuestions = () => {
             console.log(questionList);
 
             displayQuestion();
+            greetBox.style.opacity = '0';
+            setTimeout(() => {
+                greetBox.style.display = 'none';
+            }, 300);
         }
     };
     xmlhttp.send();
