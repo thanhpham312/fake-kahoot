@@ -64,7 +64,9 @@ var assessQuizResult = () => {
     let dataToSend = `username=${username}&score=${userScore}&highestStreak=${streakList}&quizTime=${timeStamp}`;
     console.log(dataToSend);
     xmlhttp.send(dataToSend);
-    window.location.replace('/leaderboard');
+    setTimeout(()=>{
+        window.location.replace('/leaderboard');
+    }, 1000);
 };
 
 var nextQuestion = () => {
