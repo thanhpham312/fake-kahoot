@@ -1,12 +1,12 @@
 #notify {
-    border-radius: 100px    ;
-    position: absolute;
-    width: 175px;
-    height: 175px;
+    border-radius: 50px;
+    position: relative;
+    width: 150px;
+    height: 150px;
     background-color: black;
-    top: 85vh; /*85vh*/
-    left: 92vw; /*92vw*/
-    margin: -87.5px 0 0 -87.5px;
+    top: 20vh; /*85vh*/
+    left: 0; /*92vw*/
+    /*margin: -87.5px 0 0 -87.5px;*/
     color: limegreen;
     text-align: center;
 }
@@ -18,4 +18,13 @@
     display: table;
     margin: 0 auto;
     background: url(/assets/images/icons/thumb-up.svg) no-repeat;
+}
+
+#wrap {
+    height: 175px;
+    width: 175px;
+    bottom:0;
+    right:0;
+    position: absolute;
+    overflow: hidden;
 }
