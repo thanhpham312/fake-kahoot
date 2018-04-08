@@ -17,6 +17,7 @@ var currentQuestion = 0,
     questionList = [],
     streakList = [],
     currentStreak = 0,
+    username = '',
     userScore = 0;
 
 var assessQuestionResult = (option) => {
@@ -35,13 +36,16 @@ var assessQuizResult = () => {
     var userHighestStreak = Math.max(streakList);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/storeuser", true);
+    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log(xmlhttp.responseText);
         }
     };
-    console.log("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
-    xmlhttp.send("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
+    console.log("username=" + encodeURIComponent(user_name.value) + "&score=" + encodeURIComponent(userScore) +
+        "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
+    xmlhttp.send("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) +
+        "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
 };
 
 var nextQuestion = () => {

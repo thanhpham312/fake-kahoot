@@ -1,4 +1,5 @@
 const qriusity = require('./controllers/qriusity');
+const usersjs = require('./models/users');
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
@@ -26,7 +27,7 @@ app.get('/', (request, response) => {
 });
 
 app.post('/username', (request, response) => {
-    user_name = request.body.user_name;
+    var user_name = request.body.user_name;
 
     if (user_name !== '') {
         response.send(user_name)
@@ -37,7 +38,10 @@ app.post('/username', (request, response) => {
 });
 
 app.post('/storeuser', (request, response) => {
-    console.log(request, response)
+    let o = request.body;
+
+
+
 });
 
 app.get('/leaderboard', (request, response) => {
