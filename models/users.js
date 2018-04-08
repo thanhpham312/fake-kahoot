@@ -23,7 +23,8 @@ var addNewUser = (new_user, score, streak) => {
     var newUser = {
         "userData" : new_user,
         "scoreData" : score,
-        "streakData" : streak
+        "streakData" : streak,
+        "date" : ""
         };
     userFileJson.user.push(newUser);
     writeFile(userFileJson);

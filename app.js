@@ -5,6 +5,7 @@ const _ = require('lodash');
 const tmdb = require('./controllers/tmdb');
 const qriusity = require('./controllers/qriusity');
 const bodyParser = require('body-parser')
+const userScoreInfo = require('./models/users_data.json')
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -37,8 +38,11 @@ app.post('/username', (request, response) => {
     }
 });
 
+
+
 app.get('/leaderboard', (request, response) => {
-   response.render('leaderboard.hbs')
+    user_data = 
+    response.render('leaderboard.hbs')
 });
 
 app.post('/getquestions', (request, response) => {
