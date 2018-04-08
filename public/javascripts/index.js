@@ -99,6 +99,7 @@ var fetchQuestions = () => {
 
 var displayQuestion = () => {
     questionViewWrap.style.top = '-100vh';
+    notification.style.left = '0';
     setTimeout(() => {
         userInfo.innerHTML = userScore;
         questionNumber.innerHTML = 'QUESTION ' + (currentQuestion + 1);
@@ -108,27 +109,23 @@ var displayQuestion = () => {
         answer3.innerHTML = questionList[currentQuestion].option3;
         answer4.innerHTML = questionList[currentQuestion].option4;
         questionViewWrap.style.top = "50vh"
-    }, 750)
+        notification.style.left = 'calc(100% + 1vh)';
+    }, 1200)
 };
 
 let displayNotification = (mode) => {
     let thumbUp = 'url(/assets/images/icons/thumb-up.svg)';
     let thumbDown = 'url(/assets/images/icons/dislike.svg)';
 
-    let s_code = (pic) => {
-        return document.styleSheets[4].cssRules[1].style.backgroundImage = pic
-    };
-
     if (mode === 'wrong') {
         notify_title.innerHTML = "Wrong! :(";
-        s_code(thumbDown)
+        document.getElementById('tooltip').style.backgroundImage = thumbDown
     } else if ( mode === 'right') {
         notify_title.innerHTML = "Good Job! :)";
-        s_code(thumbUp)
+        document.getElementById('tooltip').style.backgroundImage = thumbUp
     }
-    notification.style.top = '-1vh';
-    setTimeout(() => {
-        notification.style.top = '20vh';
-    }, 2000);
+    // setTimeout(() => {
+    //     notification.style.top = '0';
+    // }, 2000);
 };
 

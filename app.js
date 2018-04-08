@@ -1,11 +1,11 @@
-const qriusity = require('./controllers/qriusity');
-const usersjs = require('./models/users');
-const express = require('express');
-const hbs = require('hbs');
-const bodyParser = require('body-parser');
-const request = require('request');
-const _ = require('lodash');
-const user = require('./controllers/user');
+const qriusity = require('./controllers/qriusity'),
+    usersjs = require('./models/users'),
+    express = require('express'),
+    hbs = require('hbs'),
+    bodyParser = require('body-parser'),
+    request = require('request'),
+    _ = require('lodash'),
+    user = require('./controllers/user');
 
 let app = express();
 
@@ -35,7 +35,7 @@ app.post('/storeuser', (request, response) => {
         quizTime = reqBody.quizTime;
 
     console.log(reqBody);
-    user.storeUser(username, score, highestStreak, quizTime)
+    user.storeUser(username, score, highestStreak, quizTime);
 });
 
 

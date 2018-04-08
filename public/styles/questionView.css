@@ -7,7 +7,7 @@
     margin: -40vh 0 0 -40vw;
     background-color: rgba(38,50,56 ,1);
     color: var(--light-font-color);
-    transition: 1500ms;
+    transition: 300ms;
     /* background-color: rgba(224, 224, 224, 1); */
 }
 
