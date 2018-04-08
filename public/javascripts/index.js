@@ -55,10 +55,10 @@ var assessQuizResult = () => {
             console.log(xmlhttp.responseText);
         }
     };
-    console.log("username=" + encodeURIComponent(user_name.value) + "&score=" + encodeURIComponent(userScore) +
-        "&highestStreak=" + encodeURIComponent(streakList) + "&quizTime=" + encodeURIComponent(timeStamp));
-    xmlhttp.send("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) +
-        "&highestStreak=" + encodeURIComponent(streakList) + "&quizTime=" + encodeURIComponent(timeStamp));
+
+    let dataToSend = `username=${username}&score=${userScore}&highestStreak=${streakList}&quizTime=${timeStamp}`;
+    console.log(dataToSend);
+    xmlhttp.send(dataToSend);
 };
 
 var nextQuestion = () => {
