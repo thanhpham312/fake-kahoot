@@ -16,10 +16,58 @@ var storeUser = (newUserData, newScoreData, newStreakData) => {
         streakData: newStreakData,
         date: new Date().getTime()
     });
+<<<<<<< HEAD
 };
+=======
+}
+
+var sortScores = (sortOption) => {
+    var userInfo = loadUserFile("models/users_data.json").user
+    userInfo.sort((a, b)=> {
+        return b[sortOption] - a[sortOption];
+    });
+    return userInfo
+}
+
+var getUsers = (userList) => {
+    var displayString = "";
+    var rankCounter = 1;
+    for (var i=0; i < userList.length; i++ ){
+        displayString += '<div class="leaderboardDisplayColumn">\n';
+        displayString += `<p class="displayInfo"> ${rankCounter} </p>\n`;
+        displayString += '</div>\n';
+        
+        displayString += '<div class="leaderboardDisplayColumn">\n';
+        displayString += `<p class="displayInfo"> ${userList[i].userData} </p>\n`;
+        displayString += '</div>\n';
+
+        displayString += '<div class="leaderboardDisplayColumn">\n';
+        displayString += `<p class="displayInfo"> ${userList[i].streakData} </p>\n`;
+        displayString += '</div>\n';
+
+        displayString += '<div class="leaderboardDisplayColumn">\n';
+        displayString += `<p class="displayInfo"> ${userList[i].scoreData} </p>\n`;
+        displayString += '</div>\n';
+
+        if (rankCounter >= 10){
+            break;
+        }
+
+        rankCounter++;
+
+    }
+    return displayString;
+}
+>>>>>>> refs/remotes/origin/master
 
 module.exports = {
     loadUserFile,
     saveUsers,
+<<<<<<< HEAD
     storeUser
+=======
+    sortScores,
+    storeUser,
+    getUsers
+>>>>>>> refs/remotes/origin/master
 };
