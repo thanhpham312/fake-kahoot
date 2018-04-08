@@ -7,6 +7,8 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
     user_name = document.getElementById('greetBoxUsernameInput'),
+    notification = document.getElementById('notify'),
+    notify_title = document.getElementById('notify_title'),
     answer4 = document.getElementById('answer4');
 
 // Server requests and display:
@@ -22,6 +24,7 @@ var currentQuestion = 0,
 
 var assessQuestionResult = (option) => {
     if (option === questionList[currentQuestion].answers) {
+        displayNotification('right');
         userScore += pointPerQuestion + streakBonus*currentStreak;
         currentStreak++;
         if (currentStreak > streakList) {
@@ -30,6 +33,7 @@ var assessQuestionResult = (option) => {
         }
     }
     else {
+        displayNotification('wrong');
         currentStreak = 0;
         console.log(streakList)
     }
@@ -75,6 +79,7 @@ var nextQuestion = () => {
 };
 
 var fetchQuestions = () => {
+    console.log(document.styleSheets);
     username = user_name.value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/getquestions", true);
@@ -101,7 +106,27 @@ var displayQuestion = () => {
         answer3.innerHTML = questionList[currentQuestion].option3;
         answer4.innerHTML = questionList[currentQuestion].option4;
         questionViewWrap.style.top = "50vh"
-    }, 300)
+    }, 750)
 };
 
+let displayNotification = (mode) => {
+    let thumbUp = 'url(/assets/images/icons/thumb-up.svg)';
+    let thumbDown = 'url(/assets/images/icons/dislike.svg)';
+
+    let s_code = (pic) => {
+        return document.styleSheets[4].cssRules[1].style.backgroundImage = pic
+    };
+
+    if (mode === 'wrong') {
+        notify_title.innerHTML = "Wrong! :(";
+        s_code(thumbDown)
+    } else if ( mode === 'right') {
+        notify_title.innerHTML = "Good Job! :)";
+        s_code(thumbUp)
+    }
+    notification.style.top = '-1vh';
+    setTimeout(() => {
+        notification.style.top = '20vh';
+    }, 2000);
+};
 

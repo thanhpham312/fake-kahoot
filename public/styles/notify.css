@@ -9,6 +9,7 @@
     /*margin: -87.5px 0 0 -87.5px;*/
     color: limegreen;
     text-align: center;
+    /*transition: 1s;*/
 }
 
 #tooltip {
@@ -17,7 +18,8 @@
     width: 88px;
     display: table;
     margin: 0 auto;
-    background: url(/assets/images/icons/thumb-up.svg) no-repeat;
+    background-image: url(/assets/images/icons/thumb-up.svg);
+    background: no-repeat;
 }
 
 #wrap {
