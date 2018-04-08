@@ -3,22 +3,26 @@
         {
             "userData": "ivan",
             "scoreData": 10,
-            "streakData": 1
+            "streakData": 1,
+            "date": ""
         },
         {
             "userData": "ivan",
             "scoreData": 10,
-            "streakData": 1
+            "streakData": 1,
+            "date": ""
         },
         {
             "userData": "jack",
             "scoreData": 2,
-            "streakData": 3
+            "streakData": 3,
+            "date": ""
         },
         {
             "userData": "tim",
             "scoreData": 100,
-            "streakData": 20
+            "streakData": 20,
+            "date": ""
         },
         {
             "userData": "pedram",
@@ -28,7 +32,8 @@
         {
             "userData": "pedram",
             "scoreData": "50",
-            "streakData": "5"
+            "streakData": "5",
+            "date": ""
         }
     ]
 }

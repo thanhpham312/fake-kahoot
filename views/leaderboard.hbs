@@ -4,15 +4,28 @@
         <title>Fakoot</title>
         <link rel="stylesheet" type="text/css" href="styles/general.css">
         <link rel="stylesheet" type="text/css" href="styles/leaderboards.css">
+        <link rel="stylesheet" type="text/css" href="styles/index.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     </head>
     <body>
         {{> menu}}
-        <div class="cards" id="scoreCard">
-            <div id="userName"></div>
-            <div id="userScore"></div>
-            <div id="userStreak"></div>
-            <div id="userDate"></div>
+        <div class="cards" id="scoreDisplay">
+            <div id="userRank" class="leaderboardDisplayColumn">
+                <p class="displayInfo">Rank</p>
+            </div>
+        
+            <div id="userName" class="leaderboardDisplayColumn">
+                <p class="displayInfo", id="scoreTextSort">Name</p>
+            </div>
+
+            <div id="userStreak" class="leaderboardDisplayColumn">
+                <p class="displayInfo">Streak</p>
+            </div>
+
+            <div id="userScore" class="leaderboardDisplayColumn">
+                <p class="displayInfo">Score</p>
+            </div>
+
         </div>
         
         <script src="javascripts/leaderboards.js"></script>
