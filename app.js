@@ -4,7 +4,8 @@ const request = require('request');
 const _ = require('lodash');
 const tmdb = require('./controllers/tmdb');
 const qriusity = require('./controllers/qriusity');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const user = require('./controllers/user')
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -39,13 +40,16 @@ app.post('/username', (request, response) => {
 
 
 app.get('/leaderboard', (request, response) => {
-    for (var i =0; i<userScoreInfo)
-    response.render('leaderboard.hbs', {
-        name : user_name,
-        score : user_score,
-        streak : user_streak
+    // for (var i =0; i<userScoreInfo)
 
+    response.render('leaderboard.hbs', {
+        list_of_user_data: user.getUsers(user.sortScores("scoreData"))
     })
+    //     name : user_name,
+    //     score : user_score,
+    //     streak : user_streak
+
+    // })
 });
 
 app.post('/getquestions', (request, response) => {

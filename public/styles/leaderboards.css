@@ -8,7 +8,8 @@
     box-sizing: border-box;
     margin: -40vh 0 0 -40vw;
     background-color: rgba(38,50,56 ,1);
-    color: var(--light-font-color)
+    color: var(--light-font-color);
+    overflow: auto;
     /* background-color: rgba(224, 224, 224, 1); */
 }
 
@@ -16,8 +17,8 @@
     text-align: center;
     display: inline-block;
     width: 24.73%;
-    height: 100%;
     box-sizing: border-box;
+    border-bottom: solid 0.3em white;
 }
 
 #userName {
@@ -41,7 +42,6 @@
     padding: 0 1em;
     display: inline-block;
     box-sizing: border-box;
-    height: 3em;
     width: auto;
     transition: 0.3s;
     font-size: 2em;
