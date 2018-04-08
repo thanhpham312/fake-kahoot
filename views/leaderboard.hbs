@@ -9,30 +9,32 @@
     </head>
     <body>
         {{> menu}}
-        <div class="cards" id="scoreDisplay">
-            <div id="userRank" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Rank</p>
+        <div id="content">
+            <div class="background" id="contentBackground"></div>
+            <div class="cards" id="scoreDisplay">
+                <div id="userRank" class="leaderboardDisplayColumn">
+                    <p class="displayInfo">Rank</p>
 
-            </div>
-        
-            <div id="userName" class="leaderboardDisplayColumn">
-                <p class="displayInfo", id="scoreTextSort">Name</p>
-            </div>
+                </div>
+            
+                <div id="userName" class="leaderboardDisplayColumn">
+                    <p class="displayInfo", id="scoreTextSort">Name</p>
+                </div>
 
-            <div id="userStreak" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Streak</p>
-            </div>
+                <div id="userStreak" class="leaderboardDisplayColumn">
+                    <p class="displayInfo">Streak</p>
+                </div>
 
-            <div id="userScore" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Score</p>
-            </div>
+                <div id="userScore" class="leaderboardDisplayColumn">
+                    <p class="displayInfo">Score</p>
+                </div>
 
-            <div id="userDate" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Date</p>
+                <div id="userDate" class="leaderboardDisplayColumn">
+                    <p class="displayInfo">Date</p>
+                </div>
+                {{{list_of_user_data}}}
             </div>
-            {{{list_of_user_data}}}
         </div>
-        
         <script src="javascripts/leaderboards.js"></script>
     </body>
 </html>

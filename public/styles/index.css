@@ -36,17 +36,6 @@
 }
 
 /* Content */
-#content {
-    position: absolute;
-    top: 3em;
-    height: calc(100vh - 3em);
-    width: 100vw;
-}
-
-#contentBackground {
-    background-image: url('/assets/images/backgrounds/background.png');
-    background-size: cover;
-}
 
 #greetBox {
     position: absolute;
