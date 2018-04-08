@@ -20,7 +20,8 @@ var currentQuestion = 0,
     streakList = 0,
     currentStreak = 0,
     username = '',
-    userScore = 0;
+    userScore = 0,
+    timeStamp = '';
 
 var assessQuestionResult = (option) => {
     if (option === questionList[currentQuestion].answers) {
@@ -41,14 +42,8 @@ var assessQuestionResult = (option) => {
 
 var assessQuizResult = () => {
     questionViewWrap.style.top = '-100vh';
-    var date = new Date(),
-        dd = date.getDate(),
-        mm = date.getMonth(),
-        yyyy = date.getFullYear(),
-        hh = date.getHours(),
-        min = date.getMinutes(),
-        ss = date.getSeconds(),
-        timeStamp = `${dd}/${mm}/${yyyy}%20${hh}:${min}:${ss}`;
+    var date = new Date();
+    timeStamp = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}%20${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
     streakList = streakList.toString();
 
