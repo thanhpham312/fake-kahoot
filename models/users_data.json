@@ -29,6 +29,18 @@
             "scoreData": "1000",
             "streakData": "1",
             "date": "8/3/2018 1:14:20"
+        },
+        {
+            "userData": "Tim",
+            "scoreData": "2000",
+            "streakData": "1",
+            "date": "8/3/2018 14:24:33"
+        },
+        {
+            "userData": "Ivan",
+            "scoreData": "5300",
+            "streakData": "4",
+            "date": "8/3/2018 14:31:0"
         }
     ]
 }
