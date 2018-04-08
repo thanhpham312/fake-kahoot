@@ -35,27 +35,14 @@ app.post('/storeuser', (request, response) => {
         quizTime = reqBody.quizTime;
 
     console.log(reqBody);
-
-    if (username !== '') {
-        response.send(username)
-    }
-    else {
-        response.send('gfdgf')
-    }
+    user.storeUser(username, score, highestStreak, quizTime)
 });
 
 
 app.get('/leaderboard', (request, response) => {
-    // for (var i =0; i<userScoreInfo)
-
     response.render('leaderboard.hbs', {
         list_of_user_data: user.getUsers(user.sortScores("scoreData"))
     })
-    //     name : user_name,
-    //     score : user_score,
-    //     streak : user_streak
-
-    // })
 });
 
 app.post('/getquestions', (request, response) => {

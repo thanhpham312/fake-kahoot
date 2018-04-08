@@ -1,75 +1,28 @@
 {
     "user": [
         {
-            "userData": "ivan",
-            "scoreData": 10,
-            "streakData": 1,
-            "date": ""
-        },
-        {
-            "userData": "ivan",
-            "scoreData": 10,
-            "streakData": 1,
-            "date": ""
-        },
-        {
-            "userData": "jack",
-            "scoreData": 2,
-            "streakData": 3,
-            "date": ""
-        },
-        {
-            "userData": "tim",
-            "scoreData": 100,
-            "streakData": 20,
-            "date": ""
-        },
-        {
-            "userData": "pedram",
-            "scoreData": 150,
-            "streakData": 1200
-        },
-        {
-            "userData": "pedram",
-            "scoreData": "50",
-            "streakData": "5",
-            "date": ""
-        },
-        {
-            "userData": "Jim",
-            "scoreData": "0",
-            "streakData": "0",
-            "date": ""
-        },
-        {
-            "userData": "Michal",
-            "scoreData": "-1000",
-            "streakData": "-1",
-            "date": ""
-        },
-        {
-            "userData": "edmund",
-            "scoreData": "9000",
+            "userData": "Pedram_",
+            "scoreData": "14000",
             "streakData": "10",
-            "date": ""
+            "date": "7/3/2018 22:15:35"
         },
         {
-            "userData": "steve",
-            "scoreData": "1000",
-            "streakData": "0",
-            "date": ""
+            "userData": "PEDRAM",
+            "scoreData": "1500",
+            "streakData": "1",
+            "date": "7/3/2018 22:25:23"
         },
         {
-            "userData": "hal",
+            "userData": "PEDRAM",
+            "scoreData": "1500",
+            "streakData": "1",
+            "date": "7/3/2018 22:25:27"
+        },
+        {
+            "userData": "asd",
             "scoreData": "2200",
-            "streakData": "3",
-            "date": ""
-        },
-        {
-            "userData": "emilie",
-            "scoreData": "8900",
-            "streakData": "9",
-            "date": ""
+            "streakData": "2",
+            "date": "7/3/2018 22:27:4"
         }
     ]
 }

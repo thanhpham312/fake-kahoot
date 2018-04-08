@@ -1,9 +1,9 @@
 #scoreDisplay {
     position: absolute;
-    top: 50vh;
-    left: 50vw;
-    width: 80vw;
-    height: 80vh;
+    top: 45vh;
+    left: 40vw;
+    width: 100vw;
+    height: 95vh;
     padding: 0;
     box-sizing: border-box;
     margin: -40vh 0 0 -40vw;
@@ -16,7 +16,7 @@
 .leaderboardDisplayColumn {
     text-align: center;
     display: inline-block;
-    width: 24.73%;
+    width: 19.73%;
     box-sizing: border-box;
     border-bottom: solid 0.3em white;
 }

@@ -5,17 +5,18 @@ var loadUserFile = (filename) => {
 };
 
 var saveUsers = (filename, object) => {
-    fs.writeFileSync(filename, JSON.stringify(object), 'utf8');
+    fs.writeFileSync(filename, JSON.stringify(object, null, 4), 'utf8');
 };
 
-var storeUser = (newUserData, newScoreData, newStreakData) => {
-    currentUserFile = loadUserFile('./models/users_data.json');
+var storeUser = (newUserData, newScoreData, newStreakData, timeStamp) => {
+    var currentUserFile = loadUserFile('./models/users_data.json');
     currentUserFile.user.push({
         userData: newUserData,
         scoreData: newScoreData,
         streakData: newStreakData,
-        date: new Date().getTime()
+        date: timeStamp
     });
+    saveUsers('./models/users_data.json', currentUserFile)
 };
 
 var sortScores = (sortOption) => {
@@ -44,6 +45,10 @@ var getUsers = (userList) => {
 
         displayString += '<div class="leaderboardDisplayColumn">\n';
         displayString += `<p class="displayInfo"> ${userList[i].scoreData} </p>\n`;
+        displayString += '</div>\n';
+
+        displayString += '<div class="leaderboardDisplayColumn">\n';
+        displayString += `<p class="displayInfo"> ${userList[i].date} </p>\n`;
         displayString += '</div>\n';
 
         if (rankCounter >= 10){

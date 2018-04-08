@@ -36,6 +36,7 @@ var assessQuestionResult = (option) => {
 };
 
 var assessQuizResult = () => {
+    questionViewWrap.style.top = '-100vh';
     var date = new Date(),
         dd = date.getDate(),
         mm = date.getMonth(),
@@ -59,6 +60,7 @@ var assessQuizResult = () => {
     let dataToSend = `username=${username}&score=${userScore}&highestStreak=${streakList}&quizTime=${timeStamp}`;
     console.log(dataToSend);
     xmlhttp.send(dataToSend);
+    window.location.replace('/leaderboard');
 };
 
 var nextQuestion = () => {
@@ -87,23 +89,6 @@ var fetchQuestions = () => {
     };
     xmlhttp.send();
 };
-
-// let fetchingUsername = () => {
-//     var xmlhttp = new XMLHttpRequest();
-//     xmlhttp.open("POST","/username", true);
-//     xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-//     xmlhttp.onreadystatechange = () =>{
-//         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//             console.log(xmlhttp.responseText);
-//             fetchQuestions();
-//             // // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
-//             // questionList = JSON.parse(xmlhttp.responseText);
-//             // console.log(questionList)
-//
-//         }
-//     };
-//     xmlhttp.send(`user_name=${user_name.value}`);
-// };
 
 var displayQuestion = () => {
     questionViewWrap.style.top = '-100vh';
