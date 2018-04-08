@@ -1,19 +1,17 @@
+const qriusity = require('./controllers/qriusity');
 const express = require('express');
 const hbs = require('hbs');
+const bodyParser = require('body-parser');
 const request = require('request');
 const _ = require('lodash');
-const tmdb = require('./controllers/tmdb');
-const qriusity = require('./controllers/qriusity');
-const bodyParser = require('body-parser')
-const userScoreInfo = require('./models/users_data.json')
+
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
+
 app.set('view engine', 'hbs');
+
 app.use(express.static(__dirname + '/public'));
-
-
-
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
@@ -39,8 +37,8 @@ app.post('/username', (request, response) => {
 });
 
 app.post('/storeuser', (request, response) => {
-    return undefined;
-})
+    console.log(request, response)
+});
 
 app.get('/leaderboard', (request, response) => {
     user_data = 

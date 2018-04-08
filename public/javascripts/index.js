@@ -76,7 +76,7 @@ let fetchingUsername = () => {
     xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            console.log(xmlhttp.responseText)
+            console.log(xmlhttp.responseText);
             fetchQuestions();
             // // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
             // questionList = JSON.parse(xmlhttp.responseText);
