@@ -16,9 +16,6 @@ var storeUser = (newUserData, newScoreData, newStreakData) => {
         streakData: newStreakData,
         date: new Date().getTime()
     });
-<<<<<<< HEAD
-};
-=======
 }
 
 var sortScores = (sortOption) => {
@@ -58,16 +55,11 @@ var getUsers = (userList) => {
     }
     return displayString;
 }
->>>>>>> refs/remotes/origin/master
 
 module.exports = {
     loadUserFile,
     saveUsers,
-<<<<<<< HEAD
-    storeUser
-=======
     sortScores,
     storeUser,
     getUsers
->>>>>>> refs/remotes/origin/master
 };

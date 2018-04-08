@@ -12,7 +12,6 @@ const tmdb = require('./controllers/tmdb');
 const qriusity = require('./controllers/qriusity');
 const bodyParser = require('body-parser');
 const user = require('./controllers/user')
->>>>>>> refs/remotes/origin/master
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -44,15 +43,6 @@ app.post('/username', (request, response) => {
     }
 });
 
-<<<<<<< HEAD
-app.post('/storeuser', (request, response) => {
-    let o = request.body;
-
-
-
-});
-=======
->>>>>>> refs/remotes/origin/master
 
 app.get('/leaderboard', (request, response) => {
     // for (var i =0; i<userScoreInfo)
