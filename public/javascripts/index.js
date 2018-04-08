@@ -15,7 +15,7 @@ const pointPerQuestion = 500,
 
 var currentQuestion = 0,
     questionList = [],
-    streakList = [],
+    streakList = 0,
     currentStreak = 0,
     username = '',
     userScore = 0;
@@ -24,16 +24,29 @@ var assessQuestionResult = (option) => {
     if (option === questionList[currentQuestion].answers) {
         userScore += pointPerQuestion + streakBonus*currentStreak;
         currentStreak++;
+        if (currentStreak > streakList) {
+            streakList = currentStreak;
+            console.log(streakList)
+        }
     }
     else {
-        streakList.push(currentStreak);
         currentStreak = 0;
+        console.log(streakList)
     }
 };
 
 var assessQuizResult = () => {
-    var quizTime = new Date().getDate();
-    var userHighestStreak = Math.max(streakList);
+    var date = new Date(),
+        dd = date.getDate(),
+        mm = date.getMonth(),
+        yyyy = date.getFullYear(),
+        hh = date.getHours(),
+        min = date.getMinutes(),
+        ss = date.getSeconds(),
+        timeStamp = `${dd}/${mm}/${yyyy} ${hh}:${min}:${ss}`;
+
+    streakList = streakList.toString();
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/storeuser", true);
     xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
@@ -43,9 +56,9 @@ var assessQuizResult = () => {
         }
     };
     console.log("username=" + encodeURIComponent(user_name.value) + "&score=" + encodeURIComponent(userScore) +
-        "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
+        "&highestStreak=" + encodeURIComponent(streakList) + "&quizTime=" + encodeURIComponent(timeStamp));
     xmlhttp.send("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) +
-        "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
+        "&highestStreak=" + encodeURIComponent(streakList) + "&quizTime=" + encodeURIComponent(timeStamp));
 };
 
 var nextQuestion = () => {

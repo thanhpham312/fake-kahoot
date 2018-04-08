@@ -16,15 +16,15 @@ var storeUser = (newUserData, newScoreData, newStreakData) => {
         streakData: newStreakData,
         date: new Date().getTime()
     });
-}
+};
 
 var sortScores = (sortOption) => {
-    var userInfo = loadUserFile("models/users_data.json").user
+    var userInfo = loadUserFile("models/users_data.json").user;
     userInfo.sort((a, b)=> {
         return b[sortOption] - a[sortOption];
     });
     return userInfo
-}
+};
 
 var getUsers = (userList) => {
     var displayString = "";
@@ -54,7 +54,7 @@ var getUsers = (userList) => {
 
     }
     return displayString;
-}
+};
 
 module.exports = {
     loadUserFile,

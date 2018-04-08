@@ -5,13 +5,8 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const request = require('request');
 const _ = require('lodash');
-<<<<<<< HEAD
+const user = require('./controllers/user');
 
-=======
-const tmdb = require('./controllers/tmdb');
-const qriusity = require('./controllers/qriusity');
-const bodyParser = require('body-parser');
-const user = require('./controllers/user')
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
