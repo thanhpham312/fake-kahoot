@@ -35,6 +35,12 @@
             "scoreData": "2200",
             "streakData": "2",
             "date": "8/3/2018 13:39:45"
+        },
+        {
+            "userData": "hello",
+            "scoreData": "1200",
+            "streakData": "2",
+            "date": "8/4/2018 16:14:3"
         }
     ]
 }
