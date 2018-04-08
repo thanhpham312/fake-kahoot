@@ -38,7 +38,13 @@ app.post('/username', (request, response) => {
     }
 });
 
+<<<<<<< HEAD
 
+=======
+app.post('/storeuser', (request, response) => {
+    
+})
+>>>>>>> c5f434ede5b26cb7ac4d037c4c07047f1aacfe14
 
 app.get('/leaderboard', (request, response) => {
     user_data = 

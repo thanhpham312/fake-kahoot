@@ -34,12 +34,10 @@ var assessQuizResult = () => {
     var quizTime = new Date().getDate();
     var userHighestStreak = Math.max(streakList);
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/leaderboard", true);
+    xmlhttp.open("POST","/storeuser", true);
     xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
-            // questionList = JSON.parse(xmlhttp.responseText);
-            // console.log(questionList)
+            console.log(xmlhttp.responseText);
         }
     };
     console.log("username=" + encodeURIComponent(username) + "&score=" + encodeURIComponent(userScore) + "&highestStreak=" + encodeURIComponent(userHighestStreak) + "&quizTime=" + encodeURIComponent(quizTime));
