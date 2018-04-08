@@ -43,7 +43,7 @@ var assessQuizResult = () => {
         hh = date.getHours(),
         min = date.getMinutes(),
         ss = date.getSeconds(),
-        timeStamp = `${dd}/${mm}/${yyyy} ${hh}:${min}:${ss}`;
+        timeStamp = `${dd}/${mm}/${yyyy}%20${hh}:${min}:${ss}`;
 
     streakList = streakList.toString();
 
@@ -73,6 +73,7 @@ var nextQuestion = () => {
 };
 
 var fetchQuestions = () => {
+    username = user_name.value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/getquestions", true);
     xmlhttp.onreadystatechange = () =>{
@@ -87,22 +88,22 @@ var fetchQuestions = () => {
     xmlhttp.send();
 };
 
-let fetchingUsername = () => {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/username", true);
-    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = () =>{
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            console.log(xmlhttp.responseText);
-            fetchQuestions();
-            // // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
-            // questionList = JSON.parse(xmlhttp.responseText);
-            // console.log(questionList)
-
-        }
-    };
-    xmlhttp.send(`user_name=${user_name.value}`);
-};
+// let fetchingUsername = () => {
+//     var xmlhttp = new XMLHttpRequest();
+//     xmlhttp.open("POST","/username", true);
+//     xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
+//     xmlhttp.onreadystatechange = () =>{
+//         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//             console.log(xmlhttp.responseText);
+//             fetchQuestions();
+//             // // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
+//             // questionList = JSON.parse(xmlhttp.responseText);
+//             // console.log(questionList)
+//
+//         }
+//     };
+//     xmlhttp.send(`user_name=${user_name.value}`);
+// };
 
 var displayQuestion = () => {
     questionViewWrap.style.top = '-100vh';

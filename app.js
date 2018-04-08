@@ -27,11 +27,17 @@ app.get('/', (request, response) => {
     response.render('index.hbs');
 });
 
-app.post('/username', (request, response) => {
-    var user_name = request.body.user_name;
+app.post('/storeuser', (request, response) => {
+    var reqBody = request.body,
+        score = reqBody.score,
+        username = reqBody.username,
+        highestStreak = reqBody.highestStreak,
+        quizTime = reqBody.quizTime;
 
-    if (user_name !== '') {
-        response.send(user_name)
+    console.log(reqBody);
+
+    if (username !== '') {
+        response.send(username)
     }
     else {
         response.send('gfdgf')
