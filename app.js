@@ -8,6 +8,8 @@ const qriusity = require('./controllers/qriusity'),
     user = require('./controllers/user'),
     question = require('./controllers/question');
 
+const port = process.env.PORT || 8080;
+
 let app = express();
 let currentUser = {
     "username": '',
@@ -96,6 +98,6 @@ app.get('*', function(request, response){
     response.render('404.hbs');
 });
 
-app.listen(8080, () => {
+app.listen(port, () => {
     console.log(`Server is up on port 8080`);
 });
