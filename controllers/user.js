@@ -1,10 +1,21 @@
 const fs = require('fs');
 
 var loadUserFile = (filename) => {
-    return JSON.parse(fs.readFileSync(filename));
+	  if (fs.existsSync(filename)) {
+		  return JSON.parse(fs.readFileSync(filename));
+	  } else {
+	      let object = {
+	          "user": []
+        }
+	      fs.writeFileSync(filename, JSON.stringify(object, null, 4), 'utf8')
+    }
 };
 
 var saveUsers = (filename, object) => {
+	// fs.writeFile(path, data, { flag: 'wx' }, function (err) {
+	// 	if (err) throw err;
+	// 	console.log("It's saved!");
+	// });
     fs.writeFileSync(filename, JSON.stringify(object, null, 4), 'utf8');
 };
 
