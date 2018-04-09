@@ -3,6 +3,7 @@
     <head>
         <title>Fakoot</title>
         {{> head}}
+        <link rel="stylesheet" type="text/css" href="styles/index.css">
     </head>
     <body>
         {{> menu}}
@@ -11,15 +12,14 @@
             <div id="greetBox">
                 <div id="greetBoxWelcomeText">
                     <p>Welcome to Fakoot!</p>
-                    <p>Enter a username and press 'START' to begin</p>
+                    <p>Enter a username to begin</p>
                 </div>
-
-                    <div id="greetBoxUsernameInputWrap">
-                        <input name="user_name" class="cards" id="greetBoxUsernameInput" placeholder="Enter a username" onkeypress="login(event);"/>
-                    </div>
-                    <div id="greetBoxStartButtonWrap">
-                        <div class="cards buttons" id="greetBoxStartButton" onclick="login();" onkeypress="login(event);">BEGIN</div>
-                    </div>
+                <div id="greetBoxUsernameInputWrap">
+                    <input name="user_name" class="cards" id="greetBoxUsernameInput" placeholder="Enter a username" onkeypress="login(event);"/>
+                </div>
+                <div id="greetBoxStartButtonWrap">
+                    <div class="cards buttons" id="greetBoxStartButton" onclick="login();" onkeypress="login(event);">BEGIN</div>
+                </div>
             </div>
         </div>
         {{> questionView}}
