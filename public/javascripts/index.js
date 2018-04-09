@@ -8,6 +8,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     answer1 = document.getElementById('answer1'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
+    answer4 = document.getElementById('answer4'),
     user_name = document.getElementById('greetBoxUsernameInput'),
 
     popupWrap = document.getElementById('popupWrap'),
@@ -17,7 +18,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
 
     notification = document.getElementById('notify'),
     notify_title = document.getElementById('notify_title'),
-    answer4 = document.getElementById('answer4');
+    notify_wrap = document.getElementById('wrap');
 
 var currentQuestion = 0,
     currentUser = {
@@ -80,10 +81,14 @@ var storeQuizResult = () => {
         }
     };
     xmlhttp.send();
-    notification.style.left = '0';
+    notify_wrap.style.display = 'block';
+    notification.style.right = '0';
     setTimeout(() => {
-        notification.style.left = 'calc(100% + 1vh)';
+        notification.style.right = '-100%';
         popupWrap.style.top = '50vh';
+        setTimeout(() => {
+            notify_wrap.style.display = 'none';
+        }, 300)
     }, 1200);
 };
 
@@ -96,6 +101,8 @@ var login = (event = 1) => {
             xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
             xmlhttp.onreadystatechange = () =>{
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    notify_title.innerHTML = `Welcome ${currentUser.username}`;
+                    document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)';
                     fetchQuestions();
                     console.log(xmlhttp.responseText);
                 }
@@ -103,7 +110,7 @@ var login = (event = 1) => {
             xmlhttp.send(`username=${currentUser.username}`);
         }
         else {
-            alert('Username can not be left empty!')
+            alert('Username can not be left empty!');
         }
     }
     
@@ -147,8 +154,11 @@ var fetchQuestions = () => {
 };
 
 var displayQuestion = () => {
+    notify_wrap.style.display = 'block';
     questionViewWrap.style.top = '-100vh';
-    notification.style.left = '0';
+    setTimeout(() => {
+        notification.style.right = '0';
+    }, 1);
     setTimeout(() => {
         userInfo.innerHTML = `${currentUser.username} - ${currentUser.userScore}`;
         questionNumber.innerHTML = 'QUESTION ' + (currentQuestion + 1);
@@ -158,8 +168,11 @@ var displayQuestion = () => {
         answer3.innerHTML = questionList[currentQuestion].option3;
         answer4.innerHTML = questionList[currentQuestion].option4;
         questionViewWrap.style.top = "50vh"
-        notification.style.left = 'calc(100% + 1vh)';
-    }, 1200)
+        notification.style.right = '-100%';
+        setTimeout(() => {
+            notify_wrap.style.display = 'none';
+        }, 300);
+    }, 1200);
 };
 
 let displayNotification = (mode) => {
@@ -168,10 +181,10 @@ let displayNotification = (mode) => {
 
     if (mode === 'wrong') {
         notify_title.innerHTML = "Wrong! :(";
-        document.getElementById('tooltip').style.backgroundImage = thumbDown
+        document.getElementById('tooltip').style.backgroundImage = thumbDown;
     } else if ( mode === 'right') {
         notify_title.innerHTML = "Good Job! :)";
-        document.getElementById('tooltip').style.backgroundImage = thumbUp
+        document.getElementById('tooltip').style.backgroundImage = thumbUp;
     }
 };
 
