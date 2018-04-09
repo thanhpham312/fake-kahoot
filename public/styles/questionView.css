@@ -48,6 +48,7 @@
     width: 100%;
     padding: 0 1em;
     font-size: 2em;
+    overflow-y: auto;
 }
 
 #questionViewAnswersWrap {
@@ -89,6 +90,9 @@
     font-size: 1.25em;
     line-height: 3.25em;
     color: var(--light-font-color);
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #answer1 {

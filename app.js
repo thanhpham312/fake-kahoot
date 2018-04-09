@@ -79,7 +79,6 @@ app.post('/getquestions', (request, response) => {
                 "option4": result[i].option4,
             })
         }
-        console.log(currentQuestionList)
         response.send(minimalQuestionList);
     });
 });
