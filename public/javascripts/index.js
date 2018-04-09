@@ -127,7 +127,7 @@ var nextQuestion = () => {
 };
 
 var fetchQuestions = () => {
-    console.log(document.styleSheets);
+    // console.log(document.styleSheets);
     username = user_name.value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/getquestions", true);
@@ -135,8 +135,7 @@ var fetchQuestions = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
             questionList = JSON.parse(xmlhttp.responseText);
-            console.log(questionList);
-
+            // console.log(questionList);
             displayQuestion();
             greetBox.style.opacity = '0';
             setTimeout(() => {
