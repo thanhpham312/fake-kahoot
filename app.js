@@ -49,6 +49,12 @@ app.post('/storeuser', (request, response) => {
     // user.storeUser(username, score, highestStreak, quizTime);
     if (currentUser.username != '') {
         question.storeQuizResult(currentUser);
+        currentUser = {
+            "username": '',
+            "userScore": 0,
+            "currentStreak": 0,
+            "highestStreak": 0
+        };
         response.send('Quiz result stored successfully!')
     }
     else {
