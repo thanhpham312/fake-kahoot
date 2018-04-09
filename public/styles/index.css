@@ -44,6 +44,8 @@
     height: 30vh;
     width: 30vw;
     margin: -10vh 0 0 -15vw;
+    opacity: 1;
+    transition: 300ms;
 }
 
 #greetBoxWelcomeText {

@@ -103,7 +103,11 @@ a {
     background: rgba(207,216,220 ,0.8);
 }
 
+<<<<<<< HEAD
 /* Common elements */
+=======
+/* Common elements: */
+>>>>>>> 898549735f79631e96f3d22dab853eebb0a66e02
 #content {
     position: absolute;
     top: 3em;
