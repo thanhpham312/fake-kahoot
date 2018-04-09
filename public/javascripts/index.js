@@ -75,7 +75,7 @@ var login = (event = 1) => {
             fetchQuestions();
         }
         else {
-            alert('Invalid username!')
+            alert('Username can not be left empty!')
         }
     }
     
