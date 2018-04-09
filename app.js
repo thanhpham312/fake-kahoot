@@ -93,6 +93,10 @@ app.get('/about', (request, response) => {
     response.render('about.hbs');
 });
 
+app.get('*', function(request, response){
+    response.render('404.hbs');
+});
+
 app.listen(8080, () => {
     console.log(`Server is up on port 8080`);
 });
