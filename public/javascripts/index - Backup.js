@@ -19,51 +19,39 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     notify_title = document.getElementById('notify_title'),
     answer4 = document.getElementById('answer4');
 
-var currentQuestion = 0,
-    currentUser = {
-    "username": '',
-    "userScore": 0,
-    "currentStreak": 0,
-    "highestStreak": 0
-};
-
 // Server requests and display:
+const pointPerQuestion = 500,
+    streakBonus = 200;
 
-var assessQuestionResult = (chosenAnswer) => {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/validateanswer", true);
-    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = () =>{
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            xmlhttpResult = JSON.parse(xmlhttp.responseText)
-            currentUser = xmlhttpResult.currentUser
-            if (xmlhttpResult.result == true) {
-                displayNotification('right');
-            }
-            else {
-                displayNotification('wrong');
-            }
-            populatePopupResult();
+var currentQuestion = 0,
+    questionList = [],
+    highestStreak = 0,
+    currentStreak = 0,
+    username = '',
+    userScore = 0,
+    timeStamp = '';
+
+var assessQuestionResult = (option) => {
+    if (option === questionList[currentQuestion].answers) {
+        displayNotification('right');
+        userScore += pointPerQuestion + streakBonus*currentStreak;
+        currentStreak++;
+        if (currentStreak > highestStreak) {
+            highestStreak = currentStreak;
         }
-    };
-    xmlhttp.send(`questionNumber=${currentQuestion}&chosenAnswer=${chosenAnswer}`);
-
-    // if (option === questionList[currentQuestion].answers) {
-    //     displayNotification('right');
-    //     userScore += pointPerQuestion + streakBonus*currentStreak;
-    //     currentStreak++;
-    //     if (currentStreak > highestStreak) {
-    //         highestStreak = currentStreak;
-    //     }
-    // }
-    // else {
-    //     displayNotification('wrong');
-    //     currentStreak = 0;
-    // }
+    }
+    else {
+        displayNotification('wrong');
+        currentStreak = 0;
+    }
 };
 
-var storeQuizResult = () => {
+var assessQuizResult = () => {
     questionViewWrap.style.top = '-100vh';
+    var date = new Date();
+    timeStamp = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}%20${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+    highestStreak = highestStreak.toString();
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/storeuser", true);
@@ -71,36 +59,20 @@ var storeQuizResult = () => {
     xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log(xmlhttp.responseText);
-            currentUser = {
-                "username": '',
-                "userScore": 0,
-                "currentStreak": 0,
-                "highestStreak": 0
-            };
         }
     };
-    xmlhttp.send();
-    notification.style.left = '0';
-    setTimeout(() => {
-        notification.style.left = 'calc(100% + 1vh)';
-        popupWrap.style.top = '50vh';
-    }, 1200);
+
+    let dataToSend = `username=${username}&score=${userScore}&highestStreak=${highestStreak}&quizTime=${timeStamp}`;
+    console.log(dataToSend);
+    xmlhttp.send(dataToSend);
+    populatePopupResult();
+    popupWrap.style.top = '50vh';
 };
 
 var login = (event = 1) => {
     if (event == 1 || event.keyCode == '13') {
         if (user_name.value != '') {
-            currentUser.username = user_name.value
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST","/login", true);
-            xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = () =>{
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    fetchQuestions();
-                    console.log(xmlhttp.responseText);
-                }
-            };
-            xmlhttp.send(`username=${currentUser.username}`);
+            fetchQuestions();
         }
         else {
             alert('Username can not be left empty!')
@@ -110,9 +82,9 @@ var login = (event = 1) => {
 } 
 
 var populatePopupResult = () => {
-    popupMessageUsername.innerHTML = currentUser.username;
-    popupMessageScore.innerHTML = `SCORE: ${currentUser.userScore}`;
-    popupMessageStreak.innerHTML = `HIGHEST STREAK: ${currentUser.highestStreak}`;
+    popupMessageUsername.innerHTML = username;
+    popupMessageScore.innerHTML = `SCORE: ${userScore}`;
+    popupMessageStreak.innerHTML = `HIGHT STREAK: ${highestStreak}`;
 }
 
 var nextQuestion = () => {
@@ -121,7 +93,7 @@ var nextQuestion = () => {
         displayQuestion();
     }
     else {
-        storeQuizResult();
+        assessQuizResult();
     }
     
 };
@@ -151,7 +123,7 @@ var displayQuestion = () => {
     questionViewWrap.style.top = '-100vh';
     notification.style.left = '0';
     setTimeout(() => {
-        userInfo.innerHTML = `${currentUser.username} - ${currentUser.userScore}`;
+        userInfo.innerHTML = userScore;
         questionNumber.innerHTML = 'QUESTION ' + (currentQuestion + 1);
         questionContent.innerHTML = questionList[currentQuestion].question;
         answer1.innerHTML = questionList[currentQuestion].option1;
@@ -174,5 +146,8 @@ let displayNotification = (mode) => {
         notify_title.innerHTML = "Good Job! :)";
         document.getElementById('tooltip').style.backgroundImage = thumbUp
     }
+    // setTimeout(() => {
+    //     notification.style.top = '0';
+    // }, 2000);
 };
 

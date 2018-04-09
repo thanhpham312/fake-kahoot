@@ -5,9 +5,18 @@ const qriusity = require('./controllers/qriusity'),
     bodyParser = require('body-parser'),
     request = require('request'),
     _ = require('lodash'),
-    user = require('./controllers/user');
+    user = require('./controllers/user'),
+    question = require('./controllers/question');
 
 let app = express();
+let currentUser = {
+    "username": '',
+    "userScore": 0,
+    "currentStreak": 0,
+    "highestStreak": 0
+};
+
+let currentQuestionList = undefined;
 
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -28,15 +37,27 @@ app.get('/', (request, response) => {
 });
 
 app.post('/storeuser', (request, response) => {
-    var reqBody = request.body,
-        score = reqBody.score,
-        username = reqBody.username,
-        highestStreak = reqBody.highestStreak,
-        quizTime = reqBody.quizTime;
+    // var reqBody = request.body,
+    //     score = reqBody.score,
+    //     username = reqBody.username,
+    //     highestStreak = reqBody.highestStreak,
+    //     quizTime = reqBody.quizTime;
 
-    console.log(reqBody);
-    user.storeUser(username, score, highestStreak, quizTime);
+    // console.log(reqBody);
+    // user.storeUser(username, score, highestStreak, quizTime);
+    if (currentUser.username != '') {
+        question.storeQuizResult(currentUser);
+        response.send('Quiz result stored successfully!')
+    }
+    else {
+        response.send('Unable to store quiz result!')
+    }
 });
+
+app.post('/login', (request, response) => {
+    currentUser.username = request.body.username;
+    response.send('Login successful!')
+})
 
 
 app.get('/leaderboard', (request, response) => {
@@ -47,9 +68,26 @@ app.get('/leaderboard', (request, response) => {
 
 app.post('/getquestions', (request, response) => {
     qriusity.getQuestionByCategory(17, 0).then((result) => {
-        response.send(result);
+        currentQuestionList = result;
+        minimalQuestionList = []
+        for (var i = 0; i < result.length; i++) {
+            minimalQuestionList.push({
+                "question": result[i].question,
+                "option1": result[i].option1,
+                "option2": result[i].option2,
+                "option3": result[i].option3,
+                "option4": result[i].option4,
+            })
+        }
+        console.log(currentQuestionList)
+        response.send(minimalQuestionList);
     });
 });
+
+app.post('/validateanswer', (request, response) => {
+    var result = question.assessQuestionResult(currentQuestionList, currentUser, request.body.questionNumber, request.body.chosenAnswer);
+    response.send(result)
+})
 
 app.get('/about', (request, response) => {
     response.render('about.hbs');
