@@ -4,7 +4,8 @@
   "description": "for michal",
   "main": "app.js",
   "scripts": {
-    "test": "standard && node my-tests.js"
+    "test": "standard && node my-tests.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
