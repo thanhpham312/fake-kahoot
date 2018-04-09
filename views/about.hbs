@@ -1,1 +1,37 @@
-<html></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fakoot</title>
+    <link rel="stylesheet" type="text/css" href="styles/general.css">
+    <link rel="stylesheet" type="text/css" href="styles/about.css">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+{{> menu}}
+<div class="cards" id="scoreDisplay">
+    <div id="userRank" class="leaderboardDisplayColumn">
+        <p class="displayInfo">Rank</p>
+
+    </div>
+
+    <div id="userName" class="leaderboardDisplayColumn">
+        <p class="displayInfo", id="scoreTextSort">Name</p>
+    </div>
+
+    <div id="userStreak" class="leaderboardDisplayColumn">
+        <p class="displayInfo">Streak</p>
+    </div>
+
+    <div id="userScore" class="leaderboardDisplayColumn">
+        <p class="displayInfo">Score</p>
+    </div>
+
+    <div id="userDate" class="leaderboardDisplayColumn">
+        <p class="displayInfo">Date</p>
+    </div>
+</div>
+
+<script src="javascripts/about.js"></script>
+</body>
+</html>

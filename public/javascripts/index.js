@@ -103,7 +103,7 @@ var displayQuestion = () => {
         answer2.innerHTML = questionList[currentQuestion].option2;
         answer3.innerHTML = questionList[currentQuestion].option3;
         answer4.innerHTML = questionList[currentQuestion].option4;
-        questionViewWrap.style.top = "50vh"
+        questionViewWrap.style.top = "50vh";
         notification.style.left = 'calc(100% + 1vh)';
     }, 1200)
 };
