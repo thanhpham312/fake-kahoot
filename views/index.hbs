@@ -2,9 +2,7 @@
 <html>
     <head>
         <title>Fakoot</title>
-        <link rel="stylesheet" type="text/css" href="styles/general.css">
-        <link rel="stylesheet" type="text/css" href="styles/index.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        {{> head}}
     </head>
     <body>
         {{> menu}}
@@ -24,12 +22,9 @@
                     </div>
             </div>
         </div>
-        <div id="footer">
-
-        </div>
         {{> questionView}}
+        {{> popup}}
         {{> notify}}
-
         <script src="javascripts/index.js"></script>
     </body>
 </html>
