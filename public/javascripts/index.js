@@ -69,6 +69,18 @@ var assessQuizResult = () => {
     popupWrap.style.top = '50vh';
 };
 
+var login = (event = 1) => {
+    if (event == 1 || event.keyCode == '13') {
+        if (user_name.value != '') {
+            fetchQuestions();
+        }
+        else {
+            alert('Invalid username!')
+        }
+    }
+    
+} 
+
 var populatePopupResult = () => {
     popupMessageUsername.innerHTML = username;
     popupMessageScore.innerHTML = `SCORE: ${userScore}`;
