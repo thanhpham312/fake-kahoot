@@ -1,0 +1,33 @@
+#greetBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30vh;
+    width: 30vw;
+    margin: -10vh 0 0 -15vw;
+}
+
+#greetBoxWelcomeText {
+    position: absolute;
+    top: -100%;
+    left: calc(-50vw + 50%);
+    height: 100%;
+    width: 100vw;
+    text-align: center;
+    overflow: hidden;
+}
+
+#greetBoxWelcomeText p {
+    margin: 0;
+    padding-top: 0.3em;
+    font-size: 3em;
+    font-weight: 700;
+    color: rgba(55, 71, 79, 1);
+}
+
+#greetBoxUsernameInputWrap {
+    position: absolute;
+    top: 20%;
+    height: 25%;
+    width: 100%;
+}

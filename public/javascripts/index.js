@@ -43,7 +43,7 @@ var assessQuestionResult = (option) => {
 var assessQuizResult = () => {
     questionViewWrap.style.top = '-100vh';
     var date = new Date();
-    timeStamp = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}%20${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    timeStamp = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}%20${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
     streakList = streakList.toString();
 
