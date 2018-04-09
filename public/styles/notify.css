@@ -16,7 +16,7 @@
     top: 0;
     left: calc(100% + 1vh);
     text-align: center;
-    transition: 300;
+    transition: 300ms;
     background-color: var(--background-color);
 }
 
@@ -30,7 +30,6 @@
     line-height: 18vh;
     color: var(--light-font-color);
     font-size: 2em;
-    /* background-image: url(/assets/images/icons/thumb-up.svg); */
 }
 
 #tooltip {
@@ -40,7 +39,6 @@
     top: 50%;
     left: 1vh;
     margin: -8vh 0 0 0;
-    /* background-image: url(/assets/images/icons/thumb-up.svg); */
+    background-image: url(/assets/images/icons/puzzle.svg);
     background-size: cover;
-    background: no-repeat;
 }

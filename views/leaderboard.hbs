@@ -2,37 +2,36 @@
 <html>
     <head>
         <title>Fakoot</title>
-        <link rel="stylesheet" type="text/css" href="styles/general.css">
+        {{> head}}
         <link rel="stylesheet" type="text/css" href="styles/leaderboards.css">
-        <link rel="stylesheet" type="text/css" href="styles/index.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     </head>
     <body>
         {{> menu}}
-        <div class="cards" id="scoreDisplay">
-            <div id="userRank" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Rank</p>
+        <div id="content">
+            <div class="background" id="contentBackground"></div>
+            <div class="cards" id="scoreDisplay">
+                <div class="scoreDisplayRow scoreDisplayRowHeader">
+                    <div id="userRank" class="leaderboardDisplayColumn">
+                        <p class="displayInfo">RANK</p>
+                    </div>
+                    <div id="userName" class="leaderboardDisplayColumn">
+                        <p class="displayInfo", id="scoreTextSort">NAME</p>
+                    </div>
 
-            </div>
-        
-            <div id="userName" class="leaderboardDisplayColumn">
-                <p class="displayInfo", id="scoreTextSort">Name</p>
-            </div>
+                    <div id="userStreak" class="leaderboardDisplayColumn">
+                        <p class="displayInfo">STREAK</p>
+                    </div>
 
-            <div id="userStreak" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Streak</p>
-            </div>
+                    <div id="userScore" class="leaderboardDisplayColumn">
+                        <p class="displayInfo">SCORE</p>
+                    </div>
 
-            <div id="userScore" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Score</p>
+                    <div id="userDate" class="leaderboardDisplayColumn">
+                        <p class="displayInfo">DATE</p>
+                    </div>
+                </div>
+                {{{list_of_user_data}}}
             </div>
-
-            <div id="userDate" class="leaderboardDisplayColumn">
-                <p class="displayInfo">Date</p>
-            </div>
-            {{{list_of_user_data}}}
         </div>
-        
-        <script src="javascripts/leaderboards.js"></script>
     </body>
 </html>
