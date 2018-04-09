@@ -31,6 +31,8 @@ var getUsers = (userList) => {
     var displayString = "";
     var rankCounter = 1;
     for (var i=0; i < userList.length; i++ ){
+        displayString += '<div class="scoreDisplayRow">\n\t';
+        
         displayString += '<div class="leaderboardDisplayColumn">\n';
         displayString += `<p class="displayInfo"> ${rankCounter} </p>\n`;
         displayString += '</div>\n';
@@ -49,7 +51,7 @@ var getUsers = (userList) => {
 
         displayString += '<div class="leaderboardDisplayColumn">\n';
         displayString += `<p class="displayInfo"> ${userList[i].date} </p>\n`;
-        displayString += '</div>\n';
+        displayString += '</div>\n</div>\n';
 
         if (rankCounter >= 10){
             break;

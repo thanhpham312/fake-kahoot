@@ -3,11 +3,18 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     userInfo = document.getElementById('userInfo'),
     questionNumber = document.getElementById('questionNumber'),
     questionContent = document.getElementById('questionContent'),
+
     greetBox = document.getElementById('greetBox');
     answer1 = document.getElementById('answer1'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
     user_name = document.getElementById('greetBoxUsernameInput'),
+
+    popupWrap = document.getElementById('popupWrap'),
+    popupMessageUsername = document.getElementById('popupMessageUsername'),
+    popupMessageScore = document.getElementById('popupMessageScore'),
+    popupMessageStreak = document.getElementById('popupMessageStreak'),
+
     notification = document.getElementById('notify'),
     notify_title = document.getElementById('notify_title'),
     answer4 = document.getElementById('answer4');
@@ -18,7 +25,7 @@ const pointPerQuestion = 500,
 
 var currentQuestion = 0,
     questionList = [],
-    streakList = 0,
+    highestStreak = 0,
     currentStreak = 0,
     username = '',
     userScore = 0,
@@ -29,15 +36,13 @@ var assessQuestionResult = (option) => {
         displayNotification('right');
         userScore += pointPerQuestion + streakBonus*currentStreak;
         currentStreak++;
-        if (currentStreak > streakList) {
-            streakList = currentStreak;
-            console.log(streakList)
+        if (currentStreak > highestStreak) {
+            highestStreak = currentStreak;
         }
     }
     else {
         displayNotification('wrong');
         currentStreak = 0;
-        console.log(streakList)
     }
 };
 
@@ -46,7 +51,7 @@ var assessQuizResult = () => {
     var date = new Date();
     timeStamp = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}%20${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-    streakList = streakList.toString();
+    highestStreak = highestStreak.toString();
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/storeuser", true);
@@ -57,13 +62,18 @@ var assessQuizResult = () => {
         }
     };
 
-    let dataToSend = `username=${username}&score=${userScore}&highestStreak=${streakList}&quizTime=${timeStamp}`;
+    let dataToSend = `username=${username}&score=${userScore}&highestStreak=${highestStreak}&quizTime=${timeStamp}`;
     console.log(dataToSend);
     xmlhttp.send(dataToSend);
-    setTimeout(()=>{
-        window.location.replace('/leaderboard');
-    }, 1000);
+    populatePopupResult();
+    popupWrap.style.top = '50vh';
 };
+
+var populatePopupResult = () => {
+    popupMessageUsername.innerHTML = username;
+    popupMessageScore.innerHTML = `SCORE: ${userScore}`;
+    popupMessageStreak.innerHTML = `HIGHT STREAK: ${highestStreak}`;
+}
 
 var nextQuestion = () => {
     if (currentQuestion < 9) {
