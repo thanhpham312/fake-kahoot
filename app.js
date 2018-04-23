@@ -1,4 +1,4 @@
-const qriusity = require('./controllers/qriusity'),
+const opentdb = require('./controllers/opentdb'),
     // usersjs = require('./mine/users'),
     express = require('express'),
     hbs = require('hbs'),
@@ -75,7 +75,8 @@ app.get('/leaderboard', (request, response) => {
 });
 
 app.post('/getquestions', (request, response) => {
-    qriusity.getQuestionByCategory(17, 0).then((result) => {
+    
+    opentdb.getQuestionByCategory().then((result) => {
         currentQuestionList = result;
         minimalQuestionList = []
         for (var i = 0; i < result.length; i++) {
