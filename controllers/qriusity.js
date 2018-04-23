@@ -24,6 +24,17 @@ var getQuestionByCategory = (categoryID, page = 0, limit = 10) => {
     });
 };
 
+let getQuestionsNewApi = (questionAmount, categoryType) => {
+	request({
+		url: `https://opentdb.com/api.php?amount=${questionAmount}&category=${categoryType}&type=multiple`,
+		json: true
+	}, (error, response, body) => {
+		console.log(error)
+		console.log(response)
+		console.log(body)
+	})
+}
+
 module.exports = {
     getQuestionByCategory
 };
