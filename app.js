@@ -24,8 +24,8 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 
@@ -38,15 +38,7 @@ app.get('/', (request, response) => {
 });
 
 app.post('/storeuser', (request, response) => {
-    // var reqBody = request.body,
-    //     score = reqBody.score,
-    //     username = reqBody.username,
-    //     highestStreak = reqBody.highesgttStreak,
-    //     quizTime = reqBody.quizTime;
-
-    // console.log(reqBody);
-    // user.storeUser(username, score, highestStreak, quizTime);
-    if (currentUser.username != '') {
+    if (currentUser.username !== '') {
         question.storeQuizResult(currentUser);
         currentUser = {
             "username": '',
@@ -74,7 +66,7 @@ app.get('/leaderboard', (request, response) => {
 });
 
 app.post('/getquestions', (request, response) => {
-    qriusity.getQuestionByCategory(17, 0).then((result) => {
+/*    qriusity.getQuestionByCategory(17, 0).then((result) => {
         currentQuestionList = result;
         minimalQuestionList = []
         for (var i = 0; i < result.length; i++) {
@@ -87,7 +79,10 @@ app.post('/getquestions', (request, response) => {
             })
         }
         response.send(minimalQuestionList);
-    });
+    });*/
+	qriusity.getQuestionsNewApi(10, 11).then((result) => {
+		console.log(result)
+	})
 });
 
 app.post('/validateanswer', (request, response) => {
