@@ -23,7 +23,6 @@ var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty =
                 questionList = []
                 for (var i = 0; i < body.results.length; i++) {
                     answerArray = body.results[i].incorrect_answers.slice()
-                    
                     answerArray.push(body.results[i].correct_answer)
                     _.shuffle(answerArray)
                    
@@ -33,10 +32,9 @@ var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty =
                         "option2": answerArray[1],
                         "option3": answerArray[2],
                         "option4": answerArray[3],
-                        "answers": _.indexOf(answerArray, body.results.correct_answer) + 1
-                    })
+                        "answers": _.indexOf(answerArray, body.results[i].correct_answer) + 1
+                    });
                 }
-                resolve(questionList);   
             }
         });
     });
