@@ -41,7 +41,7 @@ app.post('/storeuser', (request, response) => {
     // var reqBody = request.body,
     //     score = reqBody.score,
     //     username = reqBody.username,
-    //     highestStreak = reqBody.highestStreak,
+    //     highestStreak = reqBody.highesgttStreak,
     //     quizTime = reqBody.quizTime;
 
     // console.log(reqBody);
