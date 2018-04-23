@@ -33,7 +33,7 @@ var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty =
                         "option2": answerArray[1],
                         "option3": answerArray[2],
                         "option4": answerArray[3],
-                        "answers": _.indexOf(body.results.correct_answer) + 1
+                        "answers": _.indexOf(answerArray, body.results.correct_answer) + 1
                     })
                 }
                 resolve(questionList);   
