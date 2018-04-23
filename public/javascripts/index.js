@@ -108,9 +108,10 @@ var login = (event = 1) => {
                 }
             };
             xmlhttp.send(`username=${currentUser.username}`);
+            swal("Good job!", "Welcome to Fakoot", "success");
         }
         else {
-            alert('Username can not be left empty!');
+            swal("Error!", "You left the username blank!", "warning");
         }
     }
     
