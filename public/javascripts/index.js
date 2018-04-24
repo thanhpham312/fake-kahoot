@@ -5,7 +5,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     questionContent = document.getElementById('questionContent'),
 
     greetBox = document.getElementById('greetBox');
-    answer1 = document.getElementById('answer1'),
+answer1 = document.getElementById('answer1'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
     answer4 = document.getElementById('answer4'),
@@ -22,19 +22,19 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
 
 var currentQuestion = 0,
     currentUser = {
-    "username": '',
-    "userScore": 0,
-    "currentStreak": 0,
-    "highestStreak": 0
-};
+        "username": '',
+        "userScore": 0,
+        "currentStreak": 0,
+        "highestStreak": 0
+    };
 
 // Server requests and display:
 
 var assessQuestionResult = (chosenAnswer) => {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/validateanswer", true);
-    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = () =>{
+    xmlhttp.open("POST", "/validateanswer", true);
+    xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             xmlhttpResult = JSON.parse(xmlhttp.responseText)
             currentUser = xmlhttpResult.currentUser
@@ -67,9 +67,9 @@ var storeQuizResult = () => {
     questionViewWrap.style.top = '-100vh';
 
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/storeuser", true);
-    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = () =>{
+    xmlhttp.open("POST", "/storeuser", true);
+    xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log(xmlhttp.responseText);
             currentUser = {
@@ -97,9 +97,9 @@ var login = (event = 1) => {
         if (user_name.value != '') {
             currentUser.username = user_name.value
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST","/login", true);
-            xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = () =>{
+            xmlhttp.open("POST", "/login", true);
+            xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = () => {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     notify_title.innerHTML = `Welcome ${currentUser.username}`;
                     document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)';
@@ -114,8 +114,8 @@ var login = (event = 1) => {
             swal("Error!", "You left the username blank!", "warning");
         }
     }
-    
-} 
+
+}
 
 var populatePopupResult = () => {
     popupMessageUsername.innerHTML = currentUser.username;
@@ -131,15 +131,15 @@ var nextQuestion = () => {
     else {
         storeQuizResult();
     }
-    
+
 };
 
 var fetchQuestions = () => {
     // console.log(document.styleSheets);
     username = user_name.value;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/getquestions", true);
-    xmlhttp.onreadystatechange = () =>{
+    xmlhttp.open("POST", "/getquestions", true);
+    xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
             questionList = JSON.parse(xmlhttp.responseText);
@@ -154,6 +154,11 @@ var fetchQuestions = () => {
     xmlhttp.send();
 };
 
+/**
+ * @desc Dsplay questions and set notification to right side.
+ * Catch the postion from currentQuestion array and display 4 answers.
+ * Style question wrap and notifications properly.
+ */
 var displayQuestion = () => {
     notify_wrap.style.display = 'block';
     questionViewWrap.style.top = '-100vh';
@@ -183,7 +188,7 @@ let displayNotification = (mode) => {
     if (mode === 'wrong') {
         notify_title.innerHTML = "Wrong! :(";
         document.getElementById('tooltip').style.backgroundImage = thumbDown;
-    } else if ( mode === 'right') {
+    } else if (mode === 'right') {
         notify_title.innerHTML = "Good Job! :)";
         document.getElementById('tooltip').style.backgroundImage = thumbUp;
     }
