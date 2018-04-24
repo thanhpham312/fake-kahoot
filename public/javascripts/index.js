@@ -118,7 +118,8 @@ var login = (event = 1) => {
 } 
 
 /**
- * @desc 
+ * @desc Displays the current user's name to the popup message Username along with their current Score and Highest Streak
+ * 
  */
 var populatePopupResult = () => {
     popupMessageUsername.innerHTML = currentUser.username;
