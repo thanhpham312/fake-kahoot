@@ -5,10 +5,10 @@ const qriusity = require('./qriusity'),
 /**
  * @desc {} 
  * @param {} param.questionsObject - 
- * @param {} param.userObject - 
+ * @param {} param.userObject - object contains user info
  * @param {} param.questionNumber - 
  * @param {} param.chosenAnswer -
- * @return {Object} 
+ * @return {Object} result of the fakoot round
  * 
  * @param {number} param.foo - this is property param.
  * 
