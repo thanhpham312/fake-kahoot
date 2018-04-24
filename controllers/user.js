@@ -19,7 +19,16 @@ var saveUsers = (filename, object) => {
     fs.writeFileSync(filename, JSON.stringify(object, null, 4), 'utf8');
 };
 
+/**
+ * storeUser stores user data to a file.
+ */
 var storeUser = (newUserData, newScoreData, newStreakData, timeStamp) => {
+    /**
+     * @param {string} newUserData - The current user's username.
+     * @param {string} newScoreData - The current user's score.
+     * @param {string} newStreakData - The current user's streak.
+     * @param {string} timeStamp - The current user's visit time.
+     */
     var currentUserFile = loadUserFile('./models/users_data.json');
     currentUserFile.user.push({
         userData: newUserData,
