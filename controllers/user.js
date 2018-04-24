@@ -11,6 +11,12 @@ var loadUserFile = (filename) => {
     }
 };
 
+
+/**
+* It's a function that saves users' info into a file.
+* @param {number} filename - the path of a file to which you want to write users' info into.
+* @param {number} object - the object that contains all users' info.
+*/
 var saveUsers = (filename, object) => {
 	// fs.writeFile(path, data, { flag: 'wx' }, function (err) {
 	// 	if (err) throw err;
