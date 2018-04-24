@@ -2,7 +2,7 @@ const fs = require('fs');
 
 
 /**
- * @access public loads the user JSON file, if there is no file it will be created with a simple JSON object.
+ * loadUserFile loads the user data from the database, if there is no file it will be created.
  */
 var loadUserFile = (filename) => {
     /**
