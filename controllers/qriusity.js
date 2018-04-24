@@ -1,7 +1,17 @@
 const request = require('request');
 
+/**
+ * @deprecated use getQuestionByCategory instead of this
+ */
 var getQuestionByCategory = (categoryID, page = 0, limit = 10) => {
-
+/**
+ * 
+ * @param   {number} categoryID - this is the cateogry ID for the questions you want use. We use 17 which is movies
+ * @param   {number} page - the page you want to pull questions from, 0 means random page
+ * @param   {number} limit - the number of questions you want to pull, 10 questions for our case
+ * @return  {error} - throws errr if cannot reach qriusity API
+ * @return  {resolve} -
+ */
     if (page <= 0) {
         page = String(Math.floor((Math.random()*50) + 1));
     }
