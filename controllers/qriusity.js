@@ -24,6 +24,10 @@ var getQuestionByCategory = (categoryID, page = 0, limit = 10) => {
     });
 };
 
+
+/**
+ * @deprecated use getQuestionByCategory in opentdb.js instead of this
+ */
 let getQuestionsNewApi = (questionAmount, categoryType) => {
 	return new Promise((resolve, reject) => {
 		request({
