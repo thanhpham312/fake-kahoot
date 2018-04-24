@@ -1,12 +1,19 @@
 const request = require('request'),
     _ = require('lodash');
 
+/**
+ * getQuestionByCategory fetches question from the Open Trivia Database and returns the results in s formstted object.
+ */
 var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty = 'medium', questionType = 'multiple') => {
-
-    // if (page <= 0) {
-    //     var page = String(Math.floor((Math.random()*50) + 1));
-    // }
-    
+    /**
+     * @param {number} numberofQuestions - Number of questions to be generated.
+     * @param {number} category - Category of questions.
+     * @param {string} difficulty - Questions diffuculty. Could either be 'easy', 'medium', or 'hard'.
+     * @param {string} questionType - Type of questions. Could either be 'multiple' or 'booleon'.
+     * @throws {failed connection} Could not connect to opentdb.
+     * @throws {invalid query} Invalid query.
+     * @returns {object} A object with information about questions fetched from the API.
+     */
     return new Promise((resolve, reject) => {
         request({
             url: `https://opentdb.com/api.php?amount=${encodeURIComponent(numberofQuestions)}&category=${encodeURIComponent(category)}&difficulty=${encodeURIComponent(difficulty)}&type=${encodeURIComponent(questionType)}`,
