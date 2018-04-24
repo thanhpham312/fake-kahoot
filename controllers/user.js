@@ -1,6 +1,14 @@
 const fs = require('fs');
 
+
+/**
+ * @access public loads the user JSON file, if there is no file it will be created with a simple JSON object.
+ */
 var loadUserFile = (filename) => {
+    /**
+     * @param   {string}    filename - JSON file with user objects
+     * 
+     */
 	  if (fs.existsSync(filename)) {
 		  return JSON.parse(fs.readFileSync(filename));
 	  } else {
