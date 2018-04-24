@@ -81,9 +81,6 @@ app.post('/getquestions', (request, response) => {
         }
         response.send(minimalQuestionList);
     });
-	qriusity.getQuestionsNewApi(10, 11).then((result) => {
-		console.log(result)
-	})
 });
 
 app.post('/validateanswer', (request, response) => {
