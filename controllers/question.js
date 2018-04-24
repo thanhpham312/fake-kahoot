@@ -3,7 +3,17 @@ const qriusity = require('./qriusity'),
     pointPerQuestion = 500,
     streakBonus = 200;
 
+/**
+ * assessQuestionResult checks if user made the right choice by looking at the answer stored server-side. 
+ */
 var assessQuestionResult = (questionsObject, userObject, questionNumber, chosenAnswer) => {
+    /**
+     * @param {object} questionsObject - Object that contains question data stored server-side.
+     * @param {object} userObject - Object that contains current user's data including username, score, streak, etc.
+     * @param {number} questionNumber - The current question to be assessed.
+     * @param {number} chosenAnswer - The choice made by the user for the current question.
+     * @returns {object} Object dictating wether the answer if right or wrong and the current user's data.
+     */
     if (questionsObject[questionNumber].answers == chosenAnswer) {
         
         userObject.userScore += pointPerQuestion + streakBonus*userObject.currentStreak;
