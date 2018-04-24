@@ -2,7 +2,17 @@ const qriusity = require('./qriusity'),
     user = require('./user')
     pointPerQuestion = 500,
     streakBonus = 200;
-
+/**
+ * @desc {} 
+ * @param {} param.questionsObject - 
+ * @param {} param.userObject - 
+ * @param {} param.questionNumber - 
+ * @param {} param.chosenAnswer -
+ * @return {Object} 
+ * 
+ * @param {number} param.foo - this is property param.
+ * 
+ */
 var assessQuestionResult = (questionsObject, userObject, questionNumber, chosenAnswer) => {
     if (questionsObject[questionNumber].answers == chosenAnswer) {
         
