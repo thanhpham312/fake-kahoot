@@ -117,6 +117,9 @@ var login = (event = 1) => {
     
 } 
 
+/**
+ * @desc 
+ */
 var populatePopupResult = () => {
     popupMessageUsername.innerHTML = currentUser.username;
     popupMessageScore.innerHTML = `SCORE: ${currentUser.userScore}`;
@@ -134,6 +137,10 @@ var nextQuestion = () => {
     
 };
 
+/**
+ * @desc Opens new HTTP request and looks for POST "/getquestions", if there is a state change, then it will parse into a JSON object which is displayed back to the user in the greet Box which only shows for 0.3 seconds then dissapears
+ * 
+ */
 var fetchQuestions = () => {
     // console.log(document.styleSheets);
     username = user_name.value;
@@ -188,5 +195,3 @@ let displayNotification = (mode) => {
         document.getElementById('tooltip').style.backgroundImage = thumbUp;
     }
 };
-
-OMEGALUL OMEGALUL OMEGALUL
