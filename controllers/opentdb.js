@@ -24,10 +24,7 @@ var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty =
                 for (var i = 0; i < body.results.length; i++) {
                     answerArray = body.results[i].incorrect_answers.slice()
                     answerArray.push(body.results[i].correct_answer)
-                    console.log(answerArray)
                     answerArray = _.shuffle(answerArray)
-                    console.log(answerArray)
-                   
                     questionList.push({
                         "question": body.results[i].question,
                         "option1": answerArray[0],
