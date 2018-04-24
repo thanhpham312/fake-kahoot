@@ -3,15 +3,12 @@ const qriusity = require('./qriusity'),
     pointPerQuestion = 500,
     streakBonus = 200;
 /**
- * @desc {} 
- * @param {} param.questionsObject - 
- * @param {} param.userObject - object contains user info
- * @param {} param.questionNumber - 
- * @param {} param.chosenAnswer -
+ * @desc function checks if user had given the right answer to a question and returns the result object
+ * @param {Object} param.questionsObject - object contains queston data
+ * @param {Object} param.userObject - object contains user data
+ * @param {number} param.questionNumber - number of a fakoot question
+ * @param {number} param.chosenAnswer - number of a question that user chose as an answer
  * @return {Object} result of the fakoot round
- * 
- * @param {number} param.foo - this is property param.
- * 
  */
 var assessQuestionResult = (questionsObject, userObject, questionNumber, chosenAnswer) => {
     if (questionsObject[questionNumber].answers == chosenAnswer) {

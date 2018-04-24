@@ -122,7 +122,9 @@ var populatePopupResult = () => {
     popupMessageScore.innerHTML = `SCORE: ${currentUser.userScore}`;
     popupMessageStreak.innerHTML = `HIGHEST STREAK: ${currentUser.highestStreak}`;
 }
-
+/**
+ * @desc function displays the next question or the result when the game is over
+ */
 var nextQuestion = () => {
     if (currentQuestion < 9) {
         currentQuestion++;
