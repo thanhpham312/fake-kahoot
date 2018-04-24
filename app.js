@@ -1,5 +1,5 @@
 const opentdb = require('./controllers/opentdb'),
-    // usersjs = require('./mine/users'),
+	qriusity = require('./controllers/qriusity')
     express = require('express'),
     hbs = require('hbs'),
     bodyParser = require('body-parser'),
