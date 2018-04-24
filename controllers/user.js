@@ -11,6 +11,12 @@ var loadUserFile = (filename) => {
     }
 };
 
+
+/**
+* It's a function that saves users' info into a file.
+* @param {number} filename - the path of a file to which you want to write users' info into.
+* @param {number} object - the object that contains all users' info.
+*/
 var saveUsers = (filename, object) => {
 	// fs.writeFile(path, data, { flag: 'wx' }, function (err) {
 	// 	if (err) throw err;
@@ -19,7 +25,16 @@ var saveUsers = (filename, object) => {
     fs.writeFileSync(filename, JSON.stringify(object, null, 4), 'utf8');
 };
 
+/**
+ * storeUser stores user data to a file.
+ */
 var storeUser = (newUserData, newScoreData, newStreakData, timeStamp) => {
+    /**
+     * @param {string} newUserData - The current user's username.
+     * @param {string} newScoreData - The current user's score.
+     * @param {string} newStreakData - The current user's streak.
+     * @param {string} timeStamp - The current user's visit time.
+     */
     var currentUserFile = loadUserFile('./models/users_data.json');
     currentUserFile.user.push({
         userData: newUserData,

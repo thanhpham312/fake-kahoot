@@ -11,11 +11,12 @@ const qriusity = require('./qriusity'),
  * @return {Object} result of the fakoot round
  */
 var assessQuestionResult = (questionsObject, userObject, questionNumber, chosenAnswer) => {
-    if (questionsObject[questionNumber].answers == chosenAnswer) {
+
+  if (questionsObject[questionNumber].answers == chosenAnswer) {
         
-        userObject.userScore += pointPerQuestion + streakBonus*userObject.currentStreak;
-        userObject.currentStreak++;
-        if (userObject.currentStreak > userObject.highestStreak) {
+    userObject.userScore += pointPerQuestion + streakBonus*userObject.currentStreak;
+    userObject.currentStreak++;
+    if (userObject.currentStreak > userObject.highestStreak) {
             userObject.highestStreak = userObject.currentStreak;
         }
 
