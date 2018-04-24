@@ -156,8 +156,8 @@ var fetchQuestions = () => {
 
 /**
  * @desc Dsplay questions and set notification to right side.
- * Catch the postion from currentQuestion array and display 4 answers.
- * Style question wrap and notifications properly.
+ * Catch the value from questionList according to currentQuestion position and display them with four answers.
+ * Hide the previous notification when new question comes out.
  */
 var displayQuestion = () => {
     notify_wrap.style.display = 'block';
