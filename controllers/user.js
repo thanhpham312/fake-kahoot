@@ -11,6 +11,12 @@ var loadUserFile = (filename) => {
     }
 };
 
+
+/**
+* It's a function that saves users' info into a file.
+* @param {string} filename - the path of a file to which you want to write users' info into.
+* @param {object} object - the object that contains all users' info.
+*/
 var saveUsers = (filename, object) => {
 	// fs.writeFile(path, data, { flag: 'wx' }, function (err) {
 	// 	if (err) throw err;
@@ -38,7 +44,11 @@ var storeUser = (newUserData, newScoreData, newStreakData, timeStamp) => {
     });
     saveUsers('./models/users_data.json', currentUserFile)
 };
-
+/**
+ * @desc Sort user information with sortOption as keyword.
+ * @param {string} sortOption - keyword for sorting
+ * @return A sorted object contains user information
+ */
 var sortScores = (sortOption) => {
     var userInfo = loadUserFile("models/users_data.json").user;
     userInfo.sort((a, b)=> {
@@ -46,7 +56,11 @@ var sortScores = (sortOption) => {
     });
     return userInfo
 };
-
+/**
+ * @desc Display top 10 users with their rank, user name, highest streak and scores.
+ * @param {list} userList - a list contains all user names. 
+ * @return A string contains rank, user name, highest streak and scores of a user.
+ */
 var getUsers = (userList) => {
     var displayString = "";
     var rankCounter = 1;
