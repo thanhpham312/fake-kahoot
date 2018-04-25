@@ -1,6 +1,14 @@
 const fs = require('fs');
 
+
+/**
+ * loadUserFile loads the user data from the database, if there is no file it will be created.
+ */
 var loadUserFile = (filename) => {
+    /**
+     * @param   {string}    filename - JSON file with user objects
+     * 
+     */
 	  if (fs.existsSync(filename)) {
 		  return JSON.parse(fs.readFileSync(filename));
 	  } else {
