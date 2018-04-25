@@ -188,7 +188,10 @@ var displayQuestion = () => {
         }, 300);
     }, 1200);
 };
-
+/**
+* Shows pictures of thumb up or down and notifications depending on whether the answer is correct.
+* @param {string} mode - determines which pattern to show (right or wrong)
+*/
 let displayNotification = (mode) => {
     let thumbUp = 'url(/assets/images/icons/thumb-up.svg)';
     let thumbDown = 'url(/assets/images/icons/dislike.svg)';
