@@ -63,6 +63,10 @@ var assessQuestionResult = (chosenAnswer) => {
     // }
 };
 
+/**
+* This function posts user info to server and resets currentUser.
+* It also includes notification for final question.
+*/
 var storeQuizResult = () => {
     questionViewWrap.style.top = '-100vh';
 
