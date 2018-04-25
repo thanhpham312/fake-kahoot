@@ -92,6 +92,11 @@ var storeQuizResult = () => {
     }, 1200);
 };
 
+/**
+ * @desc This function validates the user entry and sends the username string to the /login route
+ * @param event checks if there is a log in event
+ * @return Sends the username string from the currentUser object
+ */
 var login = (event = 1) => {
     if (event == 1 || event.keyCode == '13') {
         if (user_name.value != '') {
