@@ -2,9 +2,9 @@ const request = require('request'),
     _ = require('lodash');
 
 /**
- * getQuestionByCategory fetches question from the Open Trivia Database and returns the results in s formstted object.
+ * getQuestions fetches question from the Open Trivia Database and returns the results in s formstted object.
  */
-var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty = 'medium', questionType = 'multiple') => {
+var getQuestions = (numberofQuestions = 10, category = 11, difficulty = 'medium', questionType = 'multiple') => {
     /**
      * @param {number} numberofQuestions - Number of questions to be generated.
      * @param {number} category - Category of questions.
@@ -48,5 +48,5 @@ var getQuestionByCategory = (numberofQuestions = 10, category = 11, difficulty =
 };
 
 module.exports = {
-    getQuestionByCategory
+    getQuestions
 };

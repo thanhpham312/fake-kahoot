@@ -67,7 +67,7 @@ app.get('/leaderboard', (request, response) => {
 });
 
 app.post('/getquestions', (request, response) => {
-    opentdb.getQuestionByCategory().then((result) => {
+    opentdb.getQuestions().then((result) => {
         currentQuestionList = result;
         minimalQuestionList = []
         for (var i = 0; i < result.length; i++) {

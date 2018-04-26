@@ -33,8 +33,14 @@ var assessQuestionResult = (questionsObject, userObject, questionNumber, chosenA
         };
     }
 }
-
+/**
+ *  storeQuizResult store current user results with date, score, streak, username to the database
+ */
 var storeQuizResult = (userObject) => {
+    /**
+     * 
+     * @param {object} userObject - Current user who played the game
+     */
     var date = new Date();
     timeStamp = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
