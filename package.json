@@ -29,6 +29,7 @@
   "devDependencies": {
     "esdoc": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
+    "jsdoc": "^3.5.5",
     "karma": "^2.0.2",
     "standard": "^11.0.1"
   }

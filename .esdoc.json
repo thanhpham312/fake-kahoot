@@ -6,7 +6,7 @@
       "name": "esdoc-standard-plugin",
       "option": {
         "test": {
-          "source": "./specs/",
+          "source": "./test/",
           "interfaces": [
             "describe",
             "it",
