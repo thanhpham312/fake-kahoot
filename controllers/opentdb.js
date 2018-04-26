@@ -12,7 +12,7 @@ var getQuestions = (numberofQuestions = 10, category = 11, difficulty = 'medium'
      * @param {string} questionType - Type of questions. Could either be 'multiple' or 'boolean'.
      * @throws {failed connection} Could not connect to opentdb.
      * @throws {invalid query} Invalid query.
-     * @returns {object} An object with information about questions fetched from the API.
+     * @returns {Object} An object with information about questions fetched from the API.
      */
     return new Promise((resolve, reject) => {
         request({
