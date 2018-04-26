@@ -4,7 +4,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     questionNumber = document.getElementById('questionNumber'),
     questionContent = document.getElementById('questionContent'),
 
-    greetBox = document.getElementById('greetBox');
+    greetBox = document.getElementById('greetBox'),
     answer1 = document.getElementById('answer1'),
     answer2 = document.getElementById('answer2'),
     answer3 = document.getElementById('answer3'),
@@ -21,6 +21,7 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
     notify_wrap = document.getElementById('wrap');
 
 var currentQuestion = 0,
+    sessionCode = '';
     currentUser = {
     "username": '',
     "userScore": 0,
@@ -93,18 +94,19 @@ var storeQuizResult = () => {
 };
 
 var login = (event = 1) => {
-  if (event == 1 || event.keyCode == '13') {
-    if (user_name.value != '') {
-      currentUser.username = user_name.value
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("POST","/login", true);
-      xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-      xmlhttp.onreadystatechange = () =>{
-      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        notify_title.innerHTML = `Welcome ${currentUser.username}`;
-        document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)';
-        fetchQuestions();
-        console.log(xmlhttp.responseText);
+    if (event == 1 || event.keyCode == '13') {
+        if (user_name.value != '') {
+            currentUser.username = user_name.value
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "/login", true);
+            xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = () => {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    notify_title.innerHTML = `Welcome ${currentUser.username}`;
+                    document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)';
+                    sessionCode = JSON.parse(xmlhttp.responseText).sessionCode;
+                    console.log(sessionCode)
+                    fetchQuestions();
                 }
             };
             xmlhttp.send(`username=${currentUser.username}`);
@@ -147,8 +149,9 @@ var fetchQuestions = () => {
     // console.log(document.styleSheets);
     username = user_name.value;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","/getquestions", true);
-    xmlhttp.onreadystatechange = () =>{
+    xmlhttp.open("POST", "/getquestions", true);
+    xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             // document.getElementById('questionNumber').innerHTML = 'QUESTION ' + currentQuestion.toString();
             questionList = JSON.parse(xmlhttp.responseText);
@@ -160,7 +163,7 @@ var fetchQuestions = () => {
             }, 300);
         }
     };
-    xmlhttp.send();
+    xmlhttp.send(`sessioncode=${sessionCode}`);
 };
 
 var displayQuestion = () => {

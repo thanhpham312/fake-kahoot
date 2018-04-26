@@ -5,18 +5,22 @@ const opentdb = require('./controllers/opentdb'),
     bodyParser = require('body-parser'),
     request = require('request'),
     _ = require('lodash'),
-    user = require('./controllers/user'),
-    question = require('./controllers/question');
+    users = require('./models/users'),
+    questions = require('./controllers/questions');
 
 const port = process.env.PORT || 8080;
 
 let app = express();
-let currentUser = {
-    "username": '',
-    "userScore": 0,
-    "currentStreak": 0,
-    "highestStreak": 0
-};
+
+let playingUsers = {}
+let date = new Date()
+
+// let currentUser = {
+//     "username": '',
+//     "userScore": 0,
+//     "currentStreak": 0,
+//     "highestStreak": 0
+// };
 
 let currentQuestionList = undefined;
 
@@ -55,8 +59,13 @@ app.post('/storeuser', (request, response) => {
 });
 
 app.post('/login', (request, response) => {
-    currentUser.username = request.body.username;
-    response.send('Login successful!')
+    var newUser = new users.User(request.body.username);
+    var sessionCode = date.getTime().toString();
+    playingUsers[sessionCode] = {}
+    playingUsers[sessionCode].user = newUser;
+    response.send({
+        "sessionCode": sessionCode
+    })
 })
 
 
@@ -67,20 +76,32 @@ app.get('/leaderboard', (request, response) => {
 });
 
 app.post('/getquestions', (request, response) => {
-    opentdb.getQuestions().then((result) => {
-        currentQuestionList = result;
-        minimalQuestionList = []
-        for (var i = 0; i < result.length; i++) {
-            minimalQuestionList.push({
-                "question": result[i].question,
-                "option1": result[i].option1,
-                "option2": result[i].option2,
-                "option3": result[i].option3,
-                "option4": result[i].option4,
-            })
-        }
-        response.send(minimalQuestionList);
-    });
+    newQuestions = new questions.Questions()
+    if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
+        playingUsers[request.body.sessioncode].questions = newQuestions;
+        newQuestions.getQuestions().then((result) => {
+            response.send(result)
+        })
+    }
+    else {
+        response.send('Error');
+    }
+    
+
+    // opentdb.getQuestions().then((result) => {
+    //     currentQuestionList = result;
+    //     minimalQuestionList = []
+    //     for (var i = 0; i < result.length; i++) {
+    //         minimalQuestionList.push({
+    //             "question": result[i].question,
+    //             "option1": result[i].option1,
+    //             "option2": result[i].option2,
+    //             "option3": result[i].option3,
+    //             "option4": result[i].option4,
+    //         })
+    //     }
+    //     response.send(minimalQuestionList);
+    // });
 });
 
 app.post('/validateanswer', (request, response) => {
