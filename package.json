@@ -27,9 +27,12 @@
     "sweetalert": "^2.1.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "esdoc": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
     "jsdoc": "^3.5.5",
+=======
+>>>>>>> 45bb3984a7a4d64a34f0ed548e149d6ea533340c
     "karma": "^2.0.2",
     "standard": "^11.0.1"
   }
