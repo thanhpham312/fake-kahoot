@@ -93,28 +93,27 @@ var storeQuizResult = () => {
 };
 
 var login = (event = 1) => {
-    if (event == 1 || event.keyCode == '13') {
-        if (user_name.value != '') {
-            currentUser.username = user_name.value
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST","/login", true);
-            xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = () =>{
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    notify_title.innerHTML = `Welcome ${currentUser.username}`;
-                    document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)';
-                    fetchQuestions();
-                    console.log(xmlhttp.responseText);
-                }
-            };
-            xmlhttp.send(`username=${currentUser.username}`);
-            swal("Good job!", "Welcome to Fakoot", "success");
+  if (event == 1 || event.keyCode == '13') {
+    if (user_name.value != '') {
+      currentUser.username = user_name.value
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST","/login", true);
+      xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
+      xmlhttp.onreadystatechange = () =>{
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          notify_title.innerHTML = `Welcome ${currentUser.username}`;
+          document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)';
+          fetchQuestions();
+          console.log(xmlhttp.responseText);
         }
-        else {
-            swal("Error!", "You left the username blank!", "warning");
-        }
+      };
+          xmlhttp.send(`username=${currentUser.username}`);
+          swal("Good job!", "Welcome to Fakoot", "success");
+      }
+      else {
+        swal("Error!", "You left the username blank!", "warning");
+      }
     }
-    
 } 
 
 /**

@@ -4,7 +4,7 @@ const qriusity = require('./qriusity'),
     streakBonus = 200;
 /**
  * @desc function checks if user had given the right answer to a question and returns the result object
- * @param {Object} param.questionsObject - object contains queston data
+ * @param {Object} param.questionsObject - object contains question data
  * @param {Object} param.userObject - object contains user data
  * @param {number} param.questionNumber - number of a fakoot question
  * @param {number} param.chosenAnswer - number of a question that user chose as an answer
