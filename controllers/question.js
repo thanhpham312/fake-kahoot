@@ -8,7 +8,7 @@ const qriusity = require('./qriusity'),
  * @param {Object} userObject - object contains user data
  * @param {number} questionNumber - number of a fakoot question
  * @param {number} chosenAnswer - number of a question that user chose as an answer
- * @return {Object} result of the fakoot round
+ * @return {Object} Result of the fakoot round
  */
 var assessQuestionResult = (questionsObject, userObject, questionNumber, chosenAnswer) => {
 

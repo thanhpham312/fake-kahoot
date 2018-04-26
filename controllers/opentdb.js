@@ -9,10 +9,10 @@ var getQuestions = (numberofQuestions = 10, category = 11, difficulty = 'medium'
      * @param {number} numberofQuestions - Number of questions to be generated.
      * @param {number} category - Category of questions.
      * @param {string} difficulty - Questions diffuculty. Could either be 'easy', 'medium', or 'hard'.
-     * @param {string} questionType - Type of questions. Could either be 'multiple' or 'booleon'.
+     * @param {string} questionType - Type of questions. Could either be 'multiple' or 'boolean'.
      * @throws {failed connection} Could not connect to opentdb.
      * @throws {invalid query} Invalid query.
-     * @returns {object} A object with information about questions fetched from the API.
+     * @returns {object} An object with information about questions fetched from the API.
      */
     return new Promise((resolve, reject) => {
         request({
