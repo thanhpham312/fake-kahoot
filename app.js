@@ -1,10 +1,39 @@
 const opentdb = require('./controllers/opentdb')
+/**
+ * This module does this for us.
+ * @type {*|createApplication}
+ */
 const express = require('express')
+/**
+ * This module does this for us.
+ * @type {Instance}
+ */
 const hbs = require('hbs')
+/**
+ * This module does this for us.
+ * @type {Parsers|*}
+ */
 const bodyParser = require('body-parser')
+/**
+ * This module does this for us.
+ * @type {function(*): Object}
+ * @private
+ */
 const _ = require('lodash')
+/**
+ * This module does this for us.
+ * @type {{Users: Users, User: User}}
+ */
 const users = require('./models/users')
+/**
+ * This module does this for us.
+ * @type {{Questions: Questions}}
+ */
 const questions = require('./controllers/questions')
+/**
+ * This module does this for us.
+ * @type {*|number}
+ */
 const port = process.env.PORT || 8080
 
 let app = express()
