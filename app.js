@@ -63,15 +63,11 @@ app.get('/', (request, response) => {
 })
 
 app.post('/storeuser', (request, response) => {
-
-  if (currentUser.username !== '') {
-    questions.storeQuizResult(currentUser)
-    currentUser = {
-      'username': '',
-      'userScore': 0,
-      'currentStreak': 0,
-      'highestStreak': 0
-    }
+  let sessionCode = request.body.sessioncode
+  if (_.includes(Object.keys(playingUsers), sessionCode)) {
+    let userList = new users.Users()
+    let userObject = playingUsers[sessionCode].user
+    userList.storeUser(userObject)
     response.send('Quiz result stored successfully!')
   } else {
     response.send('Unable to store quiz result!')
@@ -80,8 +76,8 @@ app.post('/storeuser', (request, response) => {
 
 app.post('/login', (request, response) => {
   let date = new Date()
-  var newUser = new users.User(request.body.username)
-  var sessionCode = date.getTime().toString()
+  let newUser = new users.User(request.body.username)
+  let sessionCode = date.getTime().toString()
   playingUsers[sessionCode] = {}
   playingUsers[sessionCode].user = newUser
   response.send({
@@ -108,7 +104,7 @@ app.post('/getquestions', (request, response) => {
   if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
     playingUsers[request.body.sessioncode].questions = newQuestions
     newQuestions.getQuestions().then((result) => {
-      console.log(Object.keys(playingUsers))
+      console.log(playingUsers)
       response.send(result)
     })
   } else {

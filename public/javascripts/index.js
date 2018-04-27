@@ -19,12 +19,6 @@ let notifyWrap = document.getElementById('wrap')
 
 let currentQuestion = 0
 let sessionCode = ''
-let currentUser = {
-  'username': '',
-  'userScore': 0,
-  'currentStreak': 0,
-  'highestStreak': 0
-}
 
 let assessQuestionResult = (chosenAnswer) => {
   let xmlhttp = new XMLHttpRequest()
@@ -47,7 +41,6 @@ let assessQuestionResult = (chosenAnswer) => {
 
 let storeQuizResult = () => {
   questionViewWrap.style.top = '-100vh'
-
   let xmlhttp = new XMLHttpRequest()
   xmlhttp.open('POST', '/storeuser', true)
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
@@ -77,23 +70,21 @@ let storeQuizResult = () => {
 let login = (event = 1) => {
   if (event === 1 || event.keyCode === '13') {
     if (userName.value !== '') {
-      currentUser.username = userName.value
       let xmlhttp = new XMLHttpRequest()
       xmlhttp.open('POST', '/login', true)
-      xmlhttp.setRequestHeader('Content-type',
-        'application/x-www-form-urlencoded')
+      xmlhttp.setRequestHeader(
+        'Content-type',
+        'application/x-www-form-urlencoded'
+      )
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          notifyTitle.innerHTML = `Welcome ${currentUser.username}`
-          document.getElementById(
-            'tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
+          notifyTitle.innerHTML = `Welcome ${userName.value}`
+          document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
           sessionCode = JSON.parse(xmlhttp.responseText).sessionCode
-          console.log(sessionCode)
           fetchQuestions()
         }
       }
-      xmlhttp.send(`username=${currentUser.username}`)
-      // swal('Good job!', 'Welcome to Fakoot', 'success')
+      xmlhttp.send(`username=${userName.value}`)
     } else {
       swal('Error!', 'You left the username blank!', 'warning')
     }
