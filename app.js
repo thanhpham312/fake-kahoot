@@ -63,7 +63,11 @@ app.post('/login', (request, response) => {
     'sessionCode': sessionCode
   })
 })
-
+/**
+ * @desc function send get request to render leaderboards.hbs page, successful responce renders the page
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
+ */
 app.get('/leaderboard', (request, response) => {
   response.render('leaderboard.hbs', {
     list_of_user_data: user.getUsers(user.sortScores('scoreData'))
@@ -101,15 +105,26 @@ app.post('/validateanswer', (request, response) => {
   var result = question.assessQuestionResult(currentQuestionList, currentUser, request.body.questionNumber, request.body.chosenAnswer)
   response.send(result)
 })
-
+/**
+ * @desc function send get request to render about.hbs page, successful responce renders the page
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
+ */
 app.get('/about', (request, response) => {
   response.render('about.hbs')
 })
 
+/**
+ * @desc if requested page is not found function renders 404 error page
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
+ */
 app.get('*', function (request, response) {
   response.render('404.hbs')
 })
-
+/**
+ * @desc function notifies port number of the local server
+ */
 app.listen(port, () => {
   console.log(`Server is up on port 8080`)
 })
