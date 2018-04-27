@@ -14,7 +14,7 @@ const express = require('express')
  */
 const hbs = require('hbs')
 /**
- * @desc Import bodyparser module to create middlewares. 
+ * @desc Import bodyparser module to create middlewares.
  * @type {Parsers|*}
  */
 const bodyParser = require('body-parser')
@@ -96,6 +96,7 @@ app.post('/login', (request, response) => {
     'sessionCode': sessionCode
   })
 })
+
 /**
  * @desc function send get request to render leaderboards.hbs page, successful responce renders the page
  * @param {Object} request - Node.js request object
@@ -135,7 +136,12 @@ app.post('/getquestions', (request, response) => {
 })
 
 app.post('/validateanswer', (request, response) => {
-  var result = question.assessQuestionResult(currentQuestionList, currentUser, request.body.questionNumber, request.body.chosenAnswer)
+  var result = question.assessQuestionResult(
+    currentQuestionList,
+    currentUser,
+    request.body.questionNumber,
+    request.body.chosenAnswer
+  )
   response.send(result)
 })
 /**
@@ -155,6 +161,7 @@ app.get('/about', (request, response) => {
 app.get('*', function (request, response) {
   response.render('404.hbs')
 })
+
 /**
  * @desc function notifies port number of the local server
  */
