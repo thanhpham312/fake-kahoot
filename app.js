@@ -43,7 +43,6 @@ const port = process.env.PORT || 8080
 let app = express()
 
 let playingUsers = {}
-let currentQuestionList
 
 hbs.registerPartials(`${__dirname}/views/partials`)
 
