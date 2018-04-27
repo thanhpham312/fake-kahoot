@@ -1,12 +1,18 @@
 const fs = require('fs')
 
 /**
- *
- * @param {string} this.filename - the path of a file to which you want to write users' info into.
+ * @class Users
+ * @classdesc This is the Users Class
+ * @param {string} filename - the path of a file to which you want to write users' info into.
  * @param {list} userList - a list contains all user names.
  * @param {object} object - the object that contains all users' info.
  */
 class Users {
+  /**
+   * @constructor {string} this.fileName
+   *
+   * @param fileName
+   */
   constructor (fileName = './models/users_data.json') {
     this.fileName = fileName
     this.userList = []
