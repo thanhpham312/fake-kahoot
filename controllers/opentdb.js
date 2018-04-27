@@ -11,7 +11,7 @@ const request = require('request')
 const _ = require('lodash')
 
 /**
- * getQuestions fetches question from the Open Trivia Database and returns the results in s formatted object.
+ * getQuestions fetches question from the Open Trivia Database and returns the results in a formatted object.
  * @param numberofQuestions Number of questions to be generated.
  * @param category Category of questions.
  * @param difficulty Questions diffuculty. Could either be 'easy', 'medium', or 'hard'.

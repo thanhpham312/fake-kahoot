@@ -9,12 +9,12 @@ const opentdb = require('./controllers/opentdb')
  */
 const express = require('express')
 /**
- * @desc Import hbs module and assign hbs as contant.
+ * @desc Import hbs module and assign hbs as constant.
  * @type {Instance}
  */
 const hbs = require('hbs')
 /**
- * @desc Import bodyparser module to create middlewares.
+ * @desc Import bodyparser module to create middleware.
  * @type {Parsers|*}
  */
 const bodyParser = require('body-parser')
@@ -43,15 +43,6 @@ const port = process.env.PORT || 8080
 let app = express()
 
 let playingUsers = {}
-let date = new Date()
-
-// let currentUser = {
-//     "username": '',
-//     "userScore": 0,
-//     "currentStreak": 0,
-//     "highestStreak": 0
-// };
-
 let currentQuestionList
 
 hbs.registerPartials(`${__dirname}/views/partials`)
@@ -73,6 +64,7 @@ app.get('/', (request, response) => {
 })
 
 app.post('/storeuser', (request, response) => {
+
   if (currentUser.username !== '') {
     questions.storeQuizResult(currentUser)
     currentUser = {
@@ -88,6 +80,7 @@ app.post('/storeuser', (request, response) => {
 })
 
 app.post('/login', (request, response) => {
+  let date = new Date()
   var newUser = new users.User(request.body.username)
   var sessionCode = date.getTime().toString()
   playingUsers[sessionCode] = {}
@@ -108,33 +101,25 @@ app.get('/leaderboard', (request, response) => {
   })
 })
 
+/**
+ *
+ */
 app.post('/getquestions', (request, response) => {
-  newQuestions = new questions.Questions()
+  let newQuestions = new questions.Questions()
   if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
     playingUsers[request.body.sessioncode].questions = newQuestions
     newQuestions.getQuestions().then((result) => {
+      console.log(Object.keys(playingUsers))
       response.send(result)
     })
   } else {
     response.send('Error')
   }
-
-  // opentdb.getQuestions().then((result) => {
-  //     currentQuestionList = result;
-  //     minimalQuestionList = []
-  //     for (var i = 0; i < result.length; i++) {
-  //         minimalQuestionList.push({
-  //             "question": result[i].question,
-  //             "option1": result[i].option1,
-  //             "option2": result[i].option2,
-  //             "option3": result[i].option3,
-  //             "option4": result[i].option4,
-  //         })
-  //     }
-  //     response.send(minimalQuestionList);
-  // });
 })
 
+/**
+ *
+ */
 app.post('/validateanswer', (request, response) => {
   var result = question.assessQuestionResult(
     currentQuestionList,
