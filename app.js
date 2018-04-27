@@ -1,37 +1,41 @@
+/**
+ * @desc Import module from open Trivia DB and assign opentdb as constant.
+ * @type {Object}
+ */
 const opentdb = require('./controllers/opentdb')
 /**
- * This module does this for us.
+ * @desc Import express module and assign express as constant.
  * @type {*|createApplication}
  */
 const express = require('express')
 /**
- * This module does this for us.
+ * @desc Import hbs module and assign hbs as contant.
  * @type {Instance}
  */
 const hbs = require('hbs')
 /**
- * This module does this for us.
+ * @desc Import bodyparser module to create middlewares. 
  * @type {Parsers|*}
  */
 const bodyParser = require('body-parser')
 /**
- * This module does this for us.
+ * @desc Import lodash library and assign _ as constant.
  * @type {function(*): Object}
  * @private
  */
 const _ = require('lodash')
 /**
- * This module does this for us.
+ * @desc Import user library and assign users as constant.
  * @type {{Users: Users, User: User}}
  */
 const users = require('./models/users')
 /**
- * This module does this for us.
+ * @desc Import Question library and assign questions as constant.
  * @type {{Questions: Questions}}
  */
 const questions = require('./controllers/questions')
 /**
- * This module does this for us.
+ * @desc Import environment variable port module and assign port equal to 8080.
  * @type {*|number}
  */
 const port = process.env.PORT || 8080
