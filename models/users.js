@@ -10,7 +10,6 @@ const fs = require('fs')
 class Users {
   /**
    * @constructor {string} this.fileName
-   *
    * @param fileName
    */
   constructor (fileName = './models/users_data.json') {
@@ -111,6 +110,9 @@ class Users {
   };
 }
 
+/**
+ * @class
+ */
 class User {
   /**
    * This class holds the variables that construct the User Object.
