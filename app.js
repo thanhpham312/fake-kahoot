@@ -142,7 +142,7 @@ app.get('/about', (request, response) => {
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
-app.get('*', function (request, response) {
+app.get('*', (request, response) => {
   response.render('404.hbs')
 })
 

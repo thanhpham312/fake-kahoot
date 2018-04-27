@@ -43,19 +43,6 @@ let assessQuestionResult = (chosenAnswer) => {
     }
   }
   xmlhttp.send(`questionNumber=${currentQuestion}&chosenAnswer=${chosenAnswer}`)
-
-  // if (option === questionList[currentQuestion].answers) {
-  //     displayNotification('right');
-  //     userScore += pointPerQuestion + streakBonus*currentStreak;
-  //     currentStreak++;
-  //     if (currentStreak > highestStreak) {
-  //         highestStreak = currentStreak;
-  //     }
-  // }
-  // else {
-  //     displayNotification('wrong');
-  //     currentStreak = 0;
-  // }
 }
 
 let storeQuizResult = () => {
