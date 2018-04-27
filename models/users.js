@@ -15,7 +15,7 @@ class Users {
 
   /**
    * @desc loadUsers loads the user data from the database, if there is no file it will be created.
-   * @returns {any}
+   * @returns {object} It will return the users_data.json as an object if the file exists
    */
   loadUsers () {
     if (fs.existsSync(this.fileName)) {
@@ -121,6 +121,10 @@ class User {
   }
 }
 
+/**
+ * exports User class and Users class
+ * @type {{Users: Users, User: User}}
+ */
 module.exports = {
   Users,
   User
