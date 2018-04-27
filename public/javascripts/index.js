@@ -87,6 +87,10 @@ let storeQuizResult = () => {
   }, 1200)
 }
 
+/**
+ * 
+ * @param {number} - ????
+ */
 let login = (event = 1) => {
   if (event === 1 || event.keyCode === '13') {
     if (userName.value !== '') {
@@ -154,7 +158,9 @@ let fetchQuestions = () => {
   }
   xmlhttp.send(`sessioncode=${sessionCode}`)
 }
-
+/**
+ * @desc Displays a game question
+ */
 let displayQuestion = () => {
   notifyWrap.style.display = 'block'
   questionViewWrap.style.top = '-100vh'
@@ -177,6 +183,10 @@ let displayQuestion = () => {
   }, 1200)
 }
 
+/**
+ * @desc Displays a pop up notifying if the answer was right or wrong
+ * @param {string} mode - refers to user answer right/wrong
+ */
 let displayNotification = (mode) => {
   let thumbUp = 'url(/assets/images/icons/thumb-up.svg)'
   let thumbDown = 'url(/assets/images/icons/dislike.svg)'
