@@ -23,19 +23,19 @@ var questionViewWrap = document.getElementById('questionViewWrap'),
 var currentQuestion = 0,
     sessionCode = '';
     currentUser = {
-        "username": '',
-        "userScore": 0,
-        "currentStreak": 0,
-        "highestStreak": 0
-    };
+    "username": '',
+    "userScore": 0,
+    "currentStreak": 0,
+    "highestStreak": 0
+};
 
 // Server requests and display:
 
 var assessQuestionResult = (chosenAnswer) => {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/validateanswer", true);
-    xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = () => {
+    xmlhttp.open("POST","/validateanswer", true);
+    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             xmlhttpResult = JSON.parse(xmlhttp.responseText)
             currentUser = xmlhttpResult.currentUser
@@ -64,17 +64,13 @@ var assessQuestionResult = (chosenAnswer) => {
     // }
 };
 
-/**
-* This function posts user info to server and resets currentUser.
-* It also includes notification for final question.
-*/
 var storeQuizResult = () => {
     questionViewWrap.style.top = '-100vh';
 
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/storeuser", true);
-    xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = () => {
+    xmlhttp.open("POST","/storeuser", true);
+    xmlhttp.setRequestHeader('Content-type',"application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = () =>{
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log(xmlhttp.responseText);
             currentUser = {
@@ -97,11 +93,6 @@ var storeQuizResult = () => {
     }, 1200);
 };
 
-/**
- * @desc This function validates the user entry and sends the username string to the /login route
- * @param event checks if there is a log in event
- * @return Sends the username string from the currentUser object
- */
 var login = (event = 1) => {
     if (event == 1 || event.keyCode == '13') {
         if (user_name.value != '') {
@@ -125,8 +116,7 @@ var login = (event = 1) => {
             swal("Error!", "You left the username blank!", "warning");
         }
     }
-
-}
+} 
 
 /**
  * @desc Displays the current user's name to the popup message Username along with their current Score and Highest Streak
@@ -137,7 +127,9 @@ var populatePopupResult = () => {
     popupMessageScore.innerHTML = `SCORE: ${currentUser.userScore}`;
     popupMessageStreak.innerHTML = `HIGHEST STREAK: ${currentUser.highestStreak}`;
 }
-
+/**
+ * @desc function displays the next question or the result when the game is over
+ */
 var nextQuestion = () => {
     if (currentQuestion < 9) {
         currentQuestion++;
@@ -146,7 +138,7 @@ var nextQuestion = () => {
     else {
         storeQuizResult();
     }
-
+    
 };
 
 /**
@@ -174,11 +166,6 @@ var fetchQuestions = () => {
     xmlhttp.send(`sessioncode=${sessionCode}`);
 };
 
-/**
- * @desc Dsplay questions and set notification to right side.
- * Catch the value from questionList according to currentQuestion position and display them with four answers.
- * Hide the previous notification when new question comes out.
- */
 var displayQuestion = () => {
     notify_wrap.style.display = 'block';
     questionViewWrap.style.top = '-100vh';
@@ -200,10 +187,7 @@ var displayQuestion = () => {
         }, 300);
     }, 1200);
 };
-/**
-* Shows pictures of thumb up or down and notifications depending on whether the answer is correct.
-* @param {string} mode - determines which pattern to show (right or wrong)
-*/
+
 let displayNotification = (mode) => {
     let thumbUp = 'url(/assets/images/icons/thumb-up.svg)';
     let thumbDown = 'url(/assets/images/icons/dislike.svg)';
@@ -211,7 +195,7 @@ let displayNotification = (mode) => {
     if (mode === 'wrong') {
         notify_title.innerHTML = "Wrong! :(";
         document.getElementById('tooltip').style.backgroundImage = thumbDown;
-    } else if (mode === 'right') {
+    } else if ( mode === 'right') {
         notify_title.innerHTML = "Good Job! :)";
         document.getElementById('tooltip').style.backgroundImage = thumbUp;
     }
