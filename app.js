@@ -35,7 +35,7 @@ const users = require('./models/users')
  */
 const questions = require('./controllers/questions')
 /**
- * @desc Import environment variable port module and assign port equal to 8000.
+ * @desc Import environment variable port module and assign port equal to 8080.
  * @type {*|number}
  */
 const port = process.env.PORT || 8080
