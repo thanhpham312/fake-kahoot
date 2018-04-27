@@ -1,13 +1,10 @@
-const opentdb = require('./controllers/opentdb'),
-  qriusity = require('./controllers/qriusity'),
-  express = require('express'),
-  hbs = require('hbs'),
-  bodyParser = require('body-parser'),
-  request = require('request'),
-  _ = require('lodash'),
-  users = require('./models/users'),
-  questions = require('./controllers/questions')
-
+const opentdb = require('./controllers/opentdb')
+const express = require('express')
+const hbs = require('hbs')
+const bodyParser = require('body-parser')
+const _ = require('lodash')
+const users = require('./models/users')
+const questions = require('./controllers/questions')
 const port = process.env.PORT || 8080
 
 let app = express()
