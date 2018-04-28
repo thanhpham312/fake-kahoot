@@ -63,7 +63,7 @@ class Users {
      * @return {array} sorted object contains user information
      */
   sortScores (sortOption) {
-    let userInfo = this.userList.user.splice()
+    let userInfo = this.userList.user.slice(0)
     userInfo.sort((a, b) => {
       return b[sortOption] - a[sortOption]
     })
@@ -75,9 +75,10 @@ class Users {
    * @return string string contains rank, user name, highest streak and scores of a user.
    */
   displayTopUsers () {
+    let newSort = this.sortScores('scoreData')
     let displayString = ''
     let rankCounter = 1
-    for (let i = 0; i < this.userList.user.length; i++) {
+    for (let i = 0; i < newSort.length; i++) {
       displayString += '<div class="scoreDisplayRow">\n\t'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
@@ -85,19 +86,19 @@ class Users {
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList.user[i].userData} </p>\n`
+      displayString += `<p class="displayInfo"> ${newSort[i].userData} </p>\n`
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList.user[i].streakData} </p>\n`
+      displayString += `<p class="displayInfo"> ${newSort[i].streakData} </p>\n`
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList.user[i].scoreData} </p>\n`
+      displayString += `<p class="displayInfo"> ${newSort[i].scoreData} </p>\n`
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList.user[i].date} </p>\n`
+      displayString += `<p class="displayInfo"> ${newSort[i].date} </p>\n`
       displayString += '</div>\n</div>\n'
 
       if (rankCounter >= 10) {

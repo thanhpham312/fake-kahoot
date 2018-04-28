@@ -67,6 +67,8 @@ app.post('/storeuser', (request, response) => {
   if (_.includes(Object.keys(playingUsers), sessionCode)) {
     let userList = new users.Users()
     let userObject = playingUsers[sessionCode].user
+    console.log(userObject)
+    console.log(userList)
     userList.storeUser(userObject)
     response.send('Quiz result stored successfully!')
   } else {
