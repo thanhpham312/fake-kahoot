@@ -77,7 +77,7 @@ class Users {
   displayTopUsers () {
     let displayString = ''
     let rankCounter = 1
-    for (let i = 0; i < this.userList.length; i++) {
+    for (let i = 0; i < this.userList.user.length; i++) {
       displayString += '<div class="scoreDisplayRow">\n\t'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
@@ -85,19 +85,19 @@ class Users {
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList[i].userData} </p>\n`
+      displayString += `<p class="displayInfo"> ${this.userList.user[i].userData} </p>\n`
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList[i].streakData} </p>\n`
+      displayString += `<p class="displayInfo"> ${this.userList.user[i].streakData} </p>\n`
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList[i].scoreData} </p>\n`
+      displayString += `<p class="displayInfo"> ${this.userList.user[i].scoreData} </p>\n`
       displayString += '</div>\n'
 
       displayString += '<div class="leaderboardDisplayColumn">\n'
-      displayString += `<p class="displayInfo"> ${this.userList[i].date} </p>\n`
+      displayString += `<p class="displayInfo"> ${this.userList.user[i].date} </p>\n`
       displayString += '</div>\n</div>\n'
 
       if (rankCounter >= 10) {

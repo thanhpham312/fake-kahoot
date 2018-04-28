@@ -95,6 +95,12 @@
             "scoreData": 500,
             "streakData": 1,
             "date": "26/4/2018 14:25:54"
+        },
+        {
+            "userData": "asd",
+            "scoreData": 0,
+            "streakData": 0,
+            "date": "27/4/2018 17:0:56"
         }
     ]
 }

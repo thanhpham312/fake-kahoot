@@ -19,6 +19,7 @@ let notifyWrap = document.getElementById('wrap')
 
 let currentQuestion = 0
 let sessionCode = ''
+let userObject = {}
 
 let assessQuestionResult = (chosenAnswer) => {
   let xmlhttp = new XMLHttpRequest()
@@ -27,7 +28,7 @@ let assessQuestionResult = (chosenAnswer) => {
   xmlhttp.onreadystatechange = () => {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
       let xmlhttpResult = JSON.parse(xmlhttp.responseText)
-      currentUser = xmlhttpResult.currentUser
+      userObject = xmlhttpResult.currentUser
       if (xmlhttpResult.result === true) {
         displayNotification('right')
       } else {
@@ -47,15 +48,9 @@ let storeQuizResult = () => {
   xmlhttp.onreadystatechange = () => {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
       console.log(xmlhttp.responseText)
-      currentUser = {
-        'username': '',
-        'userScore': 0,
-        'currentStreak': 0,
-        'highestStreak': 0
-      }
     }
   }
-  xmlhttp.send()
+  xmlhttp.send(`sessioncode=${sessionCode}`)
   notifyWrap.style.display = 'block'
   notification.style.right = '0'
   setTimeout(() => {
@@ -96,9 +91,9 @@ let login = (event = 1) => {
  *
  */
 let populatePopupResult = () => {
-  popupMessageUsername.innerHTML = currentUser.username
-  popupMessageScore.innerHTML = `SCORE: ${currentUser.userScore}`
-  popupMessageStreak.innerHTML = `HIGHEST STREAK: ${currentUser.highestStreak}`
+  popupMessageUsername.innerHTML = userObject.username
+  popupMessageScore.innerHTML = `SCORE: ${userObject.userScore}`
+  popupMessageStreak.innerHTML = `HIGHEST STREAK: ${userObject.highestStreak}`
 }
 /**
  * @desc function displays the next question or the result when the game is over
@@ -140,7 +135,7 @@ let displayQuestion = () => {
     notification.style.right = '0'
   }, 1)
   setTimeout(() => {
-    userInfo.innerHTML = `${currentUser.username} - ${currentUser.userScore}`
+    userInfo.innerHTML = `${userObject.username} - ${userObject.userScore}`
     questionNumber.innerHTML = 'QUESTION ' + (currentQuestion + 1)
     questionContent.innerHTML = questionList[currentQuestion].question
     answer1.innerHTML = questionList[currentQuestion].option1

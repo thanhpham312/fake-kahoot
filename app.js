@@ -81,7 +81,8 @@ app.post('/login', (request, response) => {
   playingUsers[sessionCode] = {}
   playingUsers[sessionCode].user = newUser
   response.send({
-    'sessionCode': sessionCode
+    'sessionCode': sessionCode,
+    'userObject': newUser
   })
 })
 
@@ -91,8 +92,9 @@ app.post('/login', (request, response) => {
  * @param {Object} response - Node.js response object
  */
 app.get('/leaderboard', (request, response) => {
+  let userList = new users.Users()
   response.render('leaderboard.hbs', {
-    list_of_user_data: user.getUsers(user.sortScores('scoreData'))
+    list_of_user_data: userList.displayTopUsers()
   })
 })
 
@@ -116,13 +118,20 @@ app.post('/getquestions', (request, response) => {
  *
  */
 app.post('/validateanswer', (request, response) => {
-  var result = question.assessQuestionResult(
-    currentQuestionList,
-    currentUser,
-    request.body.questionNumber,
-    request.body.chosenAnswer
-  )
-  response.send(result)
+  if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
+    let sessionCode = request.body.sessionCode
+    let userObject = playingUsers[sessionCode].user
+    let questionsObject = playingUsers[sessionCode].questions
+
+    let result = questionsObject.assessQuestionResult(
+      userObject,
+      request.body.questionNumber,
+      request.body.chosenAnswer
+    )
+    response.send(result)
+  } else {
+    response.send(400)
+  }
 })
 /**
  * @desc function send get request to render about.hbs page, successful responce renders the page
