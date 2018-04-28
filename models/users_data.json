@@ -119,6 +119,18 @@
             "scoreData": 2400,
             "streakData": 2,
             "date": "27/4/2018 19:6:9"
+        },
+        {
+            "userData": "asdasd",
+            "scoreData": 0,
+            "streakData": 0,
+            "date": "27/4/2018 19:25:26"
+        },
+        {
+            "userData": "test1",
+            "scoreData": 500,
+            "streakData": 1,
+            "date": "27/4/2018 19:26:17"
         }
     ]
 }

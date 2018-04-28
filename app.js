@@ -67,9 +67,9 @@ app.post('/storeuser', (request, response) => {
   if (_.includes(Object.keys(playingUsers), sessionCode)) {
     let userList = new users.Users()
     let userObject = playingUsers[sessionCode].user
-    console.log(userObject)
-    console.log(userList)
     userList.storeUser(userObject)
+    delete playingUsers[sessionCode]
+    console.log(playingUsers)
     response.send('Quiz result stored successfully!')
   } else {
     response.send('Unable to store quiz result!')

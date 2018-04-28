@@ -63,7 +63,7 @@ let storeQuizResult = () => {
 }
 
 /**
- * 
+ *
  * @param {number} - ????
  */
 let login = (event = 1) => {
