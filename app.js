@@ -106,7 +106,6 @@ app.post('/getquestions', (request, response) => {
   if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
     playingUsers[request.body.sessioncode].questions = newQuestions
     newQuestions.getQuestions().then((result) => {
-      console.log(playingUsers)
       response.send(result)
     })
   } else {
@@ -119,7 +118,7 @@ app.post('/getquestions', (request, response) => {
  */
 app.post('/validateanswer', (request, response) => {
   if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
-    let sessionCode = request.body.sessionCode
+    let sessionCode = request.body.sessioncode
     let userObject = playingUsers[sessionCode].user
     let questionsObject = playingUsers[sessionCode].questions
 

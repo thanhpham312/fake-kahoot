@@ -50,7 +50,7 @@ class Questions {
    * @returns {{result: boolean, currentUser: *}} Object dictating wether the answer if right or wrong and the current user's data.
    */
   assessQuestionResult (userObject, questionNumber, chosenAnswer) {
-    if (this.questionsList[questionNumber].answers === chosenAnswer) {
+    if (this.questionsList[questionNumber].answers === Number(chosenAnswer)) {
       userObject.userScore += pointPerQuestion + streakBonus * userObject.currentStreak
       userObject.currentStreak++
       if (userObject.currentStreak > userObject.highestStreak) {

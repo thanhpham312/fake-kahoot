@@ -37,7 +37,7 @@ let assessQuestionResult = (chosenAnswer) => {
       populatePopupResult()
     }
   }
-  xmlhttp.send(`questionNumber=${currentQuestion}&chosenAnswer=${chosenAnswer}`)
+  xmlhttp.send(`sessioncode=${sessionCode}&questionNumber=${currentQuestion}&chosenAnswer=${chosenAnswer}`)
 }
 
 let storeQuizResult = () => {
@@ -63,7 +63,7 @@ let storeQuizResult = () => {
 }
 
 let login = (event = 1) => {
-  if (event === 1 || event.keyCode === '13') {
+  if (event === 1 || event.keyCode === 13) {
     if (userName.value !== '') {
       let xmlhttp = new XMLHttpRequest()
       xmlhttp.open('POST', '/login', true)
@@ -75,7 +75,9 @@ let login = (event = 1) => {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
           notifyTitle.innerHTML = `Welcome ${userName.value}`
           document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
-          sessionCode = JSON.parse(xmlhttp.responseText).sessionCode
+          let responseText = JSON.parse(xmlhttp.responseText)
+          sessionCode = responseText.sessionCode
+          userObject = responseText.userObject
           fetchQuestions()
         }
       }
