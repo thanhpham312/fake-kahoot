@@ -4,7 +4,7 @@
   "description": "for michal",
   "main": "app.js",
   "scripts": {
-    "test": "standard && node my-tests.js",
+    "test": "jest",
     "start": "node app.js"
   },
   "repository": {
@@ -28,7 +28,12 @@
     "require": "^2.4.20",
     "sweetalert": "^2.1.0"
   },
+  "jest": {
+    "verbose": true
+  },
   "devDependencies": {
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
     "standard": "^11.0.1"
   }
 }
