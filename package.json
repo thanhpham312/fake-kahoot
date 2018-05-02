@@ -29,6 +29,10 @@
     "sweetalert": "^2.1.0"
   },
   "devDependencies": {
+    "install": "^0.11.0",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
+    "npm": "^6.0.0",
     "standard": "^11.0.1"
   }
 }

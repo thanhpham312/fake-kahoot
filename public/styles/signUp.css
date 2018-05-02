@@ -1,0 +1,42 @@
+#signUpBoxUsernameInputWrap {
+    position: absolute;
+    top: -15%;
+    height: 100%;
+    width: 100%;
+}
+
+#signUpBoxUsernameInput,  #signUpBoxpasswordInput, #signUpBoxconfirmpasswordInput{
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 5%;
+    height: 30%;
+    width: 90%;
+    margin: 4%;
+    border: none;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#signUpBoxStartButtonWrap {
+    position: absolute;
+    top: 140%;
+    height: 25%;
+    text-align: center;
+    width: 100%;
+}
+
+#signUpBoxStartButton {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 5%;
+    height: 2em;
+    width: fit-content;
+    border: none;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 700;
+    line-height: 2em;
+    background-color: var(--background-color);
+    color: var(--light-font-color);
+}

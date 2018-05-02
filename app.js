@@ -144,6 +144,14 @@ app.get('/about', (request, response) => {
   response.render('about.hbs')
 })
 
+app.get('/signin', (request, response) => {
+  response.render('signIn.hbs')
+})
+
+app.get('/signup', (request, response) => {
+  response.render('signUp.hbs')
+})
+
 /**
  * @desc if requested page is not found function renders 404 error page
  * @param {Object} request - Node.js request object
