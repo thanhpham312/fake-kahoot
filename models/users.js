@@ -1,4 +1,5 @@
 const fs = require('fs')
+const database = require('./database')
 
 /**
  * @class Users
@@ -12,7 +13,7 @@ class Users {
    * @constructor {string} this.fileName
    * @param fileName
    */
-  constructor (fileName = './models/users_data.json') {
+  constructor (fileName = './users_data.json') {
     this.fileName = fileName
     this.userList = []
     this.userList = this.loadUsers()
@@ -104,9 +105,11 @@ class Users {
       if (rankCounter >= 10) {
         break
       }
-
       rankCounter++
     }
+    database.executeQuery('SELECT * FROM public."ACCOUNTS"').then((result) => {
+      console.log(result)
+    })
     return displayString
   };
 }
