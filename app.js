@@ -2,7 +2,7 @@
  * @desc Import module from open Trivia DB and assign opentdb as constant.
  * @type {Object}
  */
-const opentdb = require('./controllers/opentdb')
+const opentdb = require('./models/opentdb')
 /**
  * @desc Import express module and assign express as constant.
  * @type {*|createApplication}
@@ -46,6 +46,7 @@ let playingUsers = {}
 
 hbs.registerPartials(`${__dirname}/views/partials`)
 
+app.set('views', `${__dirname}/views`)
 app.set('view engine', 'hbs')
 
 app.use(express.static(`${__dirname}/public`))

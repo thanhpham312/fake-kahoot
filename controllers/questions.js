@@ -1,4 +1,4 @@
-const opentdb = require('./opentdb')
+const opentdb = require('../models/opentdb')
 const user = require('../models/users')
 const pointPerQuestion = 500
 const streakBonus = 200
