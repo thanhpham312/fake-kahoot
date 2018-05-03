@@ -18,6 +18,7 @@ let notifyTitle = document.getElementById('notify_title')
 let notifyWrap = document.getElementById('wrap')
 
 let currentQuestion = 0
+let questionList = []
 let sessionCode = ''
 let userObject = {}
 
@@ -150,7 +151,7 @@ let displayQuestion = () => {
     answer2.innerHTML = questionList[currentQuestion].option2
     answer3.innerHTML = questionList[currentQuestion].option3
     answer4.innerHTML = questionList[currentQuestion].option4
-    questionViewWrap.style.top = '50vh'
+    questionViewWrap.style.top = '45vh'
     notification.style.right = '-100%'
     setTimeout(() => {
       notifyWrap.style.display = 'none'

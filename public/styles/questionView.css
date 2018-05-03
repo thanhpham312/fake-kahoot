@@ -1,21 +1,24 @@
 #questionViewWrap {
     position: absolute;
+    box-sizing: border-box;
     top: -100vh;
     left: 50vw;
     width: 80vw;
     height: 80vh;
     margin: -40vh 0 0 -40vw;
+    padding: 0.75em 2.25em;
     background-color: rgba(38, 50, 56, 1);
     color: var(--light-font-color);
     transition: 300ms;
+    overflow: auto;
     /* background-color: rgba(224, 224, 224, 1); */
 }
 
 #questionViewQuestionWrap {
     width: 100%;
-    margin: 0;
     padding: 0;
-    height: 40%;
+    height: auto;
+    margin: 0 0 2em 0;
 }
 
 #questionViewQuestionWrap h1 {
@@ -24,21 +27,21 @@
     height: 2em;
     line-height: 2em;
     margin: 0;
-    padding: 0.2em 1em;
+    padding: 0.2em 0;
 }
 
 #questionViewQuestionWrap hr {
-    width: calc(100% - 4em);
+    width: 100%;
     height: 1px;
     background: var(--light-font-color);
     border: none;
 }
 
 #userInfo {
-    position: absolute;
+    position: relative;
+    box-sizing: border-box;
     width: auto;
-    right: 0;
-    top: 0;
+    float: right;
 }
 
 #questionViewQuestionWrap p {
@@ -46,7 +49,7 @@
     box-sizing: border-box;
     margin: 0;
     width: 100%;
-    padding: 0 1em;
+    padding: 0;
     font-size: 2em;
     overflow-y: auto;
 }
@@ -55,44 +58,39 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 60%;
+    height: auto;
 }
 
-.questionViewAnswersWrapInner {
-    float: left;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 50%;
-    height: 100%;
-    margin: 0;
-    padding: 1em;
-}
+/*.questionViewAnswersWrapInner {*/
+    /*float: left;*/
+    /*display: inline-block;*/
+    /*box-sizing: border-box;*/
+    /*width: 50%;*/
+    /*height: 100%;*/
+    /*margin: 0;*/
+    /*padding: 0.5em;*/
+/*}*/
 
 .answersWrap {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    height: 50%;
+    height: auto;
     width: 100%;
-    margin: 0;
-    padding: 1em;
+    padding: 0;
+    margin: 0 0 0.75em 0;
 }
 
 .answersWrap div {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    top: 50%;
     width: 100%;
-    height: 5em;
-    margin: -2.5em 0 0 0;
+    height: auto;
+    margin: 0;
     padding: 1em;
     font-size: 1.25em;
-    line-height: 3.25em;
     color: var(--light-font-color);
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
 }
 
 #answer1 {
