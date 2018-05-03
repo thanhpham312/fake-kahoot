@@ -16,6 +16,10 @@ let popupMessageStreak = document.getElementById('popupMessageStreak')
 let notification = document.getElementById('notify')
 let notifyTitle = document.getElementById('notify_title')
 let notifyWrap = document.getElementById('wrap')
+var signUpBoxResetButton = document.getElementById('signUpBoxResetButton')
+var signUpBoxUsernameInput = document.getElementById('signUpBoxUsernameInput')
+var signUpBoxPasswordInput = document.getElementById('signUpBoxPasswordInput')
+var signUpBoxConfirmPasswordInput = document.getElementById('signUpBoxConfirmPasswordInput')
 
 let currentQuestion = 0
 let questionList = []
@@ -175,3 +179,10 @@ let displayNotification = (mode) => {
     document.getElementById('tooltip').style.backgroundImage = thumbUp
   }
 }
+
+signUpBoxResetButton.addEventListener('click', function() {
+  signUpBoxUsernameInput.value = '';
+  signUpBoxPasswordInput.value = '';
+  signUpBoxConfirmPasswordInput.value = '';
+
+});
