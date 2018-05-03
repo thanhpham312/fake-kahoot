@@ -5,7 +5,7 @@
     width: 100%;
 }
 
-#signUpBoxUsernameInput,  #signUpBoxpasswordInput, #signUpBoxconfirmpasswordInput{
+#signUpBoxUsernameInput,  #signUpBoxPasswordInput, #signUpBoxConfirmPasswordInput{
     position: relative;
     box-sizing: border-box;
     padding: 0 5%;
@@ -25,7 +25,23 @@
     width: 100%;
 }
 
-#signUpBoxStartButton {
+#signUpBoxCreateButton {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 5%;
+    height: 2em;
+    width: fit-content;
+    border: none;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 700;
+    line-height: 2em;
+    background-color: var(--background-color);
+    color: var(--light-font-color);
+}
+
+#signUpBoxResetButton {
     display: inline-block;
     position: relative;
     box-sizing: border-box;
