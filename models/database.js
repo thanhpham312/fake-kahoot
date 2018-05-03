@@ -12,7 +12,7 @@ let executeQuery = (query) => {
         console.log(err)
       } else {
         if (res.command === 'SELECT') {
-          resolve(JSON.stringify(res))
+          resolve(JSON.stringify(res.rows))
         } else {
           resolve(true)
         }
