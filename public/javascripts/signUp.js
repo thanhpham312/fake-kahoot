@@ -39,18 +39,26 @@ userNameInput.addEventListener("blur",function(){
 })
 
 cpasswordInput.addEventListener("keyup",function(){
-	if (cpasswordInput.value === passwordInput.value) {
-		cpasswordIcon.src = "/assets/images/icons/checked.svg"
+	if (passwordIcon.getAttribute('src') === "/assets/images/icons/checked.svg"){
+		if (cpasswordInput.value === passwordInput.value) {
+			cpasswordIcon.src = "/assets/images/icons/checked.svg"
+		} else {
+			cpasswordIcon.src = "/assets/images/icons/cross.svg"
+		}
 	} else {
-		cpasswordIcon.src = "/assets/images/icons/cross.svg"
+		cpasswordIcon.src = ""
 	}
 })
 
 passwordInput.addEventListener("keyup",function(){
-	if (cpasswordInput.value === passwordInput.value) {
-		cpasswordIcon.src = "/assets/images/icons/checked.svg"
+	if (passwordIcon.getAttribute('src') === "/assets/images/icons/checked.svg"){
+		if (cpasswordInput.value === passwordInput.value) {
+			cpasswordIcon.src = "/assets/images/icons/checked.svg"
+		} else {
+			cpasswordIcon.src = "/assets/images/icons/cross.svg"
+		}
 	} else {
-		cpasswordIcon.src = "/assets/images/icons/cross.svg"
+		cpasswordIcon.src = ""
 	}
 
 	if (checkPassword(passwordInput.value)) {
