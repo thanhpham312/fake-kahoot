@@ -1,16 +1,23 @@
-#signUpBoxUsernameInputWrap {
+#signUpBoxUserInputWrap {
     position: absolute;
-    top: -15%;
+    top: -12%;
     height: 100%;
     width: 100%;
 }
 
+.inputWraps {
+    position: relative;
+    height: 35%;
+    width: 130%;
+    left: 10%;
+}
 #signUpBoxUsernameInput,  #signUpBoxPasswordInput, #signUpBoxConfirmPasswordInput{
+    display: inline-block;
     position: relative;
     box-sizing: border-box;
     padding: 0 5%;
-    height: 30%;
-    width: 90%;
+    height: 80%;
+    width: 50%;
     margin: 4%;
     border: none;
     font-size: 1.5em;
@@ -25,12 +32,13 @@
     width: 100%;
 }
 
-#signUpBoxCreateButton {
+#signUpBoxCreateButton, #signUpBoxResetButton {
     display: inline-block;
     position: relative;
     box-sizing: border-box;
     padding: 0 5%;
     height: 2em;
+    margin: 0 1em;
     width: fit-content;
     border: none;
     font-size: 1.5em;
@@ -41,30 +49,55 @@
     color: var(--light-font-color);
 }
 
-#signUpBoxResetButton {
-    display: inline-block;
-    position: relative;
-    box-sizing: border-box;
-    padding: 0 5%;
-    height: 2em;
-    width: fit-content;
-    border: none;
-    font-size: 1.5em;
-    text-align: center;
-    font-weight: 700;
-    line-height: 2em;
-    background-color: var(--background-color);
-    color: var(--light-font-color);
-}
 
 #signInPage2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 30vh;
+    height: 35vh;
     width: 30vw;
     margin: -10vh 0 0 -15vw;
     opacity: 0;
-    background-color: black;
     transition: 300ms;
+    z-index: -20;
+    text-align: center;
+    background-image: url('/assets/images/backgrounds/background.png');
+    background-size: cover;
 }
+
+#signInPageUserNameInput2, #signInPagePasswordInput2 {
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 5%;
+    height: 20%;
+    width: 90%;
+    margin: 4%;
+    border: none;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#signInPageButton2, #signInPageBackButton2 {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 5%;
+    margin: 0 1em;
+    height: 2em;
+    width: fit-content;
+    border: none;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 700;
+    line-height: 2em;
+    background-color: var(--background-color);
+    color: var(--light-font-color);
+}
+
+.validationIcons {
+    top: 15%;
+    position: relative;
+    display: inline-block;
+    height: 50%;
+}
+

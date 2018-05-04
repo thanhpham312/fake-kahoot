@@ -1,3 +1,10 @@
 {
-    "user": []
+    "user": [
+        {
+            "userData": "sfsfsdf",
+            "scoreData": 1500,
+            "streakData": 1,
+            "date": "3/5/2018 18:48:47"
+        }
+    ]
 }

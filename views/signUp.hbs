@@ -13,12 +13,21 @@
             <div id="greetBox">
                 <div id="greetBoxWelcomeText">
                     <p>Welcome to Fakoot!</p>
-                    <p>Creat a account!!!</p>    
+                    <p>Creat an account!</p>    
                 </div>
-                <div id="signUpBoxUsernameInputWrap">
-                    <input name="user_name" class="cards" id="signUpBoxUsernameInput" placeholder="Enter your username"/>
-                    <input name="password" class="cards" type="password" id="signUpBoxPasswordInput" placeholder="Enter your password"/>
-                    <input name="comfirmpassword" class="cards" type="password" id="signUpBoxConfirmPasswordInput" placeholder="Confirm your password"/>
+                <div id="signUpBoxUserInputWrap" >
+                    <div id="userNameWrap" class="inputWraps">
+                        <input name="USERNAME" class="cards" id="signUpBoxUsernameInput" placeholder="Enter username"/>
+                        <img id="nameValidationIcon" class="validationIcons" src=""></img>
+                    </div>
+                    <div id="passwordWrap" class="inputWraps">
+                        <input name="PASSWORD" class="cards" type="password" id="signUpBoxPasswordInput" placeholder="Enter password"/>
+                        <img id="passwordValidationIcon" class="validationIcons" src=""></img>
+                    </div>
+                    <div id="cpasswordWrap" class="inputWraps">
+                        <input name="CPASSWORD" class="cards" type="password" id="signUpBoxConfirmPasswordInput" placeholder="Confirm password"/>
+                        <img id="cpasswordValidationIcon" class="validationIcons" src=""></img>
+                    </div>
                 </div>
                 <div id="signUpBoxStartButtonWrap">
                     <div class="cards buttons" id="signUpBoxCreateButton">CREATE</div>
@@ -26,9 +35,16 @@
                 </div>
                 <script src="javascripts/index.js"></script>
             </div>
-            <div id="signInPage2"></div>
-            <script src="javascripts/signIn.js"></script>
     </div>
+    <div id="signInPage2">
+        <input name="user_name" class="cards" id="signInPageUserNameInput2" placeholder="Enter your username"/>
+        <input name="user_name" class="cards" type="password" id="signInPagePasswordInput2" placeholder="Enter your password"/>
+        <div class="cards buttons" id="signInPageButton2">SIGN IN</div>
+        <div class="cards buttons" id="signInPageBackButton">BACK</div>
+
+    </div>
+    <script src="javascripts/signIn.js"></script>
+    <script src="javascripts/signUp.js"></script>
 
 </body>
 </html>
