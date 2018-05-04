@@ -21,6 +21,7 @@ var signUpBoxUsernameInput = document.getElementById('signUpBoxUsernameInput')
 var signUpBoxPasswordInput = document.getElementById('signUpBoxPasswordInput')
 var signUpBoxConfirmPasswordInput = document.getElementById('signUpBoxConfirmPasswordInput')
 
+
 let currentQuestion = 0
 let questionList = []
 let sessionCode = ''
@@ -71,7 +72,7 @@ let storeQuizResult = () => {
  *
  * @param {number} - ????
  */
-let login = (event = 1) => {
+let playWithoutLoggingIn = (event = 1) => {
   if (event === 1 || event.keyCode === 13) {
     if (userName.value !== '') {
       let xmlhttp = new XMLHttpRequest()
@@ -186,3 +187,6 @@ signUpBoxResetButton.addEventListener('click', function() {
   signUpBoxConfirmPasswordInput.value = '';
 
 });
+
+
+
