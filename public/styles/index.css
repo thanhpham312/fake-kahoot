@@ -72,3 +72,15 @@
     background-color: var(--background-color);
     color: var(--light-font-color);
 }
+
+#signInPage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30vh;
+    width: 30vw;
+    margin: -10vh 0 0 -15vw;
+    opacity: 0;
+    background-color: black;
+    transition: 300ms;
+}

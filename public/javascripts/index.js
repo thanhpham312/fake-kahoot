@@ -21,6 +21,7 @@ var signUpBoxUsernameInput = document.getElementById('signUpBoxUsernameInput')
 var signUpBoxPasswordInput = document.getElementById('signUpBoxPasswordInput')
 var signUpBoxConfirmPasswordInput = document.getElementById('signUpBoxConfirmPasswordInput')
 
+
 let currentQuestion = 0
 let questionList = []
 let sessionCode = ''
@@ -186,3 +187,6 @@ signUpBoxResetButton.addEventListener('click', function() {
   signUpBoxConfirmPasswordInput.value = '';
 
 });
+
+
+
