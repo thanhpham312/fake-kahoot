@@ -21,11 +21,16 @@
                     <div class="cards buttons" id="greetBoxStartButton" onclick="login();" onkeypress="login(event);">BEGIN</div>
                 </div>
             </div>
-            <div id="signInPage"></div>
             {{> login}}
             {{> questionView}}
             {{> popup}}
             {{> notify}}
+        </div>
+        <div id="signInPage">
+            <input name="user_name" class="cards" id="signInPageUserNameInput" placeholder="Enter your username"/>
+            <input name="user_name" class="cards" type="password" id="signInPagePasswordInput" placeholder="Enter your password"/>
+            <div class="cards buttons" id="signInPageButton">SIGN IN</div>
+            <div class="cards buttons" id="signInPageBackButton">BACK</div>
         </div>
         <script src="javascripts/index.js"></script>
         <script src="javascripts/signIn.js"></script>
