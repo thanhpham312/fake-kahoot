@@ -67,7 +67,7 @@ let storeQuizResult = () => {
  *
  * @param {number} - ????
  */
-let login = (event = 1) => {
+let playWithoutLoggingIn = (event = 1) => {
   if (event === 1 || event.keyCode === 13) {
     if (userName.value !== '') {
       let xmlhttp = new XMLHttpRequest()

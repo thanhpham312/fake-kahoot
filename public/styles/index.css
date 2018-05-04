@@ -57,7 +57,7 @@
     width: 100%;
 }
 
-#greetBoxStartButton {
+.greetBoxButtons {
     display: inline-block;
     position: relative;
     box-sizing: border-box;
