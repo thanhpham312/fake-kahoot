@@ -1,4 +1,7 @@
 const database = require('./database')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
+
 
 class Account {
   constructor () {
@@ -13,6 +16,12 @@ class Account {
    */
   login (username, password) {
     return undefined
+  }
+
+  encryptPassword (password) {
+    bcrypt.hash(password, saltRounds).then((hash) => {
+      return hash
+    })
   }
 
   /**
