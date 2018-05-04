@@ -1,16 +1,23 @@
-#signUpBoxUsernameInputWrap {
+#signUpBoxUserInputWrap {
     position: absolute;
-    top: -15%;
+    top: -12%;
     height: 100%;
     width: 100%;
 }
 
+.inputWraps {
+    position: relative;
+    height: 35%;
+    width: 130%;
+    left: 10%;
+}
 #signUpBoxUsernameInput,  #signUpBoxPasswordInput, #signUpBoxConfirmPasswordInput{
+    display: inline-block;
     position: relative;
     box-sizing: border-box;
     padding: 0 5%;
-    height: 30%;
-    width: 90%;
+    height: 80%;
+    width: 50%;
     margin: 4%;
     border: none;
     font-size: 1.5em;
@@ -86,3 +93,11 @@
     background-color: var(--background-color);
     color: var(--light-font-color);
 }
+
+.validationIcons {
+    top: 15%;
+    position: relative;
+    display: inline-block;
+    height: 50%;
+}
+

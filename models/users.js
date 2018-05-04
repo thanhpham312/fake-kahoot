@@ -107,8 +107,10 @@ class Users {
       }
       rankCounter++
     }
+
     database.executeQuery('SELECT * FROM public."ACCOUNTS"').then((result) => {
       console.log(result)
+      console.log(typeof result)
     })
     return displayString
   };
