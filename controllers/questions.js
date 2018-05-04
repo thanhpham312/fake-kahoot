@@ -16,7 +16,7 @@ class Questions {
   }
 
   /**
-   *
+   * Gets a list of questions with the answer property removed.
    * @param numberofQuestions
    * @param category
    * @param difficulty
