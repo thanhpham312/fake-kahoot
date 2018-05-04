@@ -1,4 +1,9 @@
 /**
+ * @desc Import database library and assign users as constant.
+ * @type {}
+ */
+const db = require('./models/database')
+/**
  * @desc Import cookie-session module and assign cookieSession as constant
  * @type {Object}
  */
@@ -188,4 +193,22 @@ app.get('*', (request, response) => {
  */
 app.listen(port, () => {
   console.log(`Server is up on port 8080`)
+})
+
+
+app.post('/validateusername', (request, response) => {
+  let USERNAME = request.body.USERNAME.toString()
+  db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
+    user_array = JSON.parse(result)
+    var found = user_array.some(function (el) {
+      return el.USERNAME === USERNAME;
+    });
+    console.log(found,user_array)
+    if (!found) {
+      response.send(true)
+    } else {
+      response.send(false)
+    }
+  })
+  
 })
