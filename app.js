@@ -1,8 +1,8 @@
 /**
- * @desc Import module from open Trivia DB and assign opentdb as constant.
+ * @desc Import cookie-session module and assign cookieSession as constant
  * @type {Object}
  */
-const opentdb = require('./models/opentdb')
+const cookieSession = require('cookie-session')
 /**
  * @desc Import express module and assign express as constant.
  * @type {*|createApplication}
@@ -49,6 +49,12 @@ hbs.registerPartials(`${__dirname}/views/partials`)
 app.set('views', `${__dirname}/views`)
 app.set('view engine', 'hbs')
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ['password'],
+  maxAge: 24 * 60 * 60 * 1000
+}))
+
 app.use(express.static(`${__dirname}/public`))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -59,17 +65,28 @@ hbs.registerHelper('dummy', () => {
   return undefined
 })
 
+/**
+ * @desc Check if session is established
+ */
+app.use((request, response, next) => {
+  if (request.session.id === undefined) {
+    let date = new Date()
+    request.session.id = date.getTime().toString()
+  }
+  next()
+})
+
 app.get('/', (request, response) => {
   response.render('index.hbs')
 })
 
 app.post('/storeuser', (request, response) => {
-  let sessionCode = request.body.sessioncode
-  if (_.includes(Object.keys(playingUsers), sessionCode)) {
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID)) {
     let userList = new users.Users()
-    let userObject = playingUsers[sessionCode].user
+    let userObject = playingUsers[sessionID].user
     userList.storeUser(userObject)
-    delete playingUsers[sessionCode]
+    delete playingUsers[sessionID]
     console.log(playingUsers)
     response.send('Quiz result stored successfully!')
   } else {
@@ -78,15 +95,19 @@ app.post('/storeuser', (request, response) => {
 })
 
 app.post('/login', (request, response) => {
-  let date = new Date()
-  let newUser = new users.User(request.body.username)
-  let sessionCode = date.getTime().toString()
-  playingUsers[sessionCode] = {}
-  playingUsers[sessionCode].user = newUser
-  response.send({
-    'sessionCode': sessionCode,
-    'userObject': newUser
-  })
+  let sessionID = request.session.id.toString()
+  if (!Object.keys(playingUsers).includes(sessionID)) {
+    let newUser = new users.User(request.body.username)
+    playingUsers[sessionID] = {}
+    playingUsers[sessionID].user = newUser
+    response.send({
+      'userObject': newUser
+    })
+  } else {
+    response.send({
+      'userObject': playingUsers[sessionID].user
+    })
+  }
 })
 
 /**
@@ -105,9 +126,10 @@ app.get('/leaderboard', (request, response) => {
  *
  */
 app.post('/getquestions', (request, response) => {
-  let newQuestions = new questions.Questions()
-  if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
-    playingUsers[request.body.sessioncode].questions = newQuestions
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    let newQuestions = new questions.Questions()
+    playingUsers[sessionID].questions = newQuestions
     newQuestions.getQuestions().then((result) => {
       response.send(result)
     })
@@ -120,10 +142,10 @@ app.post('/getquestions', (request, response) => {
  *
  */
 app.post('/validateanswer', (request, response) => {
-  if (_.includes(Object.keys(playingUsers), request.body.sessioncode)) {
-    let sessionCode = request.body.sessioncode
-    let userObject = playingUsers[sessionCode].user
-    let questionsObject = playingUsers[sessionCode].questions
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    let userObject = playingUsers[sessionID].user
+    let questionsObject = playingUsers[sessionID].questions
 
     let result = questionsObject.assessQuestionResult(
       userObject,

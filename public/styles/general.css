@@ -152,3 +152,15 @@ a {
     background-image: url('/assets/images/backgrounds/background.png');
     background-size: cover;
 }
+
+#overlayWindow {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left:0;
+    background-color: rgba(236, 239, 241, 0);
+    display: none;
+    z-index: 50;
+    transition: 0.3s;
+}
