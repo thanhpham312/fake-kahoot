@@ -26,12 +26,11 @@ let getQuestions = (numberofQuestions = 10, category = 11, difficulty = 'medium'
       url: `https://opentdb.com/api.php?amount=${encodeURIComponent(numberofQuestions)}&category=${encodeURIComponent(category)}&difficulty=${encodeURIComponent(difficulty)}&type=${encodeURIComponent(questionType)}`,
       json: true
     }, (error, response, body) => {
+      let questionList = []
+      // console.log(response)
       if (error) {
         reject(new Error('Cannot connect to Open Trivia Database.'))
-      } else if (body.response_code === 400) {
-        reject(new Error('Invalid query.'))
-      } else {
-        let questionList = []
+      } else if (response.body.response_code === 0) {
         for (let i = 0; i < body.results.length; i++) {
           let answerArray = body.results[i].incorrect_answers.slice()
           answerArray.push(body.results[i].correct_answer)
@@ -46,6 +45,14 @@ let getQuestions = (numberofQuestions = 10, category = 11, difficulty = 'medium'
           })
         }
         resolve(questionList)
+      } else if (response.body.response_code === 1) {
+        reject(new Error('No Results'))
+      } else if (response.body.response_code === 2) {
+        reject(new Error('Invalid Parameter'))
+      } else if (response.body.response_code === 3) {
+        reject(new Error('Token Not Found'))
+      } else if (response.body.response_code === 4) {
+        reject(new Error('Token Empty'))
       }
     })
   })

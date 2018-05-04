@@ -12,7 +12,6 @@ const request = require('request')
  * @returns {Promise<any>}
  */
 let getQuestionByCategory = (categoryID, page = 0, limit = 10) => {
-
   if (page <= 0) {
     page = String(Math.floor((Math.random() * 50) + 1))
   }

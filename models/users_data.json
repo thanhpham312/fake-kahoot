@@ -137,6 +137,12 @@
             "scoreData": 1200,
             "streakData": 2,
             "date": "1/5/2018 18:26:0"
+        },
+        {
+            "userData": "Swan",
+            "scoreData": 4200,
+            "streakData": 3,
+            "date": "3/5/2018 14:5:12"
         }
     ]
 }

@@ -10,15 +10,16 @@
         <div id="content">
             <div class="background" id="contentBackground"></div>
             <div id="greetBox">
-                <div id="greetBoxWelcomeText">
-                    <p>Welcome to Fakoot!</p>
-                    <p>Enter a username to begin</p>
-                </div>
+                <!--<div id="greetBoxWelcomeText">-->
+                    <!--<p>Welcome to Fakoot!</p>-->
+                    <!--<p>Enter a username to begin</p>-->
+                <!--</div>-->
                 <div id="greetBoxUsernameInputWrap">
                     <input name="user_name" class="cards" id="greetBoxUsernameInput" placeholder="Enter a username" onkeypress="login(event);"/>
                 </div>
                 <div id="greetBoxStartButtonWrap">
-                    <div class="cards buttons" id="greetBoxStartButton" onclick="login();" onkeypress="login(event);">BEGIN</div>
+                    <div class="cards buttons greetBoxButtons" id="greetBoxStartButton" onclick="playWithoutLoggingIn();" onkeypress="playWithoutLoggingIn(event);">BEGIN</div>
+                    <div class="cards buttons greetBoxButtons" id="greetBoxLoginButton" onclick="showLoginWindow();">LOGIN</div>
                 </div>
             </div>
             {{> login}}
@@ -26,6 +27,13 @@
             {{> popup}}
             {{> notify}}
         </div>
+        <div id="signInPage">
+            <input name="user_name" class="cards" id="signInPageUserNameInput" placeholder="Enter your username"/>
+            <input name="user_name" class="cards" type="password" id="signInPagePasswordInput" placeholder="Enter your password"/>
+            <div class="cards buttons" id="signInPageButton">SIGN IN</div>
+            <div class="cards buttons" id="signInPageBackButton">BACK</div>
+        </div>
         <script src="javascripts/index.js"></script>
+        <script src="javascripts/signIn.js"></script>
     </body>
 </html>
