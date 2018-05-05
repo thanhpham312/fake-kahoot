@@ -16,14 +16,14 @@ class Questions {
   }
 
   /**
-   *
+   * Gets a list of questions with the answer property removed.
    * @param numberofQuestions
    * @param category
    * @param difficulty
    * @param questionType
    * @returns {Promise<any>}
    */
-  getQuestions (numberofQuestions = 10, category = 11, difficulty = 'medium', questionType = 'multiple') {
+  getQuestions (numberofQuestions = '10', category = '11', difficulty = 'medium', questionType = 'multiple') {
     return new Promise((resolve, reject) => {
       opentdb.getQuestions(numberofQuestions, category, difficulty, questionType).then((result) => {
         this.questionsList = result
@@ -70,11 +70,12 @@ class Questions {
     }
   }
 
-  /**
+  /**'
+   * @deprecated using a database now
    * storeQuizResult store current user results with date, score, streak, username to the database
    * @param userObject Current user who played the game
    */
-  static storeQuizResult (userObject) {
+  storeQuizResult (userObject) {
     let date = new Date()
     let timeStamp = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 

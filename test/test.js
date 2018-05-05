@@ -1,48 +1,90 @@
 /* eslint-env jest */
 const opentdb = require('../models/opentdb')
+const questions = require('../controllers/questions')
+const usersM = require('../models/users')
 const promiseTest = opentdb.getQuestions()
-const invalidPromiseTest = opentdb.getQuestions(
+const invalidPromiseTestCatch = opentdb.getQuestions(
   numberofQuestions = 1,
   category = 1,
   difficulty = 1,
   questionType = 2
 )
 
-const invalidPromiseTest2 = opentdb.getQuestions
-
-const testStructure = {
-  question: expect.anything(),
-  option1: expect.anything(),
-  option2: expect.anything(),
-  option3: expect.anything(),
-  option4: expect.anything(),
-  answers: expect.anything()
-}
+const invalidPromiseTest = opentdb.getQuestions
 
 describe('Testing the Open Trivia Database API', () => {
-  test('Check if API call is not undefined', () => {
+  test('Check data structure', () => {
+    let testStructure = {
+      question: expect.anything(),
+      option1: expect.anything(),
+      option2: expect.anything(),
+      option3: expect.anything(),
+      option4: expect.anything(),
+      answers: expect.anything()
+    }
     expect.assertions(1)
     return promiseTest.then(data => {
+      console.log(data[0])
       expect(data[0]).toEqual(testStructure)
     })
   })
-})
 
-test('Promise test 2 (different way)', () => {
-  expect.assertions(1)
-  return invalidPromiseTest.catch(error => {
-    console.log(error.message)
-    expect(error.message).toBe('Invalid Parameter')
-  })
-})
-
-describe.only('testDB', () => {
-  test('db 2', () => {
-    expect(invalidPromiseTest2(
+  test('Test Invalid Parameter Rejection using reject', () => {
+    expect(invalidPromiseTest(
       numberofQuestions = 1,
       category = 1,
       difficulty = 1,
       questionType = 2
     )).rejects.toThrow('Invalid Parameter')
+  })
+
+  test('Promise test 2 by catching error and comparing the message', () => {
+    expect.assertions(1)
+    return invalidPromiseTestCatch.catch(error => {
+      console.log(error.message)
+      expect(error.message).toBe('Invalid Parameter')
+    })
+  })
+
+  test('test getQuestions', () => {
+    let testStructure = {
+      question: expect.anything(),
+      option1: expect.anything(),
+      option2: expect.anything(),
+      option3: expect.anything(),
+      option4: expect.anything()
+    }
+    let instanceQuestions = new questions.Questions()
+    expect.assertions(1)
+    return instanceQuestions.getQuestions().then(data => {
+      expect(data[0]).toEqual(testStructure)
+    })
+  })
+})
+
+describe('Testing methods in Question Class', () => {
+  test('Testing assessQuestionResult; Answer True', () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new usersM.User()
+
+    instanceQuestions.getQuestions().then(data => {
+      instanceQuestions.questionsList[1].answers = 1
+      expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 1)).toEqual({
+        result: true,
+        currentUser: instanceUser
+      })
+    })
+  })
+
+  test('Testing assessQuestionResult; Answer False', () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new usersM.User()
+    instanceQuestions.getQuestions().then(data => {
+      instanceQuestions.questionsList[1].answers = 1
+      expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 2)).toEqual({
+        result: false,
+        currentUser: instanceUser
+      })
+    })
   })
 })
