@@ -197,7 +197,6 @@ app.listen(port, () => {
   console.log(`Server is up on port 8080`)
 })
 
-
 app.post('/validateusername', (request, response) => {
   let userAccount = new account.Account()
   userAccount.validateUsername(request.body.USERNAME.toString()).then((result) => {
@@ -219,15 +218,17 @@ app.post('/register', (request, response) => {
   db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
     user_array = JSON.parse(result)
     var found = user_array.some(function (el) {
-      return el.USERNAME === USERNAME;
-    });
-    console.log(found,user_array)
+      return el.USERNAME === USERNAME
+    })
+    console.log(found, user_array)
     if (!found) {
       response.send(true)
     } else {
       response.send(false)
     }
   })
+<<<<<<< HEAD
   
 })
 */
+
