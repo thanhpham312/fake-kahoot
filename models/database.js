@@ -1,10 +1,8 @@
 const {Client} = require('pg')
 
-
-
 let executeQuery = (query) => {
   let client = new Client({
-  connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL
   })
   return new Promise((resolve, reject) => {
     client.connect()
@@ -25,11 +23,6 @@ let executeQuery = (query) => {
   })
 }
 
-let getUsersList = () => {
-  executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"')
-}
-
 module.exports = {
-  executeQuery,
-  getUsersList
+  executeQuery
 }
