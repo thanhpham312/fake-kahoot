@@ -7,25 +7,6 @@ let passwordIcon = document.getElementById('passwordValidationIcon')
 let cpasswordIcon = document.getElementById('cpasswordValidationIcon')
 let hintWrap = document.getElementById('hintWrap')
 
-<<<<<<< HEAD
-
-
-=======
-function checkPassword (pass) {
-  let numbers = pass.match(/\d+/g)
-  let uppers = pass.match(/[A-Z]/)
-  let lowers = pass.match(/[a-z]/)
-  let lengths = pass.length >= 6
-
-  if (numbers === null || uppers === null || lowers === null || lengths === false) {
-    return false
-  }
-
-  if (numbers !== null && uppers !== null && lowers !== null && lengths) {
-    return true
-  }
-}
->>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
 
 userNameInput.addEventListener('blur', function () {
   let xmlhttp = new XMLHttpRequest()
@@ -43,7 +24,7 @@ userNameInput.addEventListener('blur', function () {
   xmlhttp.send(`USERNAME=${userNameInput.value}`)
 })
 
-<<<<<<< HEAD
+
 passwordInput.addEventListener("keyup",function(){
 
 	let xmlhttp = new XMLHttpRequest()
@@ -81,36 +62,7 @@ cpasswordInput.addEventListener("keyup",function(){
 	} else {
 		cpasswordIcon.src = ""
 	}
-=======
-cpasswordInput.addEventListener('keyup', function () {
-  if (passwordIcon.getAttribute('src') === '/assets/images/icons/checked.svg') {
-    if (cpasswordInput.value === passwordInput.value) {
-      cpasswordIcon.src = '/assets/images/icons/checked.svg'
-    } else {
-      cpasswordIcon.src = '/assets/images/icons/cross.svg'
-    }
-  } else {
-    cpasswordIcon.src = ''
-  }
-})
 
-passwordInput.addEventListener('keyup', function () {
-  if (passwordIcon.getAttribute('src') === '/assets/images/icons/checked.svg') {
-    if (cpasswordInput.value === passwordInput.value) {
-      cpasswordIcon.src = '/assets/images/icons/checked.svg'
-    } else {
-      cpasswordIcon.src = '/assets/images/icons/cross.svg'
-    }
-  } else {
-    cpasswordIcon.src = ''
-  }
-
-  if (checkPassword(passwordInput.value)) {
-    passwordIcon.src = '/assets/images/icons/checked.svg'
-  } else {
-    passwordIcon.src = '/assets/images/icons/cross.svg'
-  }
->>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
 })
 
 signUpBoxResetButton.addEventListener('click', function () {
@@ -122,7 +74,7 @@ signUpBoxResetButton.addEventListener('click', function () {
   document.getElementById('passwordValidationIcon').src = ''
 })
 
-<<<<<<< HEAD
+
 nameIcon.addEventListener("mouseover",function(){
 	let xmlhttp = new XMLHttpRequest()
 	  xmlhttp.open('POST', '/validateusername', true)
@@ -141,13 +93,7 @@ nameIcon.addEventListener("mouseover",function(){
 		hintWrap.innerHTML = "Sorry, this user name already exists. Pick another one."
 		hintWrap.style.display = 'block'
 	} 
-=======
-nameIcon.addEventListener('mouseover', function () {
-  if (nameIcon.getAttribute('src') === '/assets/images/icons/cross.svg') {
-    hintWrap.innerHTML = 'Sorry, this user name already exists. Pick another one.'
-    hintWrap.style.display = 'block'
-  }
->>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
+
 })
 
 passwordIcon.addEventListener('mouseover', function () {
@@ -164,21 +110,15 @@ cpasswordIcon.addEventListener('mouseover', function () {
   }
 })
 
-<<<<<<< HEAD
-nameIcon.addEventListener("mouseout",function(){
-	hintWrap.style.display = 'none'
 
-=======
 nameIcon.addEventListener('mouseout', function () {
   hintWrap.style.display = 'none'
->>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
 })
 
 passwordIcon.addEventListener('mouseout', function () {
   hintWrap.style.display = 'none'
 })
 
-<<<<<<< HEAD
 cpasswordIcon.addEventListener("mouseout",function(){
 	hintWrap.style.display = 'none'
 })
@@ -200,8 +140,5 @@ document.getElementById("signUpBoxCreateButton").addEventListener("click",functi
 	}
 	xmlhttp.send(`USERNAME=${userNameInput.value}&PASSWORD=${passwordInput.value}&CPASSWORD=${cpasswordInput.value}`)
 	
-=======
-cpasswordIcon.addEventListener('mouseout', function () {
-  hintWrap.style.display = 'none'
->>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
+
 })
