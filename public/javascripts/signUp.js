@@ -22,6 +22,7 @@ function checkPassword(pass) {
     return valid;
 }
 
+
 userNameInput.addEventListener("blur",function(){
 	let xmlhttp = new XMLHttpRequest()
 	  xmlhttp.open('POST', '/validateusername', true)
@@ -110,3 +111,22 @@ passwordIcon.addEventListener("mouseout",function(){
 cpasswordIcon.addEventListener("mouseout",function(){
 	hintWrap.style.display = 'none'
 })
+
+/*
+document.getElementById("signUpBoxCreateButton").addEventListener("click",function(){
+	let xmlhttp = new XMLHttpRequest()
+	  xmlhttp.open('POST', '/register', true)
+	  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+	  xmlhttp.onreadystatechange = () => {
+	    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+	      if (xmlhttp.response === 'true') {
+	        swal("Success","Welcome to fakoot!","success")
+		} else {
+			swal("Woops","Check everything again.","error")
+		}
+	   	}   
+	  }
+	  xmlhttp.send(`USERNAME=${userNameInput.value}&PASSWORD=${passwordInput.value}&USERNAME=${cpasswordInput.value}`)
+	
+})
+*/

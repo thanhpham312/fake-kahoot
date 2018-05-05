@@ -1,3 +1,5 @@
+const account = require('./models/account.js')
+
 /**
  * @desc Import database library and assign users as constant.
  * @type {}
@@ -197,7 +199,23 @@ app.listen(port, () => {
 
 
 app.post('/validateusername', (request, response) => {
-  let USERNAME = request.body.USERNAME.toString()
+  let userAccount = new account.Account()
+  userAccount.validateUsername(request.body.USERNAME.toString()).then((result) => {
+    console.log(result)
+    if (result) {
+      response.send(true)
+    } else {
+      response.send(false)
+    }
+  })
+})
+  
+/*
+app.post('/register', (request, response) => {
+  let USERNAME = request.body.USERNAME.toString(),
+      PASSWORD = request.body.PASSWORD.toString(),
+      CPASSWORD = request.body.CPASSWORD.toString()
+  if ()
   db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
     user_array = JSON.parse(result)
     var found = user_array.some(function (el) {
@@ -212,3 +230,4 @@ app.post('/validateusername', (request, response) => {
   })
   
 })
+*/
