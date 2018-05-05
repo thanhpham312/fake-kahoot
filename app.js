@@ -208,6 +208,17 @@ app.post('/validateusername', (request, response) => {
     }
   })
 })
+
+app.post('/validatepassword', (request, response) => {
+  let userAccount = new account.Account()
+  result = userAccount.validatePassword(request.body.PASSWORD.toString())
+  console.log(result)
+  if (result) {
+    response.send(true)
+  } else {
+    response.send(false)
+  }
+})
   
 /*
 app.post('/register', (request, response) => {

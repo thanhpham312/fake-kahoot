@@ -7,20 +7,7 @@ var userNameInput = document.getElementById("signUpBoxUsernameInput"),
 	cpasswordIcon = document.getElementById("cpasswordValidationIcon"),
 	hintWrap = document.getElementById("hintWrap")
 
-function checkPassword(pass) {
-    var numbers = pass.match(/\d+/g);
-    var uppers  = pass.match(/[A-Z]/);
-    var lowers  = pass.match(/[a-z]/);
-    var lengths = pass.length>=6;
 
-    if (numbers === null || uppers === null || lowers === null || lengths === false)
-        valid = false;
-
-    if (numbers !== null && uppers !== null && lowers !== null && lengths)
-        valid = true;
-
-    return valid;
-}
 
 
 userNameInput.addEventListener("blur",function(){
@@ -39,7 +26,24 @@ userNameInput.addEventListener("blur",function(){
 	  xmlhttp.send(`USERNAME=${userNameInput.value}`)
 })
 
-cpasswordInput.addEventListener("keyup",function(){
+
+
+passwordInput.addEventListener("keyup",function(){
+
+	let xmlhttp = new XMLHttpRequest()
+	xmlhttp.open('POST', '/validatepassword', true)
+	xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+	xmlhttp.onreadystatechange = () => {
+	  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+	    if (xmlhttp.response === 'true') {
+	      passwordIcon.src = "/assets/images/icons/checked.svg"
+	    } else {
+	  	  passwordIcon.src = "/assets/images/icons/cross.svg"
+	    }
+	  }   
+	}
+	xmlhttp.send(`PASSWORD=${passwordInput.value}`)
+	
 	if (passwordIcon.getAttribute('src') === "/assets/images/icons/checked.svg"){
 		if (cpasswordInput.value === passwordInput.value) {
 			cpasswordIcon.src = "/assets/images/icons/checked.svg"
@@ -51,7 +55,7 @@ cpasswordInput.addEventListener("keyup",function(){
 	}
 })
 
-passwordInput.addEventListener("keyup",function(){
+cpasswordInput.addEventListener("keyup",function(){
 	if (passwordIcon.getAttribute('src') === "/assets/images/icons/checked.svg"){
 		if (cpasswordInput.value === passwordInput.value) {
 			cpasswordIcon.src = "/assets/images/icons/checked.svg"
@@ -61,13 +65,6 @@ passwordInput.addEventListener("keyup",function(){
 	} else {
 		cpasswordIcon.src = ""
 	}
-
-	if (checkPassword(passwordInput.value)) {
-		passwordIcon.src = "/assets/images/icons/checked.svg"
-	} else {
-		passwordIcon.src = "/assets/images/icons/cross.svg"
-	}
-	
 })
 
 signUpBoxResetButton.addEventListener('click', function() {

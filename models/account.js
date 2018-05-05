@@ -30,9 +30,6 @@ class Account {
    * @returns {undefined}
    */
   register (username, password) {
-    exe.then((result) =>{
-      return result
-    })
     return undefined
   }
 
@@ -49,6 +46,22 @@ class Account {
       })
       
     })
+  }
+
+  validatePassword (pass) {
+    var numbers = pass.match(/\d+/g);
+    var uppers  = pass.match(/[A-Z]/);
+    var lowers  = pass.match(/[a-z]/);
+    var lengths = pass.length>=6;
+    var valid = undefined;
+    
+    if (numbers === null || uppers === null || lowers === null || lengths === false)
+        valid = false;
+
+    if (numbers !== null && uppers !== null && lowers !== null && lengths)
+        valid = true;
+
+    return valid;
   }
 }
 
