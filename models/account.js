@@ -3,7 +3,6 @@ const db = require('./database')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
-
 class Account {
   constructor () {
     this.username = undefined

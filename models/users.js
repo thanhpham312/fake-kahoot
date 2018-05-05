@@ -1,7 +1,6 @@
 const fs = require('fs')
 const database = require('./database')
 
-
 /**
  * @class Users
  * @classdesc This is the Users Class

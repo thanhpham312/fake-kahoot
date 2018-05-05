@@ -118,7 +118,7 @@ app.post('/login', (request, response) => {
 })
 
 /**
- * @desc function send get request to render leaderboards.hbs page, successful responce renders the page
+ * @desc function send get request to render leaderboards.hbs page, successful response renders the page
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
@@ -190,13 +190,6 @@ app.get('*', (request, response) => {
   response.render('404.hbs')
 })
 
-/**
- * @desc function notifies port number of the local server
- */
-app.listen(port, () => {
-  console.log(`Server is up on port 8080`)
-})
-
 app.post('/validateusername', (request, response) => {
   let userAccount = new account.Account()
   userAccount.validateUsername(request.body.USERNAME.toString()).then((result) => {
@@ -240,4 +233,12 @@ app.post('/register', (request, response) => {
   
 })
 
+
+
+/**
+ * @desc function notifies port number of the local server
+ */
+app.listen(port, () => {
+  console.log(`Server is up on port 8080`)
+})
 

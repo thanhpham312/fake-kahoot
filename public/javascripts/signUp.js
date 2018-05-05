@@ -1,31 +1,49 @@
-var userNameInput = document.getElementById("signUpBoxUsernameInput"),
-	passwordInput = document.getElementById("signUpBoxPasswordInput"),
-	cpasswordInput = document.getElementById("signUpBoxConfirmPasswordInput"),
-	signUpBoxResetButton = document.getElementById('signUpBoxResetButton'),
-	nameIcon = document.getElementById("nameValidationIcon"),
-	passwordIcon = document.getElementById("passwordValidationIcon"),
-	cpasswordIcon = document.getElementById("cpasswordValidationIcon"),
-	hintWrap = document.getElementById("hintWrap")
+let userNameInput = document.getElementById('signUpBoxUsernameInput')
+let passwordInput = document.getElementById('signUpBoxPasswordInput')
+let cpasswordInput = document.getElementById('signUpBoxConfirmPasswordInput')
+let signUpBoxResetButton = document.getElementById('signUpBoxResetButton')
+let nameIcon = document.getElementById('nameValidationIcon')
+let passwordIcon = document.getElementById('passwordValidationIcon')
+let cpasswordIcon = document.getElementById('cpasswordValidationIcon')
+let hintWrap = document.getElementById('hintWrap')
+
+<<<<<<< HEAD
 
 
+=======
+function checkPassword (pass) {
+  let numbers = pass.match(/\d+/g)
+  let uppers = pass.match(/[A-Z]/)
+  let lowers = pass.match(/[a-z]/)
+  let lengths = pass.length >= 6
 
+  if (numbers === null || uppers === null || lowers === null || lengths === false) {
+    return false
+  }
 
-userNameInput.addEventListener("blur",function(){
-	let xmlhttp = new XMLHttpRequest()
-	  xmlhttp.open('POST', '/validateusername', true)
-	  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-	  xmlhttp.onreadystatechange = () => {
-	    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-	      if (xmlhttp.response === 'true') {
-	        nameIcon.src = "/assets/images/icons/checked.svg"
-		} else {
-			nameIcon.src = "/assets/images/icons/cross.svg"
-		}
-	   	}   
-	  }
-	  xmlhttp.send(`USERNAME=${userNameInput.value}`)
+  if (numbers !== null && uppers !== null && lowers !== null && lengths) {
+    return true
+  }
+}
+>>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
+
+userNameInput.addEventListener('blur', function () {
+  let xmlhttp = new XMLHttpRequest()
+  xmlhttp.open('POST', '/validateusername', true)
+  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+  xmlhttp.onreadystatechange = () => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      if (xmlhttp.response === 'true') {
+        nameIcon.src = '/assets/images/icons/checked.svg'
+      } else {
+        nameIcon.src = '/assets/images/icons/cross.svg'
+      }
+    }
+  }
+  xmlhttp.send(`USERNAME=${userNameInput.value}`)
 })
 
+<<<<<<< HEAD
 passwordInput.addEventListener("keyup",function(){
 
 	let xmlhttp = new XMLHttpRequest()
@@ -63,17 +81,48 @@ cpasswordInput.addEventListener("keyup",function(){
 	} else {
 		cpasswordIcon.src = ""
 	}
+=======
+cpasswordInput.addEventListener('keyup', function () {
+  if (passwordIcon.getAttribute('src') === '/assets/images/icons/checked.svg') {
+    if (cpasswordInput.value === passwordInput.value) {
+      cpasswordIcon.src = '/assets/images/icons/checked.svg'
+    } else {
+      cpasswordIcon.src = '/assets/images/icons/cross.svg'
+    }
+  } else {
+    cpasswordIcon.src = ''
+  }
 })
 
-signUpBoxResetButton.addEventListener('click', function() {
-  signUpBoxUsernameInput.value = '';
-  signUpBoxPasswordInput.value = '';
-  signUpBoxConfirmPasswordInput.value = '';
-  document.getElementById("nameValidationIcon").src = ""
-  document.getElementById("cpasswordValidationIcon").src = ""
-  document.getElementById("passwordValidationIcon").src = ""
-});
+passwordInput.addEventListener('keyup', function () {
+  if (passwordIcon.getAttribute('src') === '/assets/images/icons/checked.svg') {
+    if (cpasswordInput.value === passwordInput.value) {
+      cpasswordIcon.src = '/assets/images/icons/checked.svg'
+    } else {
+      cpasswordIcon.src = '/assets/images/icons/cross.svg'
+    }
+  } else {
+    cpasswordIcon.src = ''
+  }
 
+  if (checkPassword(passwordInput.value)) {
+    passwordIcon.src = '/assets/images/icons/checked.svg'
+  } else {
+    passwordIcon.src = '/assets/images/icons/cross.svg'
+  }
+>>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
+})
+
+signUpBoxResetButton.addEventListener('click', function () {
+  signUpBoxUsernameInput.value = ''
+  signUpBoxPasswordInput.value = ''
+  signUpBoxConfirmPasswordInput.value = ''
+  document.getElementById('nameValidationIcon').src = ''
+  document.getElementById('cpasswordValidationIcon').src = ''
+  document.getElementById('passwordValidationIcon').src = ''
+})
+
+<<<<<<< HEAD
 nameIcon.addEventListener("mouseover",function(){
 	let xmlhttp = new XMLHttpRequest()
 	  xmlhttp.open('POST', '/validateusername', true)
@@ -92,31 +141,44 @@ nameIcon.addEventListener("mouseover",function(){
 		hintWrap.innerHTML = "Sorry, this user name already exists. Pick another one."
 		hintWrap.style.display = 'block'
 	} 
+=======
+nameIcon.addEventListener('mouseover', function () {
+  if (nameIcon.getAttribute('src') === '/assets/images/icons/cross.svg') {
+    hintWrap.innerHTML = 'Sorry, this user name already exists. Pick another one.'
+    hintWrap.style.display = 'block'
+  }
+>>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
 })
 
-passwordIcon.addEventListener("mouseover",function(){
-	if (passwordIcon.getAttribute('src') === "/assets/images/icons/cross.svg") {
-		hintWrap.innerHTML = "Password must be a minimum of six characters and include at least one uppercase letter,one lowercase letter, and one number. "
-		hintWrap.style.display = 'block'
-	} 
+passwordIcon.addEventListener('mouseover', function () {
+  if (passwordIcon.getAttribute('src') === '/assets/images/icons/cross.svg') {
+    hintWrap.innerHTML = 'Password must be a minimum of six characters and include at least one uppercase letter,one lowercase letter, and one number. '
+    hintWrap.style.display = 'block'
+  }
 })
 
-cpasswordIcon.addEventListener("mouseover",function(){
-	if (cpasswordIcon.getAttribute('src') === "/assets/images/icons/cross.svg") {
-		hintWrap.innerHTML = "Must match the previews password."
-		hintWrap.style.display = 'block'
-	} 
+cpasswordIcon.addEventListener('mouseover', function () {
+  if (cpasswordIcon.getAttribute('src') === '/assets/images/icons/cross.svg') {
+    hintWrap.innerHTML = 'Must match the previews password.'
+    hintWrap.style.display = 'block'
+  }
 })
 
+<<<<<<< HEAD
 nameIcon.addEventListener("mouseout",function(){
 	hintWrap.style.display = 'none'
 
+=======
+nameIcon.addEventListener('mouseout', function () {
+  hintWrap.style.display = 'none'
+>>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
 })
 
-passwordIcon.addEventListener("mouseout",function(){
-	hintWrap.style.display = 'none'
+passwordIcon.addEventListener('mouseout', function () {
+  hintWrap.style.display = 'none'
 })
 
+<<<<<<< HEAD
 cpasswordIcon.addEventListener("mouseout",function(){
 	hintWrap.style.display = 'none'
 })
@@ -138,4 +200,8 @@ document.getElementById("signUpBoxCreateButton").addEventListener("click",functi
 	}
 	xmlhttp.send(`USERNAME=${userNameInput.value}&PASSWORD=${passwordInput.value}&CPASSWORD=${cpasswordInput.value}`)
 	
+=======
+cpasswordIcon.addEventListener('mouseout', function () {
+  hintWrap.style.display = 'none'
+>>>>>>> 373c3981d69f3d00396d0aae0071ac4a2a271843
 })
