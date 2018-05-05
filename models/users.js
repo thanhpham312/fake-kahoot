@@ -42,6 +42,7 @@ class Users {
   };
 
   /**
+   * @deprecated we're going to use a database
    * storeUser stores user data to a file.
    * @param {object} userObject - The current user's username.
    */
@@ -127,7 +128,7 @@ class User {
    * @param currentStreak Current streak the user has for the quiz
    * @param highestStreak Highest streak the user has for the quiz
    */
-  constructor (username = '', userScore = 0, currentStreak = 0, highestStreak = 0) {
+  constructor (username = 'testUser', userScore = 2000, currentStreak = 5, highestStreak = 5) {
     this.username = username
     this.userScore = userScore
     this.currentStreak = currentStreak

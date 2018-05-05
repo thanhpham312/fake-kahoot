@@ -1,6 +1,7 @@
 /* eslint-env jest */
 const opentdb = require('../models/opentdb')
 const questions = require('../controllers/questions')
+const usersM = require('../models/users')
 const promiseTest = opentdb.getQuestions()
 const invalidPromiseTestCatch = opentdb.getQuestions(
   numberofQuestions = 1,
@@ -11,24 +12,24 @@ const invalidPromiseTestCatch = opentdb.getQuestions(
 
 const invalidPromiseTest = opentdb.getQuestions
 
-const testStructure = {
-  question: expect.anything(),
-  option1: expect.anything(),
-  option2: expect.anything(),
-  option3: expect.anything(),
-  option4: expect.anything(),
-  answers: expect.anything()
-}
-
-describe.skip('Testing the Open Trivia Database API', () => {
+describe('Testing the Open Trivia Database API', () => {
   test('Check data structure', () => {
+    let testStructure = {
+      question: expect.anything(),
+      option1: expect.anything(),
+      option2: expect.anything(),
+      option3: expect.anything(),
+      option4: expect.anything(),
+      answers: expect.anything()
+    }
     expect.assertions(1)
     return promiseTest.then(data => {
+      console.log(data[0])
       expect(data[0]).toEqual(testStructure)
     })
   })
 
-  test('Test Invalid Parameter Rejection', () => {
+  test('Test Invalid Parameter Rejection using reject', () => {
     expect(invalidPromiseTest(
       numberofQuestions = 1,
       category = 1,
@@ -37,16 +38,14 @@ describe.skip('Testing the Open Trivia Database API', () => {
     )).rejects.toThrow('Invalid Parameter')
   })
 
-  test('Promise test 2 (different way)', () => {
+  test('Promise test 2 by catching error and comparing the message', () => {
     expect.assertions(1)
     return invalidPromiseTestCatch.catch(error => {
       console.log(error.message)
       expect(error.message).toBe('Invalid Parameter')
     })
   })
-})
 
-describe('Testing getQuestions from questions.js', () => {
   test('test getQuestions', () => {
     let testStructure = {
       question: expect.anything(),
@@ -63,6 +62,29 @@ describe('Testing getQuestions from questions.js', () => {
   })
 })
 
-test('', () => {
+describe('Testing methods in Question Class', () => {
+  test('Testing assessQuestionResult; Answer True', () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new usersM.User()
 
+    instanceQuestions.getQuestions().then(data => {
+      instanceQuestions.questionsList[1].answers = 1
+      expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 1)).toEqual({
+        result: true,
+        currentUser: instanceUser
+      })
+    })
+  })
+
+  test('Testing assessQuestionResult; Answer False', () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new usersM.User()
+    instanceQuestions.getQuestions().then(data => {
+      instanceQuestions.questionsList[1].answers = 1
+      expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 2)).toEqual({
+        result: false,
+        currentUser: instanceUser
+      })
+    })
+  })
 })

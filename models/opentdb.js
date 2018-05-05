@@ -20,14 +20,13 @@ const _ = require('lodash')
  * @throws Failed Connect - Could not connect to opentdb.
  * @throws Invalid query.
  */
-let getQuestions = (numberofQuestions = 10, category = 11, difficulty = 'medium', questionType = 'multiple') => {
+let getQuestions = (numberofQuestions = '10', category = '11', difficulty = 'medium', questionType = 'multiple') => {
   return new Promise((resolve, reject) => {
     request({
       url: `https://opentdb.com/api.php?amount=${encodeURIComponent(numberofQuestions)}&category=${encodeURIComponent(category)}&difficulty=${encodeURIComponent(difficulty)}&type=${encodeURIComponent(questionType)}`,
       json: true
     }, (error, response, body) => {
       let questionList = []
-      // console.log(response)
       if (error) {
         reject(new Error('Cannot connect to Open Trivia Database.'))
       } else if (response.body.response_code === 0) {
