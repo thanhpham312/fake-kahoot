@@ -200,7 +200,6 @@ app.listen(port, () => {
 app.post('/validateusername', (request, response) => {
   let userAccount = new account.Account()
   userAccount.validateUsername(request.body.USERNAME.toString()).then((result) => {
-    console.log(result)
     if (result) {
       response.send(true)
     } else {
@@ -212,7 +211,6 @@ app.post('/validateusername', (request, response) => {
 app.post('/validatepassword', (request, response) => {
   let userAccount = new account.Account()
   result = userAccount.validatePassword(request.body.PASSWORD.toString())
-  console.log(result)
   if (result) {
     response.send(true)
   } else {
@@ -220,26 +218,26 @@ app.post('/validatepassword', (request, response) => {
   }
 })
   
-/*
+
 app.post('/register', (request, response) => {
   let USERNAME = request.body.USERNAME.toString(),
       PASSWORD = request.body.PASSWORD.toString(),
-      CPASSWORD = request.body.CPASSWORD.toString()
-  if ()
-  db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
-    user_array = JSON.parse(result)
-    var found = user_array.some(function (el) {
-      return el.USERNAME === USERNAME
-    })
-    console.log(found, user_array)
-    if (!found) {
-      response.send(true)
+      CPASSWORD = request.body.CPASSWORD.toString(),
+      userAccount = new account.Account()
+
+  userAccount.validateUsername(USERNAME).then((result) =>{
+    if (result && userAccount.validatePassword(PASSWORD) && PASSWORD === CPASSWORD) {
+      console.log('validation passed')
+      userAccount.register(USERNAME,PASSWORD).then((final_result) => {
+        response.send(final_result)
+      })
     } else {
       response.send(false)
     }
+
   })
-<<<<<<< HEAD
+  
   
 })
-*/
+
 

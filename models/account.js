@@ -30,7 +30,11 @@ class Account {
    * @returns {undefined}
    */
   register (username, password) {
-    return undefined
+    return new Promise((resolve,reject) => {
+      db.executeQuery(`INSERT INTO public."ACCOUNTS"("USERNAME", "PASSWORD") VALUES ('${username}', '${password}');`).then((result) =>{
+        resolve(result)
+      })
+    })
   }
 
 
@@ -54,7 +58,7 @@ class Account {
     var lowers  = pass.match(/[a-z]/);
     var lengths = pass.length>=6;
     var valid = undefined;
-    
+
     if (numbers === null || uppers === null || lowers === null || lengths === false)
         valid = false;
 
