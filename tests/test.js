@@ -88,3 +88,8 @@ describe('Testing methods in Question Class', () => {
     })
   })
 })
+
+test.only('testing database connection local', () => {
+  const db = require('../models/database')
+  expect(db.getUsersList()).toBe('test')
+})

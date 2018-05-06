@@ -203,37 +203,31 @@ app.post('/validateusername', (request, response) => {
 
 app.post('/validatepassword', (request, response) => {
   let userAccount = new account.Account()
-  result = userAccount.validatePassword(request.body.PASSWORD.toString())
+  let result = userAccount.validatePassword(request.body.PASSWORD.toString())
   if (result) {
     response.send(true)
   } else {
     response.send(false)
   }
 })
-  
 
 app.post('/register', (request, response) => {
-  let USERNAME = request.body.USERNAME.toString(),
-      PASSWORD = request.body.PASSWORD.toString(),
-      CPASSWORD = request.body.CPASSWORD.toString(),
-      userAccount = new account.Account()
+  let USERNAME = request.body.USERNAME.toString()
+  let PASSWORD = request.body.PASSWORD.toString()
+  let CPASSWORD = request.body.CPASSWORD.toString()
+  let userAccount = new account.Account()
 
-  userAccount.validateUsername(USERNAME).then((result) =>{
+  userAccount.validateUsername(USERNAME).then((result) => {
     if (result && userAccount.validatePassword(PASSWORD) && PASSWORD === CPASSWORD) {
       console.log('validation passed')
-      userAccount.register(USERNAME,PASSWORD).then((final_result) => {
-        response.send(final_result)
+      userAccount.register(USERNAME, PASSWORD).then((finalResult) => {
+        response.send(finalResult)
       })
     } else {
       response.send(false)
     }
-
   })
-  
-  
 })
-
-
 
 /**
  * @desc function notifies port number of the local server
@@ -241,4 +235,3 @@ app.post('/register', (request, response) => {
 app.listen(port, () => {
   console.log(`Server is up on port 8080`)
 })
-

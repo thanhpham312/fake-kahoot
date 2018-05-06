@@ -28,13 +28,13 @@ passwordInput.addEventListener('keyup', function () {
   xmlhttp.open('POST', '/validatepassword', true)
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
   xmlhttp.onreadystatechange = () => {
-	  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-	    if (xmlhttp.response === 'true') {
-	      passwordIcon.src = '/assets/images/icons/checked.svg'
-	    } else {
-	  	  passwordIcon.src = '/assets/images/icons/cross.svg'
-	    }
-	  }
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      if (xmlhttp.response === 'true') {
+        passwordIcon.src = '/assets/images/icons/checked.svg'
+      } else {
+        passwordIcon.src = '/assets/images/icons/cross.svg'
+      }
+    }
   }
   xmlhttp.send(`PASSWORD=${passwordInput.value}`)
 
@@ -72,18 +72,18 @@ signUpBoxResetButton.addEventListener('click', function () {
 
 nameIcon.addEventListener('mouseover', function () {
   let xmlhttp = new XMLHttpRequest()
-	  xmlhttp.open('POST', '/validateusername', true)
-	  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-	  xmlhttp.onreadystatechange = () => {
-	    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-	      if (xmlhttp.response === 'true') {
-	        nameIcon.src = '/assets/images/icons/checked.svg'
+  xmlhttp.open('POST', '/validateusername', true)
+  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+  xmlhttp.onreadystatechange = () => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      if (xmlhttp.response === 'true') {
+        nameIcon.src = '/assets/images/icons/checked.svg'
       } else {
         nameIcon.src = '/assets/images/icons/cross.svg'
       }
-	   	}
-	  }
-	  xmlhttp.send(`USERNAME=${userNameInput.value}`)
+    }
+  }
+  xmlhttp.send(`USERNAME=${userNameInput.value}`)
   if (nameIcon.getAttribute('src') === '/assets/images/icons/cross.svg') {
     hintWrap.innerHTML = 'Sorry, this user name already exists. Pick another one.'
     hintWrap.style.display = 'block'
@@ -121,14 +121,14 @@ document.getElementById('signUpBoxCreateButton').addEventListener('click', funct
   xmlhttp.open('POST', '/register', true)
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
   xmlhttp.onreadystatechange = () => {
-	  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-	  	console.log(xmlhttp.response)
-	    if (xmlhttp.response === 'true') {
-	      swal('Success', 'Welcome to fakoot!', 'success')
-	  } else {
-	  	  swal('Woops', 'Registration failed. Check everything again.', 'error')
-	  }
-	  }
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      console.log(xmlhttp.response)
+      if (xmlhttp.response === 'true') {
+        swal('Success', 'Welcome to fakoot!', 'success')
+      } else {
+        swal('Woops', 'Registration failed. Check everything again.', 'error')
+      }
+    }
   }
   xmlhttp.send(`USERNAME=${userNameInput.value}&PASSWORD=${passwordInput.value}&CPASSWORD=${cpasswordInput.value}`)
 })
