@@ -12,13 +12,12 @@ class Account {
 
   /**
    * @desc [To be determined]
-   * @returns {undefined}
+   * @returns {Promise<any>}
    */
   login (username, password) {
     return new Promise((resolve, reject) => {
       db.executeQuery(`SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`).then((queryResult) => {
         let result = JSON.parse(queryResult)
-        console.log(result)
       }).then((result) => {
         if (bcrypt.compareSync(password, result)) {
           resolve(true)
@@ -37,13 +36,12 @@ class Account {
 
   /**
    * @desc [To be determined]
-   * @returns {undefined}
+   * @returns {Promise<any>}
    */
   register (username, password) {
     return new Promise((resolve, reject) => {
       this.encryptPassword(password).then((result) => {
         db.executeQuery(`INSERT INTO public."ACCOUNTS"("USERNAME", "PASSWORD") VALUES ('${username}', '${result}');`).then((result) => {
-          console.log(result)
           resolve(result)
         })
       })

@@ -95,9 +95,7 @@ describe('Testing user registration/login', () => {
   test('Registering users work as expected', async () => {
     let username = 'jestUser'
     let password = 'jestUser'
-    await expect(accInst.register(username, password)).resolves.toEqual({
-      reason: 'You have successfully registered!'
-    })
+    await expect(accInst.register(username, password)).resolves.toEqual(true)
   })
 
   test('Login work as expected', async () => {

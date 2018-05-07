@@ -26,12 +26,11 @@ let executeQuery = (query) => {
 let getUsersList = () => {
   executeQuery('SELECT * FROM public."ACCOUNTS";').then(data => {
     let pdata = JSON.parse(data)
-    console.log(pdata[0].ACCOUNT_ID)
-    console.log(pdata[0].USERNAME)
-    console.log(pdata[0].PASSWORD)
+    // console.log(pdata[0].ACCOUNT_ID)
+    // console.log(pdata[0].USERNAME)
+    // console.log(pdata[0].PASSWORD)
   })
 }
-getUsersList()
 
 module.exports = {
   executeQuery,
