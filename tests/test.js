@@ -62,6 +62,34 @@ describe('Testing the Open Trivia Database API', () => {
   })
 })
 
+describe('Testing methods in Question Class', () => {
+  test('Testing assessQuestionResult; Answer True', () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new usersM.User()
+
+   instanceQuestions.getQuestions().then(data => {
+    instanceQuestions.questionsList[1].answers = 1
+      expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 1)).toEqual({
+        result: true,
+        currentUser: instanceUser
+      })
+    })
+  })
+
+  test('Testing assessQuestionResult; Answer False', () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new usersM.User()
+    instanceQuestions.getQuestions().then(data => {
+      instanceQuestions.questionsList[1].answers = 1
+      expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 2)).toEqual({
+        result: false,
+        currentUser: instanceUser
+      })
+    })
+  })
+})
+
+
 describe('Testing user registration/login', () => { 
   // Template for registration test
   test('Registering users work as expected', async () => {
@@ -79,5 +107,3 @@ describe('Testing user registration/login', () => {
     await expect(Account.login(username, password)).resolves.toEqual(true);
   }) 
 }) 
-
-  
