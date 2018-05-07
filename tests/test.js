@@ -67,8 +67,8 @@ describe('Testing methods in Question Class', () => {
     let instanceQuestions = new questions.Questions()
     let instanceUser = new usersM.User()
 
-    instanceQuestions.getQuestions().then(data => {
-      instanceQuestions.questionsList[1].answers = 1
+   instanceQuestions.getQuestions().then(data => {
+    instanceQuestions.questionsList[1].answers = 1
       expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 1)).toEqual({
         result: true,
         currentUser: instanceUser
@@ -88,3 +88,22 @@ describe('Testing methods in Question Class', () => {
     })
   })
 })
+
+
+describe('Testing user registration/login', () => { 
+  // Template for registration test
+  test('Registering users work as expected', async () => {
+    let username = 'jestUser',
+        password = 'jestUser';
+    await expect(Account.register(username, password)).resolves.toEqual({
+      reason: 'You have successfully registered!',
+    });
+  })
+
+  // Template for login test
+  test('Login work as expected', async () => {
+    let username = 'jestUser',
+        password = 'jestUser';
+    await expect(Account.login(username, password)).resolves.toEqual(true);
+  }) 
+}) 

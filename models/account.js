@@ -57,6 +57,7 @@ class Account {
     return new Promise((resolve, reject) => {
       this.encryptPassword(password).then((result) => {
         db.executeQuery(`INSERT INTO public."ACCOUNTS"("USERNAME", "PASSWORD") VALUES ('${username}', '${result}');`).then((result) => {
+          console.log(result)
           resolve(result)
         })
       })
