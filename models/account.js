@@ -20,18 +20,14 @@ class Account {
     return new Promise((resolve, reject) => {
       db.executeQuery(`SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`).then((queryResult) => {
         let result = JSON.parse(queryResult)
-        console.log(result[0].PASSWORD)
-      }).then((result) => {
-        bcrypt.compareSync(password, result, () => {
-          if (result = true) {
-            resolve(true)
-          } else {
-            resolve(false)
-          }
+        if (bcrypt.compareSync(password, result[0].PASSWORD)) {
+          resolve(true)
+        } else {
+          resolve(false)
         }
       })
     })
-}
+  }
 
   encryptPassword (password) {
     return new Promise((resolve, reject) => {
