@@ -91,20 +91,19 @@ describe('Testing methods in Question Class', () => {
 })
 
 describe('Testing user registration/login', () => {
-  // Template for registration test
+  let accInst = new Account.Account()
   test('Registering users work as expected', async () => {
-    let username = 'jestUser',
-      password = 'jestUser'
-    await expect(Account.Account.register(username, password)).resolves.toEqual({
+    let username = 'jestUser'
+    let password = 'jestUser'
+    await expect(accInst.register(username, password)).resolves.toEqual({
       reason: 'You have successfully registered!'
     })
   })
 
-  // Template for login test
   test('Login work as expected', async () => {
-    let username = 'jestUser',
-      password = 'jestUser'
-    await expect(Account.Account.login(username, password)).resolves.toEqual(true)
+    let username = 'jestUser'
+    let password = 'jestUser'
+    await expect(accInst.login(username, password)).resolves.toEqual(true)
   })
 })
 

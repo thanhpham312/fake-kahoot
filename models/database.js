@@ -8,7 +8,7 @@ let executeQuery = (query) => {
     client.connect()
     client.query(query, (err, res) => {
       if (err) {
-        console.log(err)
+        reject(new Error('DB Query failed'))
       } else {
         if (res.command === 'SELECT') {
           let result = JSON.stringify(res.rows)
@@ -16,7 +16,7 @@ let executeQuery = (query) => {
           resolve(result)
         } else {
           client.end()
-          reject(new Error('get off my back'))
+          resolve(true)
         }
       }
     })
