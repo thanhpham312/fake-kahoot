@@ -12,15 +12,18 @@ class Account {
 
   /**
    * @desc [To be determined]
-   * @returns {Promise<any>}
+   * @returns {undefined}
    */
   login (username, password) {
+    console.log(username)
+    console.log(password)
     return new Promise((resolve, reject) => {
       db.executeQuery(`SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`).then((queryResult) => {
         let result = JSON.parse(queryResult)
-      }).then((result) => {
-        if (bcrypt.compareSync(password, result)) {
+        if (bcrypt.compareSync(password, result[0].PASSWORD)) {
           resolve(true)
+        } else {
+          resolve(false)
         }
       })
     })
@@ -36,12 +39,13 @@ class Account {
 
   /**
    * @desc [To be determined]
-   * @returns {Promise<any>}
+   * @returns {undefined}
    */
   register (username, password) {
     return new Promise((resolve, reject) => {
       this.encryptPassword(password).then((result) => {
         db.executeQuery(`INSERT INTO public."ACCOUNTS"("USERNAME", "PASSWORD") VALUES ('${username}', '${result}');`).then((result) => {
+          console.log(result)
           resolve(result)
         })
       })
@@ -62,21 +66,43 @@ class Account {
   }
 
   validatePassword (pass) {
-    let numbers = pass.match(/\d+/g)
-    let uppers = pass.match(/[A-Z]/)
-    let lowers = pass.match(/[a-z]/)
-    let lengths = pass.length >= 6
+    var numbers = pass.match(/\d+/g)
+    var uppers = pass.match(/[A-Z]/)
+    var lowers = pass.match(/[a-z]/)
+    var lengths = pass.length >= 6
+    var valid = undefined
 
-    if (numbers === null || uppers === null || lowers === null || lengths === false) {
-      return false
-    }
+    if (numbers === null || uppers === null || lowers === null || lengths === false) valid = false
 
-    if (numbers !== null && uppers !== null && lowers !== null && lengths) {
-      return true
-    }
+    if (numbers !== null && uppers !== null && lowers !== null && lengths) valid = true
+
+    return valid
   }
 }
 
 module.exports = {
   Account
 }
+
+
+
+
+// login (username, password) {
+//   console.log(username)
+//   console.log(password)
+//   return new Promise((resolve, reject) => {
+//     this.encryptPassword(password).then((result) => {
+//       db.executeQuery(`SELECT * FROM public."ACCOUNTS";`).then((queryResult) => {
+//         for (let i; i < queryResult.length; i++) {
+//           if (queryResult[i].USERNAME == username && bcrypt.compareSync(queryResult[i].PASSWORD, result)) {
+//             this.username = queryResult[0].USERNAME
+//             this.password = queryResult[0].PASSWORD
+//             this.userID = queryResult[0].ACCOUNT_ID
+//             resolve(true)
+//           }
+//         }
+//       })
+//       resolve(false)
+//     })
+//   })
+// }

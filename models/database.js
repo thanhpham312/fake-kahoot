@@ -8,7 +8,7 @@ let executeQuery = (query) => {
     client.connect()
     client.query(query, (err, res) => {
       if (err) {
-        reject(new Error('DB Query failed'))
+        console.log(err)
       } else {
         if (res.command === 'SELECT') {
           let result = JSON.stringify(res.rows)
@@ -23,16 +23,6 @@ let executeQuery = (query) => {
   })
 }
 
-let getUsersList = () => {
-  executeQuery('SELECT * FROM public."ACCOUNTS";').then(data => {
-    let pdata = JSON.parse(data)
-    // console.log(pdata[0].ACCOUNT_ID)
-    // console.log(pdata[0].USERNAME)
-    // console.log(pdata[0].PASSWORD)
-  })
-}
-
 module.exports = {
-  executeQuery,
-  getUsersList
+  executeQuery
 }
