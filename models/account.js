@@ -15,14 +15,8 @@ class Account {
    * @returns {undefined}
    */
   login (username, password) {
-    console.log(username)
-    console.log(password)
     return new Promise((resolve, reject) => {
       db.executeQuery(`SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`).then((queryResult) => {
-        console.log(queryResult)
-
-        // console.log(queryResult.slice(49, 109))
-        // let result = queryResult.slice(49, 109)
         let result = JSON.parse(queryResult)
         console.log(result)
       }).then((result) => {
@@ -31,16 +25,8 @@ class Account {
         }
       })
     })
-    resolve(false)
   }
 
-  // decrypPassword (password) {
-  //   return new Promise((resolve, reject) => {
-  //     bcrypt.compare(password, hash).then((res) => {
-  //     // res == true
-  //     })
-  //   })
-  // }
   encryptPassword (password) {
     return new Promise((resolve, reject) => {
       bcrypt.hash(password, 10).then((hash) => {
