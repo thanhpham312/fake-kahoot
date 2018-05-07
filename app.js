@@ -227,7 +227,8 @@ app.post('/login', (request, response) => {
   let username = request.body.username
   let password = request.body.password
   let userAccount = new account.Account()
-  userAccount.login(username, password).resolve().then((result) => {
+  userAccount.login(username, password).then((result) => {
+    console.log(result)
     if (result) {
       let sessionID = request.session.id.toString()
       playingUsers[sessionID] = {}
@@ -236,8 +237,6 @@ app.post('/login', (request, response) => {
         'userObject': userAccount
       })
     }
-  }).catch((error) => {
-    response.send(error)
   })
 })
 

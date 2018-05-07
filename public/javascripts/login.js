@@ -33,6 +33,6 @@ let logIn = () => {
         console.log(xmlhttp.responseText)
       }
     }
-    xmlhttp.send(`username=${loginInputUsername.value}&password=${loginInputPassword}`)
+    xmlhttp.send(`username=${loginInputUsername.value}&password=${loginInputPassword.value}`)
   }
 }
