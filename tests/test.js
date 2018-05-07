@@ -2,6 +2,7 @@
 const opentdb = require('../models/opentdb')
 const questions = require('../controllers/questions')
 const usersM = require('../models/users')
+const Account = require('../models/account')
 const promiseTest = opentdb.getQuestions()
 const invalidPromiseTestCatch = opentdb.getQuestions(
   numberofQuestions = 1,
@@ -89,7 +90,25 @@ describe('Testing methods in Question Class', () => {
   })
 })
 
-test.only('testing database connection local', () => {
+describe('Testing user registration/login', () => {
+  // Template for registration test
+  test('Registering users work as expected', async () => {
+    let username = 'jestUser',
+      password = 'jestUser'
+    await expect(Account.Account.register(username, password)).resolves.toEqual({
+      reason: 'You have successfully registered!'
+    })
+  })
+
+  // Template for login test
+  test('Login work as expected', async () => {
+    let username = 'jestUser',
+      password = 'jestUser'
+    await expect(Account.Account.login(username, password)).resolves.toEqual(true)
+  })
+})
+
+test('testing database connection local', () => {
   const db = require('../models/database')
   expect(db.getUsersList()).toBe('test')
 })
