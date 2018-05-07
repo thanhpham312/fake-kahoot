@@ -2,14 +2,14 @@
 <div id="overlayWindow">
     <div class="cards" id="loginWrap">
         <div class="loginFieldWrap">
-            <input name="input" class="cards loginInputText" type="text" placeholder="username" />
+            <input name="input" class="cards loginInputText" type="text" id="loginInputUsername" placeholder="username" />
         </div>
         <div class="loginFieldWrap">
-            <input name="input" class="cards loginInputText" type="password" placeholder="password" />
+            <input name="input" class="cards loginInputText" type="password" id="loginInputPassword" placeholder="password" />
         </div>
         <div class="loginFieldWrap">
-            <input class="cards buttons loginInputButtons" type="button" value="REGISTER" />
-            <input class="cards buttons loginInputButtons" type="button" value="LOGIN" />
+            <input class="cards buttons loginInputButtons" type="button" onclick="window.location = '/signUp'" value="REGISTER" />
+            <input class="cards buttons loginInputButtons" type="button" onclick="logIn();" value="LOGIN" />
         </div>
     </div>
 </div>
