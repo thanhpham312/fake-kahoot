@@ -175,6 +175,10 @@ app.get('/signup', (request, response) => {
   response.render('signUp.hbs')
 })
 
+app.get('/profile', (request, response) => {
+  response.render('profile.hbs')
+})
+
 /**
  * @desc if requested page is not found function renders 404 error page
  * @param {Object} request - Node.js request object
@@ -244,5 +248,5 @@ app.post('/login', (request, response) => {
  * @desc function notifies port number of the local server
  */
 app.listen(port, () => {
-  console.log(`Server lis up on port 8080`)
+  console.log(`Server is up on port 8080`)
 })
