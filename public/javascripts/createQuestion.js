@@ -18,7 +18,7 @@ let showCreateQuestionWindow = () => {
   createQuestionOverlay.style.display = 'block'
   setTimeout(() => {
     createQuestionOverlay.style.backgroundColor = 'rgba(236, 239, 241, 0.5)'
-    createQuestionWrap.style.top = '50vh'
+    createQuestionWrap.style.top = '15vh'
   }, 10)
 }
 
