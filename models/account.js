@@ -1,13 +1,14 @@
-
 const db = require('./database')
 const bcrypt = require('bcrypt')
+const score = require('./score')
 const saltRounds = 10
 
 class Account {
-  constructor () {
-    this.username = undefined
-    this.password = undefined
-    this.userID = undefined
+  constructor (username = undefined, password = undefined, userID = undefined) {
+    this.username = username
+    this.password = password
+    this.userID = userID
+    this.currentScore = new score.Score()
   }
 
   /**
@@ -54,7 +55,6 @@ class Account {
   validateUsername (USERNAME) {
     return new Promise((resolve, reject) => {
       db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
-        console.log(result)
         let userArray = JSON.parse(result)
         var found = userArray.some(function (el) {
           return el.USERNAME === USERNAME
@@ -64,12 +64,21 @@ class Account {
     })
   }
 
+  toJSON () {
+    return {
+      'username': this.username,
+      'password': this.password,
+      'userID': this.userID,
+      'currentScore': this.currentScore.toJSON()
+    }
+  }
+
   validatePassword (pass) {
-    var numbers = pass.match(/\d+/g)
-    var uppers = pass.match(/[A-Z]/)
-    var lowers = pass.match(/[a-z]/)
-    var lengths = pass.length >= 6
-    var valid = undefined
+    let numbers = pass.match(/\d+/g)
+    let uppers = pass.match(/[A-Z]/)
+    let lowers = pass.match(/[a-z]/)
+    let lengths = pass.length >= 6
+    let valid = undefined
 
     if (numbers === null || uppers === null || lowers === null || lengths === false) valid = false
 
@@ -82,26 +91,3 @@ class Account {
 module.exports = {
   Account
 }
-
-
-
-
-// login (username, password) {
-//   console.log(username)
-//   console.log(password)
-//   return new Promise((resolve, reject) => {
-//     this.encryptPassword(password).then((result) => {
-//       db.executeQuery(`SELECT * FROM public."ACCOUNTS";`).then((queryResult) => {
-//         for (let i; i < queryResult.length; i++) {
-//           if (queryResult[i].USERNAME == username && bcrypt.compareSync(queryResult[i].PASSWORD, result)) {
-//             this.username = queryResult[0].USERNAME
-//             this.password = queryResult[0].PASSWORD
-//             this.userID = queryResult[0].ACCOUNT_ID
-//             resolve(true)
-//           }
-//         }
-//       })
-//       resolve(false)
-//     })
-//   })
-// }
