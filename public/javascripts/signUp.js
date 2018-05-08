@@ -85,7 +85,7 @@ nameIcon.addEventListener('mouseover', function () {
   }
   xmlhttp.send(`USERNAME=${userNameInput.value}`)
   if (nameIcon.getAttribute('src') === '/assets/images/icons/cross.svg') {
-    hintWrap.innerHTML = 'Sorry, this user name already exists. Pick another one.'
+    hintWrap.innerHTML = 'Sorry, this user name is already taken. Try another one.'
     hintWrap.style.display = 'block'
   }
 })
