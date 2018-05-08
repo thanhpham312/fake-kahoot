@@ -106,7 +106,7 @@ app.post('/playWithoutAccount', (request, response) => {
 })
 
 /**
- * @desc function send get request to render leaderboards.hbs page, successful response renders the page
+ * @desc Function sends get request to render leaderboards.hbs page, successful response renders the page
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
@@ -152,7 +152,9 @@ app.post('/starttrivia', (request, response) => {
 })
 
 /**
- *
+ * @desc If user has session ID sends result object to the server, else sends 400 to indicate that an error occured
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
  */
 app.post('/validateanswer', (request, response) => {
   let sessionID = request.session.id.toString()
@@ -171,7 +173,7 @@ app.post('/validateanswer', (request, response) => {
   }
 })
 /**
- * @desc function send get request to render about.hbs page, successful responce renders the page
+ * @desc Function sends get request to render about.hbs page, successful responce renders the page
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
@@ -179,12 +181,19 @@ app.get('/about', (request, response) => {
   response.render('about.hbs')
 })
 
+
+
+/**
+ * @desc Renders Sign Up page
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
+ */
 app.get('/register', (request, response) => {
   response.render('register.hbs')
 })
 
 /**
- * @desc if requested page is not found function renders 404 error page
+ * @desc If requested page is not found function renders 404 error page
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
@@ -192,6 +201,11 @@ app.get('*', (request, response) => {
   response.render('404.hbs')
 })
 
+/**
+ * @desc If username is valid sends true to the server, else false
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
+ */
 app.post('/validateusername', (request, response) => {
   let userAccount = new account.Account()
   userAccount.validateUsername(request.body.USERNAME.toString()).then((result) => {
@@ -231,6 +245,11 @@ app.post('/register', (request, response) => {
   })
 })
 
+/**
+ * @desc If the user exists logs him in 
+ * @param {Object} request - Node.js request object
+ * @param {Object} response - Node.js response object
+ */
 app.post('/login', (request, response) => {
   let username = request.body.username
   let password = request.body.password
@@ -249,7 +268,7 @@ app.post('/login', (request, response) => {
 })
 
 /**
- * @desc function notifies port number of the local server
+ * @desc Function notifies port number of the local server
  */
 app.listen(port, () => {
   console.log(`Server is up on port 8080`)

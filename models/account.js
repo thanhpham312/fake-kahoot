@@ -12,8 +12,10 @@ class Account {
   }
 
   /**
-   * @desc [To be determined]
-   * @returns {undefined}
+   * @desc Provide desc later
+   * @param username - user's username
+   * @param password - user's password
+   * @returns {Promise<object>}
    */
   login (username, password) {
     console.log(username)
@@ -30,6 +32,11 @@ class Account {
     })
   }
 
+  /**
+   * @desc Encrypts user's password
+   * @param password - user's password
+   * @returns {Promise<object>}
+   */
   encryptPassword (password) {
     return new Promise((resolve, reject) => {
       bcrypt.hash(password, 10).then((hash) => {
@@ -39,27 +46,18 @@ class Account {
   }
 
   /**
-   * @desc [To be determined]
-   * @returns {undefined}
+   * @desc Registration of the user in the database
+   * @param username - user's username
+   * @param password - user's password
+   * @returns {Promise<object>}
    */
   register (username, password) {
     return new Promise((resolve, reject) => {
       this.encryptPassword(password).then((result) => {
         db.executeQuery(`INSERT INTO public."ACCOUNTS"("USERNAME", "PASSWORD") VALUES ('${username}', '${result}');`).then((result) => {
+          console.log(result)
           resolve(result)
         })
-      })
-    })
-  }
-
-  validateUsername (USERNAME) {
-    return new Promise((resolve, reject) => {
-      db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
-        let userArray = JSON.parse(result)
-        var found = userArray.some(function (el) {
-          return el.USERNAME === USERNAME
-        })
-        resolve(!found)
       })
     })
   }
@@ -73,6 +71,28 @@ class Account {
     }
   }
 
+  /**
+   * @desc <provide description>
+   * @param {string} USERNAME - User's username
+   * @returns {Promise<object>}
+   */
+  validateUsername (USERNAME) {
+    return new Promise((resolve, reject) => {
+      db.executeQuery('SELECT "USERNAME" FROM "ACCOUNTS"').then((result) => {
+        let userArray = JSON.parse(result)
+        var found = userArray.some(function (el) {
+          return el.USERNAME === USERNAME
+        })
+        resolve(!found)
+      })
+    })
+  }
+
+  /**
+  * @desc Validates for a strong password
+  * @param pass - password passed by the user <** correct? **>
+  * @returns {boolean} if password is valid returns true, false otherwise
+*/
   validatePassword (pass) {
     let numbers = pass.match(/\d+/g)
     let uppers = pass.match(/[A-Z]/)
