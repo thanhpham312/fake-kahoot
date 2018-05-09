@@ -85,14 +85,22 @@ app.get('/', (request, response) => {
 app.post('/storeuser', (request, response) => {
   let sessionID = request.session.id.toString()
   if (Object.keys(playingUsers).includes(sessionID)) {
-    let userList = new users.Users()
-    let userObject = playingUsers[sessionID].user
-    userList.storeUser(userObject)
-    delete playingUsers[sessionID]
-    console.log(playingUsers)
-    response.send('Quiz result stored successfully!')
+    if (playingUsers[sessionID].user !== undefined && playingUsers[sessionID].user.userID !== undefined) {
+      playingUsers[sessionID].user.saveCurrentScore().then((result) => {
+        response.sendStatus(200)
+      }).catch((error) => {
+        console.log(error)
+        response.sendStatus(400)
+      })
+    }
+    // let userList = new users.Users()
+    // let userObject = playingUsers[sessionID].user
+    // userList.storeUser(userObject)
+    // delete playingUsers[sessionID]
+    // console.log(playingUsers)
+    // response.send('Quiz result stored successfully!')
   } else {
-    response.send('Unable to store quiz result!')
+    response.sendStatus(400)
   }
 })
 
@@ -246,7 +254,7 @@ app.post('/register', (request, response) => {
 })
 
 /**
- * @desc If the user exists logs him in 
+ * @desc If the user exists logs him in
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
@@ -260,9 +268,8 @@ app.post('/login', (request, response) => {
       let sessionID = request.session.id.toString()
       playingUsers[sessionID] = {}
       playingUsers[sessionID].user = userAccount
-      response.send({
-        'userObject': userAccount
-      })
+      request.session.userObject = userAccount.toJSON()
+      response.sendStatus(200)
     }
   })
 })
