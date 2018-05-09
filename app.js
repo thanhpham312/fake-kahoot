@@ -99,7 +99,6 @@ app.post('/storeuser', (request, response) => {
 app.post('/playWithoutAccount', (request, response) => {
   let sessionID = request.session.id.toString()
   let newUser = new account.Account(request.body.username)
-  // let newUser = new users.User(request.body.username)
   playingUsers[sessionID] = {}
   playingUsers[sessionID].user = newUser
   response.send(newUser.toJSON())
@@ -184,7 +183,7 @@ app.get('/about', (request, response) => {
 
 
 /**
- * @desc Renders Sign Up page
+ * @desc Renders Register page
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
@@ -246,7 +245,7 @@ app.post('/register', (request, response) => {
 })
 
 /**
- * @desc If the user exists logs him in 
+ * @desc If the user exists logs him in
  * @param {Object} request - Node.js request object
  * @param {Object} response - Node.js response object
  */
