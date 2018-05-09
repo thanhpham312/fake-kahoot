@@ -4,9 +4,8 @@ const score = require('./score')
 const saltRounds = 10
 
 class Account {
-  constructor (username = undefined, password = undefined, userID = undefined) {
+  constructor (username = undefined, userID = undefined) {
     this.username = username
-    this.password = password
     this.userID = userID
     this.currentScore = new score.Score()
   }
@@ -18,12 +17,12 @@ class Account {
    * @returns {Promise<object>}
    */
   login (username, password) {
-    console.log(username)
-    console.log(password)
     return new Promise((resolve, reject) => {
       db.executeQuery(`SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`).then((queryResult) => {
         let result = JSON.parse(queryResult)
-        if (bcrypt.compareSync(password, result[0].PASSWORD)) {
+        if (result.length > 0 && bcrypt.compareSync(password, result[0].PASSWORD)) {
+          this.username = result[0].USERNAME
+          this.userID = result[0]['ACCOUNT_ID']
           resolve(true)
         } else {
           resolve(false)

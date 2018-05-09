@@ -38,8 +38,10 @@ let assessQuestionResult = (chosenAnswer) => {
 let storeQuizResult = () => {
   questionViewWrap.style.top = '-100vh'
   serverRequest('POST', '/storeuser', '', (xmlhttp) => {
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      console.log(xmlhttp.responseText)
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 201) {
+      swal('Success', 'Your score has been saved!', 'success')
+    } else {
+      swal('Error', 'Unknown error!', 'error')
     }
   })
   notifyWrap.style.display = 'block'
