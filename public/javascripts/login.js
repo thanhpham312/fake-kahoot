@@ -21,3 +21,34 @@ let showLoginWindow = () => {
   }, 10)
 }
 
+
+let login = () => {
+  if (loginInputPassword !== '' && loginInputUsername !== '') {
+    serverRequest('POST', '/login', `username=${loginInputUsername.value}&password=${loginInputPassword.value}`, (xmlhttp) => {
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        console.log('asdfgh')
+        swal({
+          title: 'Success',
+          text: 'Login successful!',
+          icon: 'success'
+        }).then((value) => {
+          window.location.reload()
+        })
+      } else if (xmlhttp.readyState === 4 && xmlhttp.status === 406) {
+        swal({
+          title: 'Failed',
+          text: 'Invalid username and password pair!',
+          icon: 'warning'
+        })
+      }
+    })
+  }
+}
+
+let logout = () => {
+  serverRequest('POST', '/logout', '', (xmlhttp) => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      window.location = '/'
+    }
+  })
+}
