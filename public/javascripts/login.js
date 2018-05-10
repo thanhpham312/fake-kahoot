@@ -1,5 +1,7 @@
 let loginWrap = document.getElementById('loginWrap')
 let overlayWindow = document.getElementById('overlayWindow')
+let loginInputUsername = document.getElementById('loginInputUsername')
+let loginInputPassword = document.getElementById('loginInputPassword')
 
 overlayWindow.addEventListener('click', () => {
   overlayWindow.style.backgroundColor = 'rgba(236, 239, 241, 0)'
@@ -20,7 +22,6 @@ let showLoginWindow = () => {
     loginWrap.style.top = '50vh'
   }, 10)
 }
-
 
 let login = () => {
   if (loginInputPassword !== '' && loginInputUsername !== '') {

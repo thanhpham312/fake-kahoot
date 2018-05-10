@@ -228,8 +228,6 @@ app.get('/about', (request, response) => {
   response.render('about.hbs')
 })
 
-
-
 /**
  * @desc Renders Sign Up page
  * @param {Object} request - Node.js request object
