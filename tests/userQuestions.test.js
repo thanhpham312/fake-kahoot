@@ -11,6 +11,7 @@ test ('Test if createQuestion works', async () => {
 					'Shanyu',
 					'Pedram',
 					'Maksym',
-					'Derek'
-		)).toEqual(true)
+					'Derek',
+					1
+		)).resolves.toEqual(true)
 })
