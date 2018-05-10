@@ -17,18 +17,11 @@ let notification = document.getElementById('notify')
 let notifyTitle = document.getElementById('notify_title')
 let notifyWrap = document.getElementById('wrap')
 
-
-
-let currentQuestion = 0
-let questionList = []
-let sessionCode = ''
+let currentQuestion = {}
 let userObject = {}
 
 let assessQuestionResult = (chosenAnswer) => {
-  let xmlhttp = new XMLHttpRequest()
-  xmlhttp.open('POST', '/validateanswer', true)
-  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  xmlhttp.onreadystatechange = () => {
+  serverRequest('POST', '/validateanswer', `chosenAnswer=${chosenAnswer}`, (xmlhttp) => {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
       let xmlhttpResult = JSON.parse(xmlhttp.responseText)
       userObject = xmlhttpResult.currentUser
@@ -39,21 +32,18 @@ let assessQuestionResult = (chosenAnswer) => {
       }
       populatePopupResult()
     }
-  }
-  xmlhttp.send(`sessioncode=${sessionCode}&questionNumber=${currentQuestion}&chosenAnswer=${chosenAnswer}`)
+  })
 }
 
 let storeQuizResult = () => {
   questionViewWrap.style.top = '-100vh'
-  let xmlhttp = new XMLHttpRequest()
-  xmlhttp.open('POST', '/storeuser', true)
-  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  xmlhttp.onreadystatechange = () => {
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      console.log(xmlhttp.responseText)
+  serverRequest('POST', '/storeuser', '', (xmlhttp) => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 201) {
+      swal('Success', 'Your score has been saved!', 'success')
+    } else {
+      swal('Error', 'Unknown error!', 'error')
     }
-  }
-  xmlhttp.send(`sessioncode=${sessionCode}`)
+  })
   notifyWrap.style.display = 'block'
   notification.style.right = '0'
   setTimeout(() => {
@@ -69,26 +59,17 @@ let storeQuizResult = () => {
  *
  * @param {number} - ????
  */
-let playWithoutLoggingIn = (event = 1) => {
+let playWithoutAccount = (event = 1) => {
   if (event === 1 || event.keyCode === 13) {
     if (userName.value !== '') {
-      let xmlhttp = new XMLHttpRequest()
-      xmlhttp.open('POST', '/loginWithoutAccount', true)
-      xmlhttp.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded'
-      )
-      xmlhttp.onreadystatechange = () => {
+      serverRequest('POST', '/playWithoutAccount', `username=${userName.value}`, (xmlhttp) => {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
           notifyTitle.innerHTML = `Welcome ${userName.value}`
           document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
-          let responseText = JSON.parse(xmlhttp.responseText)
-          sessionCode = responseText.sessionCode
-          userObject = responseText.userObject
-          fetchQuestions()
+          userObject = JSON.parse(xmlhttp.responseText)
+          startTrivia()
         }
-      }
-      xmlhttp.send(`username=${userName.value}`)
+      })
     } else {
       swal('Error!', 'You left the username blank!', 'warning')
     }
@@ -101,40 +82,42 @@ let playWithoutLoggingIn = (event = 1) => {
  */
 let populatePopupResult = () => {
   popupMessageUsername.innerHTML = userObject.username
-  popupMessageScore.innerHTML = `SCORE: ${userObject.userScore}`
-  popupMessageStreak.innerHTML = `HIGHEST STREAK: ${userObject.highestStreak}`
+  popupMessageScore.innerHTML = `SCORE: ${userObject.currentScore.userScore}`
+  popupMessageStreak.innerHTML = `HIGHEST STREAK: ${userObject.currentScore.highestStreak}`
 }
 /**
  * @desc function displays the next question or the result when the game is over
  */
-let nextQuestion = () => {
-  if (currentQuestion < 9) {
-    currentQuestion++
-    displayQuestion()
-  } else {
-    storeQuizResult()
-  }
+let getNextQuestion = () => {
+  serverRequest('POST', '/getnextquestion', '', (xmlhttp) => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      currentQuestion = JSON.parse(xmlhttp.responseText)
+      displayQuestion()
+      greetBox.style.opacity = '0'
+      setTimeout(() => {
+        greetBox.style.display = 'none'
+      }, 300)
+    } else if (xmlhttp.readyState === 4 && xmlhttp.status === 204) {
+      storeQuizResult()
+    }
+  })
 }
 
 /**
  * @desc Opens new HTTP request and looks for POST "/getquestions", if there is a state change, then it will parse into a JSON object which is displayed back to the user in the greet Box which only shows for 0.3 seconds then dissapears
  *
  */
-let fetchQuestions = () => {
-  let xmlhttp = new XMLHttpRequest()
-  xmlhttp.open('POST', '/getquestions', true)
-  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  xmlhttp.onreadystatechange = () => {
+let startTrivia = () => {
+  serverRequest('POST', '/starttrivia', '', (xmlhttp) => {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      questionList = JSON.parse(xmlhttp.responseText)
+      currentQuestion = JSON.parse(xmlhttp.responseText)
       displayQuestion()
       greetBox.style.opacity = '0'
       setTimeout(() => {
         greetBox.style.display = 'none'
       }, 300)
     }
-  }
-  xmlhttp.send(`sessioncode=${sessionCode}`)
+  })
 }
 /**
  * @desc Displays a game question
@@ -146,13 +129,13 @@ let displayQuestion = () => {
     notification.style.right = '0'
   }, 1)
   setTimeout(() => {
-    userInfo.innerHTML = `${userObject.username} - ${userObject.userScore}`
-    questionNumber.innerHTML = 'QUESTION ' + (currentQuestion + 1)
-    questionContent.innerHTML = questionList[currentQuestion].question
-    answer1.innerHTML = questionList[currentQuestion].option1
-    answer2.innerHTML = questionList[currentQuestion].option2
-    answer3.innerHTML = questionList[currentQuestion].option3
-    answer4.innerHTML = questionList[currentQuestion].option4
+    userInfo.innerHTML = `${userObject.username} - ${userObject.currentScore.userScore}`
+    questionNumber.innerHTML = 'QUESTION ' + (currentQuestion.index + 1)
+    questionContent.innerHTML = currentQuestion.question
+    answer1.innerHTML = currentQuestion.option1
+    answer2.innerHTML = currentQuestion.option2
+    answer3.innerHTML = currentQuestion.option3
+    answer4.innerHTML = currentQuestion.option4
     questionViewWrap.style.top = '45vh'
     notification.style.right = '-100%'
     setTimeout(() => {
@@ -177,8 +160,3 @@ let displayNotification = (mode) => {
     document.getElementById('tooltip').style.backgroundImage = thumbUp
   }
 }
-
-
-
-
-
