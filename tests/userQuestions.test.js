@@ -10,8 +10,8 @@ test ('Test if createQuestion works', async () => {
 					'What is my name?',
 					'Shanyu',
 					'Pedram',
-					'Maksym',
 					'Derek',
+					'Maksym',
 					1
 		)).resolves.toEqual(true)
 })
