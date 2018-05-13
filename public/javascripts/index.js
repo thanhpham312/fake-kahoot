@@ -73,26 +73,24 @@ let storeQuizResult = () => {
   }, 1200)
 }
 
-let play = (event = 1) => {
+let play = () => {
   checkLoginStatus((status) => {
     if (status) {
-      if (event === 1 || event.keyCode === 13) {
-        if (userName.value !== '' && questionType.options[questionType.selectedIndex].value !== '-1' && questionDiff.options[questionDiff.selectedIndex].value !== '-1') {
-          serverRequest('POST', '/play', '', (xmlhttp) => {
-            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-              userObject = JSON.parse(xmlhttp.responseText)
-              notifyTitle.innerHTML = `Welcome ${userObject.userName}`
-              document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
-              userObject = JSON.parse(xmlhttp.responseText)
-              startTrivia()
-            }
-          })
-        } else {
-          swal('Error!', 'Please fill out everything!', 'warning')
-        }
+      if (questionType.options[questionType.selectedIndex].value !== '-1' && questionDiff.options[questionDiff.selectedIndex].value !== '-1') {
+        serverRequest('POST', '/play', '', (xmlhttp) => {
+          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            userObject = JSON.parse(xmlhttp.responseText)
+            notifyTitle.innerHTML = `Welcome ${userObject.username}`
+            document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
+            userObject = JSON.parse(xmlhttp.responseText)
+            startTrivia()
+          }
+        })
+      } else {
+        swal('Error!', 'Please fill out everything!', 'warning')
       }
     } else {
-      swal('Error!', 'Unexpected request!\nPlease reload the page', 'warning')
+      // swal('Error!', 'Unexpected request!\nPlease reload the page', 'warning')
     }
   })
 }
@@ -108,7 +106,8 @@ let playAsGuest = (event = 1) => {
         if (userName.value !== '' && questionType.options[questionType.selectedIndex].value !== '-1' && questionDiff.options[questionDiff.selectedIndex].value !== '-1') {
           serverRequest('POST', '/playAsGuest', `username=${userName.value}`, (xmlhttp) => {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-              notifyTitle.innerHTML = `Welcome ${userName.value}`
+              userObject = JSON.parse(xmlhttp.responseText)
+              notifyTitle.innerHTML = `Welcome ${userObject.username}`
               document.getElementById('tooltip').style.backgroundImage = 'url(/assets/images/icons/puzzle.svg)'
               userObject = JSON.parse(xmlhttp.responseText)
               startTrivia()
