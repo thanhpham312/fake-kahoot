@@ -152,8 +152,7 @@ let getNextQuestion = () => {
         icon: "warning",
         dangerMode: true,
         buttons: ["Oh noez!", "Aww yiss!"],
-      })
-      .then((doBonus) => {
+      }).then((doBonus) => {
         if (doBonus) {
           playBonus()
         } else {
