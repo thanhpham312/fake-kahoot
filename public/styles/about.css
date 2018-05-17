@@ -101,44 +101,45 @@
 }
 
 
+/* Deprecated */
 
 
-.aboutScreenContentWrap {
-    display: none;
-    position: relative;
-    /*display: inline-block;*/
-    width: 100%;
-    height: 30vh;
-    padding: 1vh;
-    box-sizing: border-box;
-    border-bottom: solid 0.1em white;
-}
+/*.aboutScreenContentWrap {*/
+    /*display: none;*/
+    /*position: relative;*/
+    /*!*display: inline-block;*!*/
+    /*width: 100%;*/
+    /*height: 30vh;*/
+    /*padding: 1vh;*/
+    /*box-sizing: border-box;*/
+    /*border-bottom: solid 0.1em white;*/
+/*}*/
 
-.aboutScreenContentPictureWrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 29vh;
-    height: 29vh;
-    padding: 3vh;
-    box-sizing: border-box;
-}
+/*.aboutScreenContentPictureWrap {*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 29vh;*/
+    /*height: 29vh;*/
+    /*padding: 3vh;*/
+    /*box-sizing: border-box;*/
+/*}*/
 
-.aboutScreenContentPicture {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-    background-size: cover;
-    box-shadow: inset 0em 0em 0em 0.2em var(--light-font-color);
-}
+/*.aboutScreenContentPicture {*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*border-radius: 50%;*/
+    /*overflow: hidden;*/
+    /*background-size: cover;*/
+    /*box-shadow: inset 0em 0em 0em 0.2em var(--light-font-color);*/
+/*}*/
 
-.aboutScreenContentTextWrap {
-    position: absolute;
-    top: 0;
-    left: 30vh;
-    width: 53vw;
-    height: 28vh;
-    padding: 1vh;
-    box-sizing: border-box;
-}
+/*.aboutScreenContentTextWrap {*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 30vh;*/
+    /*width: 53vw;*/
+    /*height: 28vh;*/
+    /*padding: 1vh;*/
+    /*box-sizing: border-box;*/
+/*}*/
