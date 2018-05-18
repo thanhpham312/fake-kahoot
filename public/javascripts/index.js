@@ -43,10 +43,11 @@ let assessQuestionResult = (chosenAnswer) => {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
       let xmlhttpResult = JSON.parse(xmlhttp.responseText)
       userObject = xmlhttpResult.currentUser
+      rightanswer = xmlhttpResult.answer
       if (xmlhttpResult.result === true) {
-        displayNotification('right')
+        displayNotification('right', rightanswer)
       } else {
-        displayNotification('wrong')
+        displayNotification('wrong', rightanswer)
       }
       populatePopupResult()
     }
@@ -235,12 +236,12 @@ let displayQuestion = () => {
  * @desc Displays a pop up notifying if the answer was right or wrong
  * @param {string} mode - refers to user answer right/wrong
  */
-let displayNotification = (mode) => {
+let displayNotification = (mode, answer) => {
   let thumbUp = 'url(/assets/images/icons/thumb-up.svg)'
   let thumbDown = 'url(/assets/images/icons/dislike.svg)'
   let beer = 'url(/assets/images/icons/beer.svg)'
   if (mode === 'wrong') {
-    notifyTitle.innerHTML = 'Wrong! :('
+    notifyTitle.innerHTML = '<div> Wrong! Right Answer Is\n'+answer +'</div>'
     document.getElementById('tooltip').style.backgroundImage = thumbDown
   } else if (mode === 'right') {
     notifyTitle.innerHTML = 'Good Job! :)'

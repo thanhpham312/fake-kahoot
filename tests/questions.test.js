@@ -33,6 +33,7 @@ describe('Testing methods in Question Class', () => {
     instanceQuestions.getQuestions().then(data => {
       instanceQuestions.questionsList[1].answers = 1
       expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 1)).toEqual({
+        answer: instanceQuestions.questionsList[1][`option${1}`], 
         result: true,
         currentUser: instanceUser
       })
@@ -45,6 +46,7 @@ describe('Testing methods in Question Class', () => {
     instanceQuestions.getQuestions().then(data => {
       instanceQuestions.questionsList[1].answers = 1
       expect(instanceQuestions.assessQuestionResult(instanceUser, 1, 2)).toEqual({
+        answer: instanceQuestions.questionsList[1][`option${1}`], 
         result: false,
         currentUser: instanceUser
       })
