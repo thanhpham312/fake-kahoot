@@ -87,8 +87,8 @@ class Questions {
   storeQuizResult (userObject) {
     let date = new Date()
     let timeStamp = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-
-    user.storeUser(userObject.username, userObject.currentScore.userScore, userObject.currentScore.highestStreak, timeStamp)
+    return timeStamp
+    //user.storeUser(userObject.username, userObject.currentScore.userScore, userObject.currentScore.highestStreak, timeStamp)
   }
 }
 

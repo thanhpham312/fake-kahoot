@@ -50,6 +50,30 @@ describe('Testing methods in Question Class', () => {
       })
     })
   })
+
+  test('test double the user score if the answer to bonus question is correct', async () => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new account.Account()
+    instanceQuestions.getQuestions().then(data => {
+      instanceQuestions.questionsList[10] = {
+        'question': 'Hello',
+        'option1': 'World',
+        'option2': 'Hello',
+        'option3':'Again',
+        'option4': '!',
+        'answers': 1
+      }
+      instanceUser.currentScore.userScore = 500
+      instanceQuestions.assessQuestionResult(instanceUser, 10, 1)
+      expect(instanceUser.currentScore.userScore === 1000).toBe(true)
+    })
+  })
+  test('test storeQuizResult', async() => {
+    let instanceQuestions = new questions.Questions()
+    let instanceUser = new account.Account()
+    let instanceUsers = new usersM.Users()
+    expect(typeof instanceQuestions.storeQuizResult(instanceUsers)).toBe('string')
+  })
 })
 
 test('test getQuestions', async () => {
