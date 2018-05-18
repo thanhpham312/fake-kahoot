@@ -133,7 +133,6 @@ app.post('/storeuser', (request, response) => {
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].user !== undefined && playingUsers[sessionID].user.userID !== undefined) {
       playingUsers[sessionID].user.saveCurrentScore().then((result) => {
-        //console.log(playingUsers[sessionID].questions)
         delete playingUsers[sessionID].questions
         playingUsers[sessionID].user.currentScore.userScore = 0
         playingUsers[sessionID].user.currentScore.currentStreak = 0
@@ -223,7 +222,7 @@ app.post('/getbonusquestion', (request, response) => {
       if (playingUsers[sessionID].questions.currentQuestion === 9) {
         userQuestions.getRandomQuestions().then((result) => {
           bonusQuestion = JSON.parse(result)[0]
-          answerArray = _.shuffle([bonusQuestion.RIGHT_ANSWER,bonusQuestion.WRONG_ANSWER1,bonusQuestion.WRONG_ANSWER2,bonusQuestion.WRONG_ANSWER3])
+          answerArray = _.shuffle([bonusQuestion.RIGHT_ANSWER, bonusQuestion.WRONG_ANSWER1, bonusQuestion.WRONG_ANSWER2, bonusQuestion.WRONG_ANSWER3])
           playingUsers[sessionID].questions.questionsList.push({
             'question': bonusQuestion.QUESTION_CONTENT,
             'option1': answerArray[0],
@@ -243,7 +242,7 @@ app.post('/getbonusquestion', (request, response) => {
           })
           playingUsers[sessionID].questions.currentQuestion++
           response.send(playingUsers[sessionID].questions.minimalquestionsList[playingUsers[sessionID].questions.currentQuestion])
-        }) 
+        })
       } else {
         response.sendStatus(204)
       }
@@ -290,10 +289,10 @@ app.post('/validateanswer', (request, response) => {
       questionsObject.currentQuestion,
       request.body.chosenAnswer
     )
-    
+
     playingUsers[sessionID].currentReview.push([
       questionsObject.questionsList[questionsObject.currentQuestion].question,
-      questionsObject.questionsList[questionsObject.currentQuestion][`option${questionsObject.questionsList[questionsObject.currentQuestion].answers}`],
+      questionsObject.questionsList[questionsObject.currentQuestion][`option${questionsObject.questionsList[questionsObject.currentQuestion].answers}`]
     ])
     response.send(result)
   } else {

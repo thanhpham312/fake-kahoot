@@ -4,7 +4,6 @@ let executeQuery = (query, values) => {
   let client = new Client({
     connectionString: process.env.DATABASE_URL
   })
-  console.log(process.env.DATABASE_URL)
   return new Promise((resolve, reject) => {
     client.connect()
     client.query(query, values, (err, res) => {
@@ -14,7 +13,6 @@ let executeQuery = (query, values) => {
         if (res.command === 'SELECT') {
           let result = JSON.stringify(res.rows)
           client.end()
-          //console.log(result)
           resolve(result)
         } else {
           client.end()
