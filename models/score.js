@@ -1,9 +1,16 @@
 class Score {
   /**
-   * This class holds the variables that construct the User Object.
+   * @summary Create an instance of the user's score data
+   * @name Score
+   * @class
+   * @public
+   *
    * @param userScore Score of the user
    * @param currentStreak Current streak the user has for the quiz
    * @param highestStreak Highest streak the user has for the quiz
+   *
+   * @example
+   * let currentScore = new Score()
    */
   constructor (userScore = 0, currentStreak = 0, highestStreak = 0) {
     this.userScore = userScore
@@ -11,6 +18,17 @@ class Score {
     this.highestStreak = highestStreak
   }
 
+  /**
+   * @summary Converts this classes data to an object
+   * @method
+   * @public
+   *
+   * @returns {{
+   *  userScore: (number|*),
+   *  currentStreak: (number|*),
+   *  highestStreak: (number|*)
+   * }}
+   */
   toJSON () {
     return {
       'userScore': this.userScore,
