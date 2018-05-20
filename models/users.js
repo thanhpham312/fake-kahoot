@@ -99,7 +99,6 @@ class Users {
    * and scores.
    * @method
    * @public
-   * @deprecated
    *
    * @return string string contains rank, user name, highest streak and
    * scores of a user.
