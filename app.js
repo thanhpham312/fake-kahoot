@@ -7,6 +7,13 @@ const bodyParser = require('body-parser')
 const _ = require('lodash')
 const users = require('./models/users')
 const questions = require('./controllers/questions')
+
+const score = require('./models/score')
+
+/**
+ * @desc Import environment variable port module and assign port equal to 8080.
+ * @type {*|number}
+ */
 const port = process.env.PORT || 8080
 
 /**
@@ -177,6 +184,7 @@ app.post('/storeuser', (request, response) => {
  *
  * @response {Object} Sends Account class attributes of guest user to this path
  */
+
 app.post('/playAsGuest', (request, response) => {
   let sessionID = request.session.id.toString()
   let newUser = new account.Account(request.body.username)
@@ -212,6 +220,15 @@ app.get('/leaderboard', (request, response) => {
   let userList = new users.Users()
   response.render('leaderboard.hbs', {
     list_of_user_data: userList.displayTopUsers()
+  })
+})
+
+app.post('/leaderboardCategory', (request, response) => {
+  let newScore = new score.Score()
+  console.log('hi')
+  newScore.getLeaderboardStats(request.body.chosenCateogry, request.body.chosenDifficulty).then(result => {
+    console.log(result)
+    response.send(result)
   })
 })
 
