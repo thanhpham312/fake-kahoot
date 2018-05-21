@@ -34,21 +34,16 @@ class Account {
    */
   login (username, password) {
     return new Promise((resolve, reject) => {
-      db.executeQuery(
-        `SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`)
-        .then((queryResult) => {
-          let result = JSON.parse(queryResult)
-          if (
-            result.length > 0 &&
-          bcrypt.compareSync(password, result[0].PASSWORD)
-          ) {
-            this.username = result[0].USERNAME
-            this.userID = result[0]['ACCOUNT_ID']
-            resolve(true)
-          } else {
-            resolve(false)
-          }
-        })
+      db.executeQuery(`SELECT * FROM public."ACCOUNTS" WHERE "USERNAME" = '${username}';`).then((queryResult) => {
+        let result = JSON.parse(queryResult)
+        if (result.length > 0 && bcrypt.compareSync(password, result[0].PASSWORD)) {
+          this.username = result[0].USERNAME
+          this.userID = result[0]['ACCOUNT_ID']
+          resolve(true)
+        } else {
+          resolve(false)
+        }
+      })
     })
   }
 
