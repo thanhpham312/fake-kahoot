@@ -227,8 +227,8 @@ let startTrivia = () => {
   serverRequest(
     'POST',
     '/starttrivia',
-    `chosenType=${questionType.options[questionType.selectedIndex].value}
-    &chosenDiff=${questionDiff.options[questionDiff.selectedIndex].value}`,
+    `chosenType=${questionType.options[questionType.selectedIndex].value}` +
+    `&chosenDiff=${questionDiff.options[questionDiff.selectedIndex].value}`,
     (xmlhttp) => {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
         currentQuestion = JSON.parse(xmlhttp.responseText)

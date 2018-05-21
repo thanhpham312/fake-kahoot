@@ -344,6 +344,7 @@ app.post('/starttrivia', (request, response) => {
     playingUsers[sessionID].currentReview = []
     playingUsers[sessionID].questions = newQuestions
     let minQuestID = playingUsers[sessionID].questions.currentQuestion
+    console.log(request.body.chosenType)
     newQuestions.getQuestions(
       10,
       request.body.chosenType,
