@@ -251,10 +251,10 @@ let displayQuestion = () => {
   moveBar()
   setTimeout(() => {
     notification.style.right = '0'
-  }, 1)
+  }, 2)
   setTimeout(() => {
-    userInfo.innerHTML = `${userObject.username} - 
-    ${userObject.currentScore.userScore}`
+    userInfo.innerHTML = `${userObject.username} - ` +
+    `${userObject.currentScore.userScore}`
     questionNumber.innerHTML = 'QUESTION ' + (currentQuestion.index + 1)
     questionContent.innerHTML = currentQuestion.question
     answer1.innerHTML = currentQuestion.option1
@@ -278,7 +278,7 @@ let displayNotification = (mode, answer) => {
   let thumbUp = 'url(/assets/images/icons/thumb-up.svg)'
   let thumbDown = 'url(/assets/images/icons/dislike.svg)'
   let beer = 'url(/assets/images/icons/beer.svg)'
-  let time_up = 'url(/assets/images/icons/sand-clock.svg)'
+  let timeUp = 'url(/assets/images/icons/hourglass.svg)'
   if (mode === 'wrong') {
     notifyTitle.innerHTML = '<div> Wrong! Right Answer Is\n' + answer + '</div>'
     document.getElementById('tooltip').style.backgroundImage = thumbDown
@@ -290,7 +290,7 @@ let displayNotification = (mode, answer) => {
     document.getElementById('tooltip').style.backgroundImage = beer
   } else if (mode === 'timeup') {
     notifyTitle.innerHTML = 'Time Up!!!'
-    document.getElementById('tooltip').style.backgroundImage = time_up
+    document.getElementById('tooltip').style.backgroundImage = timeUp
   }
 }
 
