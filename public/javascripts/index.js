@@ -111,20 +111,16 @@ let playAsGuest = (event = 1) => {
         if (userName.value !== '' &&
           questionType.options[questionType.selectedIndex].value !== '-1' &&
           questionDiff.options[questionDiff.selectedIndex].value !== '-1') {
-          serverRequest(
-            'POST',
-            '/playAsGuest',
-            `username=${userName.value}`,
-            (xmlhttp) => {
-              if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                userObject = JSON.parse(xmlhttp.responseText)
-                notifyTitle.innerHTML = `Welcome ${userObject.username}`
-                document.getElementById('tooltip').style.backgroundImage =
+          serverRequest('POST', '/playAsGuest', `username=${userName.value}`, (xmlhttp) => {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+              userObject = JSON.parse(xmlhttp.responseText)
+              notifyTitle.innerHTML = `Welcome ${userObject.username}`
+              document.getElementById('tooltip').style.backgroundImage =
                   'url(/assets/images/icons/puzzle.svg)'
-                userObject = JSON.parse(xmlhttp.responseText)
-                startTrivia()
-              }
-            })
+              userObject = JSON.parse(xmlhttp.responseText)
+              startTrivia()
+            }
+          })
         } else {
           swal('Error!', 'Please fill out everything!', 'warning')
         }
@@ -223,21 +219,16 @@ let playBonus = () => {
  * disappears. Send quiz category and difficulty value to back end.
  */
 let startTrivia = () => {
-  serverRequest(
-    'POST',
-    '/starttrivia',
-    `chosenType=${questionType.options[questionType.selectedIndex].value}&
-    chosenDiff=${questionDiff.options[questionDiff.selectedIndex].value}`,
-    (xmlhttp) => {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        currentQuestion = JSON.parse(xmlhttp.responseText)
-        displayQuestion()
-        greetBox.style.opacity = '0'
-        setTimeout(() => {
-          greetBox.style.display = 'none'
-        }, 300)
-      }
-    })
+  serverRequest('POST', '/starttrivia', `chosenType=${questionType.options[questionType.selectedIndex].value}&chosenDiff=${questionDiff.options[questionDiff.selectedIndex].value}`, (xmlhttp) => {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      currentQuestion = JSON.parse(xmlhttp.responseText)
+      displayQuestion()
+      greetBox.style.opacity = '0'
+      setTimeout(() => {
+        greetBox.style.display = 'none'
+      }, 300)
+    }
+  })
 }
 
 /**
@@ -286,7 +277,7 @@ let displayNotification = (mode, answer) => {
   } else if (mode === 'beer') {
     notifyTitle.innerHTML = 'Good Luck!!!'
     document.getElementById('tooltip').style.backgroundImage = beer
-  }else if (mode === 'timeup') {
+  } else if (mode === 'timeup') {
     notifyTitle.innerHTML = 'Time Up!!!'
     document.getElementById('tooltip').style.backgroundImage = time_up
   }

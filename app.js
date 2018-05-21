@@ -300,16 +300,12 @@ app.post('/getbonusquestion', (request, response) => {
  */
 app.post('/starttrivia', (request, response) => {
   let sessionID = request.session.id.toString()
-  let minQuestID = playingUsers[sessionID].questions.currentQuestion
   if (Object.keys(playingUsers).includes(sessionID)) {
     let newQuestions = new questions.Questions()
     playingUsers[sessionID].currentReview = []
     playingUsers[sessionID].questions = newQuestions
-    newQuestions.getQuestions(
-      10,
-      request.body.chosenType,
-      request.body.chosenDiff
-    ).then((result) => {
+    let minQuestID = playingUsers[sessionID].questions.currentQuestion
+    newQuestions.getQuestions(10, request.body.chosenType, request.body.chosenDiff).then((result) => {
       response.send(
         playingUsers[sessionID].questions.minimalQuestionsList[minQuestID]
       )
