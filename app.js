@@ -6,6 +6,7 @@ const hbs = require('hbs')
 const bodyParser = require('body-parser')
 const _ = require('lodash')
 const questions = require('./controllers/questions')
+const opentdb = require('./models/opentdb')
 
 const score = require('./models/score')
 
@@ -70,6 +71,9 @@ app.use((request, response, next) => {
     let date = new Date()
     request.session.id = date.getTime().toString()
   }
+  opentdb.retrieveToken().then(token => {
+    request.session.token = token
+  })
   next()
 })
 
@@ -79,6 +83,7 @@ app.use((request, response, next) => {
  * @response {String} index.hbs filename of homepage to render
  */
 app.get('/', (request, response) => {
+  console.log(request.session)
   response.render('index.hbs')
 })
 
@@ -228,10 +233,9 @@ app.post('/leaderboardCategory', (request, response) => {
   let newScore = new score.Score()
   newScore.getLeaderboardStats(
     request.body.chosenCategory,
-    request.body.chosenDifficulty)
-    .then(result => {
-      response.send(result)
-    })
+    request.body.chosenDifficulty).then(result => {
+    response.send(result)
+  })
 })
 
 /**
@@ -247,14 +251,15 @@ app.post('/leaderboardCategory', (request, response) => {
  * @code {403} Session ID was not found
  */
 app.post('/getnextquestion', (request, response) => {
-  let sessionID = request.session.id.toString()
+  let sessionID = request.session.id
+  let minQuestions = playingUsers[sessionID].questions.currentQuestion
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
       if (playingUsers[sessionID].questions.currentQuestion < 9) {
-        playingUsers[sessionID].questions.currentQuestion++
+        minQuestions++
         response.send(
-          playingUsers[sessionID].questions.minimalQuestionsList[playingUsers[sessionID].questions.currentQuestion])
-      } else if (playingUsers[sessionID].questions.currentQuestion === 9) {
+          playingUsers[sessionID].questions.minimalQuestionsList[minQuestions])
+      } else if (minQuestions === 9) {
         response.sendStatus(204)
       } else {
         response.sendStatus(401)
@@ -342,13 +347,15 @@ app.post('/starttrivia', (request, response) => {
     playingUsers[sessionID].questions = newQuestions
     let minQuestID = playingUsers[sessionID].questions.currentQuestion
     newQuestions.getQuestions(
+      request.session.token,
       10,
       request.body.chosenType,
-      request.body.chosenDiff).then((result) => {
-      response.send(
-        playingUsers[sessionID].questions.minimalQuestionsList[minQuestID]
-      )
-    })
+      request.body.chosenDiff)
+      .then((result) => {
+        response.send(
+          playingUsers[sessionID].questions.minimalQuestionsList[minQuestID]
+        )
+      })
   } else {
     response.sendStatus(403)
   }
