@@ -419,7 +419,8 @@ app.get('/about', (request, response) => {
  */
 app.get('/register', (request, response) => {
   let sessionID = request.session.id.toString()
-  if (Object.keys(playingUsers).includes(sessionID) && playingUsers[sessionID].user.userID !== undefined) {
+  if (Object.keys(playingUsers).includes(sessionID) &&
+    playingUsers[sessionID].user.userID !== undefined) {
     response.redirect('/')
   } else {
     response.render('register.hbs')
@@ -435,7 +436,8 @@ app.get('/register', (request, response) => {
  */
 app.get('/profile', (request, response) => {
   let sessionID = request.session.id.toString()
-  if (Object.keys(playingUsers).includes(sessionID) && playingUsers[sessionID].user.userID !== undefined) {
+  if (Object.keys(playingUsers).includes(sessionID) &&
+    playingUsers[sessionID].user.userID !== undefined) {
     response.render('profile.hbs')
   } else {
     response.render('404.hbs')
