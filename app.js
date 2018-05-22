@@ -427,7 +427,25 @@ app.get('/register', (request, response) => {
  * @response {String} Filename of profile.hbs file
  */
 app.get('/profile', (request, response) => {
-  response.render('profile.hbs')
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID) && playingUsers[sessionID].user.userID !== undefined) {
+    response.render('profile.hbs')
+  } else {
+    response.send(403)
+  }
+})
+
+app.post('/playerhistory', (request, response) => {
+  let sessionID = request.session.id.toString()
+  console.log('bye')
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    playingUsers[sessionID].user.userPlayHistory().then((result) => {
+      console.log(result)
+      response.send(result)
+    })
+  } else {
+    response.send(403)
+  }
 })
 
 /**
