@@ -73,8 +73,8 @@ app.use((request, response, next) => {
   }
   opentdb.retrieveToken().then(token => {
     request.session.token = token
+    next()
   })
-  next()
 })
 
 /**
@@ -83,7 +83,6 @@ app.use((request, response, next) => {
  * @response {String} index.hbs filename of homepage to render
  */
 app.get('/', (request, response) => {
-  console.log(request.session)
   response.render('index.hbs')
 })
 
@@ -251,15 +250,14 @@ app.post('/leaderboardCategory', (request, response) => {
  * @code {403} Session ID was not found
  */
 app.post('/getnextquestion', (request, response) => {
-  let sessionID = request.session.id
-  let minQuestions = playingUsers[sessionID].questions.currentQuestion
+  let sessionID = request.session.id.toString()
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
       if (playingUsers[sessionID].questions.currentQuestion < 9) {
-        minQuestions++
+        playingUsers[sessionID].questions.currentQuestion++
         response.send(
-          playingUsers[sessionID].questions.minimalQuestionsList[minQuestions])
-      } else if (minQuestions === 9) {
+          playingUsers[sessionID].questions.minimalQuestionsList[playingUsers[sessionID].questions.currentQuestion])
+      } else if (playingUsers[sessionID].questions.currentQuestion === 9) {
         response.sendStatus(204)
       } else {
         response.sendStatus(401)
