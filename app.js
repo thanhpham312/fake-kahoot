@@ -248,14 +248,13 @@ app.post('/leaderboardCategory', (request, response) => {
  */
 app.post('/getnextquestion', (request, response) => {
   let sessionID = request.session.id.toString()
-  let minQuestions = playingUsers[sessionID].questions.currentQuestion
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
       if (playingUsers[sessionID].questions.currentQuestion < 9) {
         playingUsers[sessionID].questions.currentQuestion++
         response.send(
-          playingUsers[sessionID].questions.minimalQuestionsList[minQuestions])
-      } else if (minQuestions === 9) {
+          playingUsers[sessionID].questions.minimalQuestionsList[playingUsers[sessionID].questions.currentQuestion])
+      } else if (playingUsers[sessionID].questions.currentQuestion === 9) {
         response.sendStatus(204)
       } else {
         response.sendStatus(401)
