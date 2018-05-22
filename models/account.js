@@ -116,7 +116,9 @@ class Account {
         "ACCOUNT_ID",
         "SCORE",
         "HIGHEST_STREAK",
-        "DATE"
+        "DATE",
+        "QUIZ_CATEGORY_ID",
+        "DIFFICULTY_ID"
         ) VALUES (
         $1,
         $2,
