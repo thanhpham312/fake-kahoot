@@ -156,7 +156,9 @@ app.post('/storeuser', (request, response) => {
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].user !== undefined &&
       playingUsers[sessionID].user.userID !== undefined) {
-      playingUsers[sessionID].user.saveCurrentScore().then(result => {
+      playingUsers[sessionID].user.saveCurrentScore(
+        playingUsers[sessionID].questions.categoryID,
+        playingUsers[sessionID].questions.difficultyID).then(result => {
         response.sendStatus(201)
       }).catch(error => {
         response.sendStatus(400)
@@ -212,10 +214,7 @@ app.post('/play', (request, response) => {
  * for the leader board page
  */
 app.get('/leaderboard', (request, response) => {
-  let userList = new users.Users()
-  response.render('leaderboard.hbs', {
-    list_of_user_data: userList.displayTopUsers()
-  })
+  response.render('leaderboard.hbs')
 })
 
 /**
