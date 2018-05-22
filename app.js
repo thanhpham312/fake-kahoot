@@ -541,9 +541,12 @@ app.post('/validatepassword', (request, response) => {
  * @code {406} Not acceptable if RegEX does not pass
  */
 app.post('/register', (request, response) => {
-  let USERNAME = request.body.USERNAME.toString()
-  let PASSWORD = request.body.PASSWORD.toString()
-  let CPASSWORD = request.body.CPASSWORD.toString()
+  console.log(request.body.USERNAME)
+  console.log(request.body.PASSWORD)
+  console.log(request.body.CPASSWORD)
+  let USERNAME = request.body.USERNAME
+  let PASSWORD = request.body.PASSWORD
+  let CPASSWORD = request.body.CPASSWORD
   let userAccount = new account.Account()
 
   userAccount.validateUsername(USERNAME).then((result) => {
