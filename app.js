@@ -438,6 +438,19 @@ app.get('/profile', (request, response) => {
   }
 })
 
+app.post('/playerhistory', (request, response) => {
+  let sessionID = request.session.id.toString()
+  console.log('bye')
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    playingUsers[sessionID].user.userPlayHistory().then((result) => {
+      console.log(result)
+      response.send(result)
+    })
+  } else {
+    response.send(403)
+  }
+})
+
 /**
  * @summary renders the review.hbs page
  * @name Review Page
