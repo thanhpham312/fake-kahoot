@@ -83,7 +83,6 @@ app.use((request, response, next) => {
  * @response {String} index.hbs filename of homepage to render
  */
 app.get('/', (request, response) => {
-  console.log(request.session)
   response.render('index.hbs')
 })
 
