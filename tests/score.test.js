@@ -1,8 +1,25 @@
 /* eslint-env jest */
 const score = require.requireActual('../models/score')
+const db = require.requireActual('../models/database')
 
 let scoreInst
+beforeAll(async () => {
+  await db.executeQuery(
+    `INSERT INTO public."QUIZ_CATEGORY" ` +
+    `VALUES ($1, $2);`, ['1', 'TEST']
+  ).then(result => {
+    return result
+  })
+})
 
+afterAll(async () => {
+  await db.executeQuery(
+    `DELETE FROM public."QUIZ_CATEGORY" WHERE "CATEGORY_NAME" = $1`,
+    ['TEST']
+  ).then(result => {
+    return result
+  })
+})
 beforeEach(() => {
   scoreInst = new score.Score()
 })
