@@ -5,7 +5,6 @@ const express = require('express')
 const hbs = require('hbs')
 const bodyParser = require('body-parser')
 const _ = require('lodash')
-const users = require('./models/users')
 const questions = require('./controllers/questions')
 
 const score = require('./models/score')
@@ -415,7 +414,12 @@ app.get('/about', (request, response) => {
  * @response {String} Filename of register.hbs file
  */
 app.get('/register', (request, response) => {
-  response.render('register.hbs')
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID) && playingUsers[sessionID].user.userID !== undefined) {
+    response.redirect('/')
+  } else {
+    response.render('register.hbs')
+  }
 })
 
 /**
@@ -426,7 +430,12 @@ app.get('/register', (request, response) => {
  * @response {String} Filename of profile.hbs file
  */
 app.get('/profile', (request, response) => {
-  response.render('profile.hbs')
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID) && playingUsers[sessionID].user.userID !== undefined) {
+    response.render('profile.hbs')
+  } else {
+    response.render('404.hbs')
+  }
 })
 
 /**
