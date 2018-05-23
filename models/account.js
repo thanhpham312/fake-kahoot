@@ -221,11 +221,9 @@ class Account {
         WHERE S."ACCOUNT_ID" = ${this.userID} ORDER BY S."DATE" DESC;`).then((queryResult) => {
           let userHistory = JSON.parse(queryResult)
           let displayString = ''
-          // console.log(userHistory)
           for (let i = 0; i < userHistory.length; i++) {
             displayString += `<div class="cards scoreHistoryCards">Time: ${userHistory[i].DATE} | Score: ${userHistory[i].SCORE} | Highest Streak: ${userHistory[i].HIGHEST_STREAK} | Category: ${userHistory[i].CATEGORY_NAME} | Difficulty: ${userHistory[i].DIFFICULTY_LEVEL} </div>\n`
           }
-          // console.log(displayString)
           resolve(displayString)
         }).catch((error) => {
           reject(error)
