@@ -446,10 +446,19 @@ app.get('/profile', (request, response) => {
 
 app.post('/playerhistory', (request, response) => {
   let sessionID = request.session.id.toString()
-  console.log('bye')
   if (Object.keys(playingUsers).includes(sessionID)) {
     playingUsers[sessionID].user.userPlayHistory().then((result) => {
-      console.log(result)
+      response.send(result)
+    })
+  } else {
+    response.send(403)
+  }
+})
+
+app.post('/createdquestions', (request, response) => {
+  let sessionID = request.session.id.toString()
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    playingUsers[sessionID].user.getCreatedQuestions().then((result) => {
       response.send(result)
     })
   } else {
@@ -591,6 +600,9 @@ app.post('/createQuestion', (request, response) => {
   let wrongAnswer3 = request.body.wrongAnswer3.toString()
   let sessionID = request.session.id.toString()
   let userID = playingUsers[sessionID].user.userID
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
 
   userQuestions.createQuestion(
     questionContent,
@@ -598,7 +610,8 @@ app.post('/createQuestion', (request, response) => {
     wrongAnswer1,
     wrongAnswer2,
     wrongAnswer3,
-    userID
+    userID,
+    timeStamp
   ).then((result) => {
     if (result) {
       response.sendStatus(200)

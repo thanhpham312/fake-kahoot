@@ -233,6 +233,32 @@ class Account {
       }
     })
   }
+
+  getCreatedQuestions () {
+    return new Promise((resolve, reject) => {
+      if (this.userID !== undefined) {
+        db.executeQuery(`SELECT * FROM public."QUESTIONS" WHERE "ACCOUNT_ID" = ${this.userID}`).then((result) => {
+          let createdQuestionList = JSON.parse(result)
+          let displayString = ''
+          for (let i = 0; i < createdQuestionList.length; i++) {
+            displayString += `<div class="createdQuestionContainer">\n` +
+              `<label class="createdQuestionCheckBoxContainer">\n` +
+              `<input name="createdQuestionListByAccount" value="${createdQuestionList[i].QUESTION_ID}" type="checkbox" class="createdQuestionCheckBox"/>\n` +
+              `<div class="round cards createdQuestionCheckBoxDisplay"></div>\n` +
+              `</label>\n` +
+              `<div class="cards createdQuestionCards">\n` +
+              `<p>Question: ${createdQuestionList[i].QUESTION_CONTENT}</p>\n` +
+              `<hr/>\n` +
+              `<p>Created on: ${createdQuestionList[i].CREATED_DATE}</p>\n` +
+              `</div>\n` +
+              `</div>\n`
+          }
+          displayString += `<div class="round cards floatingButtons" id="createQuestionButton" onclick="showCreateQuestionWindow()"></div>\n`
+          resolve(displayString)
+        })
+      }
+    })
+  }
 }
 
 /**
