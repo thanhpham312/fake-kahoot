@@ -254,6 +254,7 @@ app.post('/getnextquestion', (request, response) => {
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
       if (playingUsers[sessionID].questions.currentQuestion < 9) {
+
         playingUsers[sessionID].questions.currentQuestion++
         response.send(
           playingUsers[sessionID].questions.minimalQuestionsList[playingUsers[sessionID].questions.currentQuestion])
@@ -619,6 +620,22 @@ app.post('/createQuestion', (request, response) => {
       response.sendStatus(406)
     }
   })
+})
+
+app.post('/createQuiz', (request, response) => {
+  let sessionID = request.session.id.toString()
+  let userID = playingUsers[sessionID].user.userID
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
+  let selectedQuestions = JSON.parse(request.body.questionList)
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    userQuestions.createCustomQuiz(userID, request.body.quizName, timeStamp, selectedQuestions).then((result) => {
+      response.sendStatus(200)
+    })
+  } else {
+    response.sendStatus(403)
+  }
 })
 
 app.listen(port, () => {

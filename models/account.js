@@ -253,7 +253,8 @@ class Account {
               `</div>\n` +
               `</div>\n`
           }
-          displayString += `<div class="round cards floatingButtons" id="createQuestionButton" onclick="showCreateQuestionWindow()"></div>\n`
+          displayString += `<div class="round cards floatingButtons" id="createQuestionButton" onclick="showCreateQuestionWindow()"></div>\n` +
+            `<div class="round cards floatingButtons" id="ShowQuizCreationButton" onclick="showCreateQuizWindow()"></div>`
           resolve(displayString)
         })
       }
