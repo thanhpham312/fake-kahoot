@@ -23,6 +23,7 @@ test('Test if createQuestion works', async () => {
   let timeStamp = `${date.toLocaleDateString('en-CA')} 
       ${date.toLocaleTimeString('en-CA')}`
   await userQuestions.createQuestion(
+    1,
     'What is my name?',
     'Shanyu',
     'Pedram',

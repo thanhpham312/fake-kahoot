@@ -28,7 +28,7 @@ afterEach(() => {
   scoreInst = undefined
 })
 
-describe('Testing Score', () => {
+describe.skip('Testing Score', () => {
   it('should return an object of score attributes', () => {
     expect(scoreInst.toJSON()).toEqual({
       userScore: expect.anything(),
