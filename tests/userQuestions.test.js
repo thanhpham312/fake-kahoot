@@ -90,7 +90,9 @@ test('Test if getRandomQuestions() works', async () => {
 test('Test createCustomQuiz()', async () => {
   let accID = '0'
   let qName = 'qweqwe'
-  let date = Date.now().toString()
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
   let qList = ['0']
-  await expect(userQuestions.createCustomQuiz(accID, qName, date, qList)).resolves.toBeTruthy()
+  await expect(userQuestions.createCustomQuiz(accID, qName, timeStamp, qList)).resolves.toBeTruthy()
 })
