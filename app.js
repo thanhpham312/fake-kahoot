@@ -251,7 +251,7 @@ app.post('/getnextquestion', (request, response) => {
   let sessionID = request.session.id.toString()
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
-      if (playingUsers[sessionID].questions.currentQuestion < 9) {
+      if (playingUsers[sessionID].questions.currentQuestion < playingUsers[sessionID].questions.questionsList.length - 1) {
         let questionsObject = playingUsers[sessionID].questions
         let currIdx = questionsObject.currentQuestion
         let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
@@ -262,7 +262,7 @@ app.post('/getnextquestion', (request, response) => {
         playingUsers[sessionID].questions.currentQuestion++
         response.send(
           playingUsers[sessionID].questions.minimalQuestionsList[playingUsers[sessionID].questions.currentQuestion])
-      } else if (playingUsers[sessionID].questions.currentQuestion === 9) {
+      } else if (playingUsers[sessionID].questions.currentQuestion === playingUsers[sessionID].questions.questionsList.length - 1) {
         let questionsObject = playingUsers[sessionID].questions
         let currIdx = questionsObject.currentQuestion
         let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
@@ -295,7 +295,7 @@ app.post('/getbonusquestion', (request, response) => {
   let sessionID = request.session.id.toString()
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
-      if (playingUsers[sessionID].questions.currentQuestion === 9) {
+      if (playingUsers[sessionID].questions.currentQuestion === playingUsers[sessionID].questions.questionsList.length - 1) {
         userQuestions.getRandomQuestions().then((result) => {
           let bonusQuestion = JSON.parse(result)[0]
           let answerArray = _.shuffle([

@@ -133,6 +133,8 @@ class Account {
           categoryID,
           difficultyID]
       ).then((result) => {
+        console.log(this, categoryID, difficultyID)
+        console.log(result)
         resolve(result)
       }).catch((error) => {
         reject(error)
