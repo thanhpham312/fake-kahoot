@@ -126,7 +126,6 @@
     cursor: pointer;
     background-image: url(/assets/images/icons/idea.svg);
 }
-
 .createdQuestionContainer {
     position: relative;
     display: flex;
