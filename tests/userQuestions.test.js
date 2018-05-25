@@ -3,8 +3,16 @@ const userQuestions = require.requireActual('../models/userQuestions')
 const db = require.requireActual('../models/database')
 
 beforeAll(async () => {
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
   await db.executeQuery(
     `INSERT INTO public."ACCOUNTS" VALUES ($1, $2, $3);`, ['0', 'test', 'test'])
+    .then(result => {
+      return result
+    })
+  await db.executeQuery(
+    `INSERT INTO public."QUESTIONS" VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, ['0', 'test', 'test', '0', timeStamp])
     .then(result => {
       return result
     })
@@ -80,16 +88,9 @@ test('Test if getRandomQuestions() works', async () => {
 })
 
 test.skip('Test createCustomQuiz()', async () => {
-  let accID = '12'
+  let accID = '0'
   let qName = 'qweqwe'
   let date = Date.now().toString()
-  let qList = {
-    'question': 'Question?',
-    'option1': 'op1',
-    'option2': 'op2',
-    'option3': 'op3',
-    'option4': 'op4',
-    'answers': 2
-  }
+  let qList = ['0']
   await expect(userQuestions.createCustomQuiz(accID, qName, date, qList)).resolves.toBeTruthy()
 })
