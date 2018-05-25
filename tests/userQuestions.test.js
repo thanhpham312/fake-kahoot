@@ -87,7 +87,7 @@ test('Test if getRandomQuestions() works', async () => {
   await expect(userQuestions.getRandomQuestions()).resolves.toBeTruthy()
 })
 
-test.skip('Test createCustomQuiz()', async () => {
+test('Test createCustomQuiz()', async () => {
   let accID = '0'
   let qName = 'qweqwe'
   let date = Date.now().toString()
