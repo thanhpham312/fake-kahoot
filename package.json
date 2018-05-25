@@ -1,22 +1,22 @@
 {
-  "name": "webapp_project",
+  "name": "fake-kahoot",
   "version": "1.0.0",
-  "description": "for michal",
+  "description": "Project Term",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage --forceExit",
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/p3dr4m/webapp_project.git"
+    "url": "git+https://github.com/team2-fake-kahoot/fake-kahoot.git"
   },
-  "author": "Pedram Nazari, Tim Pham, Ivan Shalagin",
+  "author": "Pedram Nazari, Tim Pham, Ivan Shalagin, Owen, Maksym, Derek, Shanyu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/p3dr4m/webapp_project/issues"
+    "url": "https://github.com/team2-fake-kahoot/fake-kahoot/issues"
   },
-  "homepage": "https://github.com/p3dr4m/webapp_project#readme",
+  "homepage": "https://github.com/team2-fake-kahoot/fake-kahoot#readme",
   "dependencies": {
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
