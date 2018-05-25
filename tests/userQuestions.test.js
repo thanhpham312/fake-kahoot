@@ -4,7 +4,7 @@ const db = require.requireActual('../models/database')
 
 beforeAll(async () => {
   await db.executeQuery(
-    `INSERT INTO public."ACCOUNTS" VALUES ($1, $2, $3);`, [0, 'test', 'test'])
+    `INSERT INTO public."ACCOUNTS" VALUES ($1, $2, $3);`, ['0', 'test', 'test'])
     .then(result => {
       return result
     })
@@ -28,7 +28,7 @@ test('Test if createQuestion works', async () => {
     'Pedram',
     'Derek',
     'Maksym',
-    0,
+    '0',
     timeStamp
   ).then(result => {
     expect.assertions(1)
