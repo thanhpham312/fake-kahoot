@@ -11,22 +11,6 @@ db.executeQuery(
 })
 
 db.executeQuery(
-  `CREATE TABLE IF NOT EXISTS public."SCORES"
-(
-  "SCORE_ID" serial NOT NULL UNIQUE,
-  "ACCOUNT_ID" integer NOT NULL,
-  "SCORE" numeric NOT NULL,
-  "HIGHEST_STREAK" smallint NOT NULL,
-  "DATE" date NOT NULL,
-  CONSTRAINT "SCORES_pkey" PRIMARY KEY ("SCORE_ID"),
-  CONSTRAINT "SCORE_ACCOUNT" FOREIGN KEY ("ACCOUNT_ID")
-      REFERENCES public."ACCOUNTS" ("ACCOUNT_ID") MATCH SIMPLE
-      ON DELETE NO ACTION ON UPDATE NO ACTION
-);`).catch(error => {
-  return error
-})
-
-db.executeQuery(
   `CREATE TABLE IF NOT EXISTS public."QUIZ_DIFFICULTY"
 (
   "DIFFICULTY_ID" serial NOT NULL UNIQUE,
@@ -43,6 +27,34 @@ db.executeQuery(
   "QUIZ_CATEGORY_ID" serial NOT NULL UNIQUE,
   "CATEGORY_NAME" character varying(100) NOT NULL,
   CONSTRAINT "QUIZ_CATEGORY_pkey" PRIMARY KEY ("QUIZ_CATEGORY_ID")
+);
+`).catch(error => {
+  return error
+})
+
+db.executeQuery(
+  `CREATE TABLE IF NOT EXISTS public."SCORES"
+(
+    "SCORE_ID" serial NOT NULL UNIQUE,
+    "ACCOUNT_ID" bigint NOT NULL,
+    "SCORE" double precision NOT NULL,
+    "HIGHEST_STREAK" smallint NOT NULL,
+    "DATE" timestamp(6) without time zone NOT NULL,
+    "QUIZ_CATEGORY_ID" integer NOT NULL DEFAULT 0,
+    "DIFFICULTY_ID" integer NOT NULL DEFAULT 0,
+    CONSTRAINT "SCORES_pkey" PRIMARY KEY ("SCORE_ID"),
+    CONSTRAINT "DIFFICULTY_ID" FOREIGN KEY ("DIFFICULTY_ID")
+        REFERENCES public."QUIZ_DIFFICULTY" ("DIFFICULTY_ID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT "QUIZ_CATEGORY_ID" FOREIGN KEY ("QUIZ_CATEGORY_ID")
+        REFERENCES public."QUIZ_CATEGORY" ("QUIZ_CATEGORY_ID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT "SCORE_ACCOUNT" FOREIGN KEY ("ACCOUNT_ID")
+        REFERENCES public."ACCOUNTS" ("ACCOUNT_ID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 );
 `).catch(error => {
   return error
