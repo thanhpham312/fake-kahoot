@@ -256,8 +256,8 @@ app.post('/getnextquestion', (request, response) => {
         let currIdx = questionsObject.currentQuestion
         let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
         playingUsers[sessionID].currentReview.push([
-        questionsObject.questionsList[currIdx].question,
-        questionsObject.questionsList[currIdx][answerIdx]
+          questionsObject.questionsList[currIdx].question,
+          questionsObject.questionsList[currIdx][answerIdx]
         ])
         playingUsers[sessionID].questions.currentQuestion++
         response.send(
@@ -267,8 +267,8 @@ app.post('/getnextquestion', (request, response) => {
         let currIdx = questionsObject.currentQuestion
         let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
         playingUsers[sessionID].currentReview.push([
-        questionsObject.questionsList[currIdx].question,
-        questionsObject.questionsList[currIdx][answerIdx]
+          questionsObject.questionsList[currIdx].question,
+          questionsObject.questionsList[currIdx][answerIdx]
         ])
         response.sendStatus(204)
       } else {
@@ -625,6 +625,22 @@ app.post('/createQuestion', (request, response) => {
       response.sendStatus(406)
     }
   })
+})
+
+app.post('/createQuiz', (request, response) => {
+  let sessionID = request.session.id.toString()
+  let userID = playingUsers[sessionID].user.userID
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
+  let selectedQuestions = JSON.parse(request.body.questionList)
+  if (Object.keys(playingUsers).includes(sessionID)) {
+    userQuestions.createCustomQuiz(userID, request.body.quizName, timeStamp, selectedQuestions).then((result) => {
+      response.sendStatus(200)
+    })
+  } else {
+    response.sendStatus(403)
+  }
 })
 
 app.listen(port, () => {

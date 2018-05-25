@@ -116,6 +116,16 @@
     background-image: url(/assets/images/icons/investment.svg);
 }
 
+#ShowQuizCreationButton {
+    right: 1em;
+    bottom: 5em;
+    background-image: url(/assets/images/icons/create-quiz.svg);
+}
+
+#ShowQuizCreationButton:hover {
+    cursor: pointer;
+    background-image: url(/assets/images/icons/idea.svg);
+}
 .createdQuestionContainer {
     position: relative;
     display: flex;

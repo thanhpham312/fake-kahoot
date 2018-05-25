@@ -135,7 +135,7 @@ class Questions {
         'answer': this.questionsList[questionNumber][`option${this.questionsList[questionNumber].answers}`]
       }
     } else {
-      if (questionNumber >= 10){
+      if (questionNumber >= 10) {
         userObject.currentScore.userScore = 0
       } else {
         userObject.currentScore.currentStreak = 0
