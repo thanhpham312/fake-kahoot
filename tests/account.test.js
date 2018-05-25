@@ -222,3 +222,10 @@ describe('Test userPlayHistory()', () => {
     })
   })
 })
+
+describe('Test userPlayHistory()', () => {
+  test('getCreatedQuestions()', async () => {
+    accInst.userID = 1
+    expect(await accInst.getCreatedQuestions()).toContain('<div class=\"round cards floatingButtons\" id=\"createQuestionButton\" onclick=\"showCreateQuestionWindow()\"></div>')
+  })
+})
