@@ -12,17 +12,17 @@ beforeAll(async () => {
       return result
     })
   await db.executeQuery(
-    `INSERT INTO public."QUESTIONS" VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, ['0', 'test', 'test', '0', timeStamp])
+    `INSERT INTO public."QUESTIONS" VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, ['0', 'test', 'test', 'test', 'test', 'test', '0', timeStamp])
     .then(result => {
       return result
     })
   await db.executeQuery(
-    `INSERT INTO public."QUIZ_CATEGORY" VALUES ($1, $2);`, ['0', 'test'])
+    `INSERT INTO public."QUIZ_CATEGORY" VALUES ($1, $2);`, [0, 'test'])
     .then(result => {
       return result
     })
   await db.executeQuery(
-    `INSERT INTO public."QUIZ_DIFFICULTY" VALUES ($1, $2);`, ['0', 'test'])
+    `INSERT INTO public."QUIZ_DIFFICULTY" VALUES ($1, $2);`, [0, 'test'])
     .then(result => {
       return result
     })
