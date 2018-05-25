@@ -38,6 +38,6 @@ describe('Testing Score', () => {
   })
 
   it('should resolve HTML', async () => {
-    expect(await scoreInst.getLeaderboardStats()).resolves.toBe('string')
+    expect(await scoreInst.getLeaderboardStats()).resolves.toBe('')
   })
 })
