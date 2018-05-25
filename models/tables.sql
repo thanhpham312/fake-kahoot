@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS public."ACCOUNTS"
 
 CREATE TABLE IF NOT EXISTS public."SCORES"
 (
-  "SCORE_ID" serial NOT NULL UNIQUE,
-  "ACCOUNT_ID" bigint NOT NULL,
+  "SCORE_ID" integer NOT NULL UNIQUE,
+  "ACCOUNT_ID" integer NOT NULL,
   "SCORE" numeric NOT NULL,
   "HIGHEST_STREAK" smallint NOT NULL,
   "DATE" date NOT NULL,
@@ -35,13 +35,13 @@ CREATE TABLE IF NOT EXISTS public."QUIZ_DIFFICULTY"
 
 CREATE TABLE IF NOT EXISTS public."QUESTIONS"
 (
-    "QUESTION_ID" bigint NOT NULL DEFAULT nextval('"QUESTIONS_QUESTION_ID_seq"'::regclass),
+    "QUESTION_ID" integer NOT NULL UNIQUE,
     "QUESTION_CONTENT" character varying(1000) COLLATE pg_catalog."default",
     "RIGHT_ANSWER" character varying(1000) COLLATE pg_catalog."default",
     "WRONG_ANSWER1" character varying(1000) COLLATE pg_catalog."default",
     "WRONG_ANSWER2" character varying(1000) COLLATE pg_catalog."default",
     "WRONG_ANSWER3" character varying(1000) COLLATE pg_catalog."default",
-    "ACCOUNT_ID" bigint,
+    "ACCOUNT_ID" integer,
     "CREATED_DATE" date,
     CONSTRAINT "QUESTIONS_pkey" PRIMARY KEY ("QUESTION_ID"),
     CONSTRAINT "FK_ACCOUNT_QUESTION" FOREIGN KEY ("ACCOUNT_ID")
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS public."QUESTIONS"
 
 CREATE TABLE IF NOT EXISTS public."CUSTOM_QUIZZES"
 (
-    "CUSTOM_QUIZ_ID" integer NOT NULL DEFAULT nextval('"CUSTOM_QUIZZES_CUSTOM_QUIZ_ID_seq"'::regclass),
+    "CUSTOM_QUIZ_ID" integer NOT NULL UNIQUE,
     "ACCOUNT_ID" integer NOT NULL,
     "QUIZ_NAME" character varying(100) COLLATE pg_catalog."default" NOT NULL,
     "QUIZ_CATEGORY_ID" integer NOT NULL DEFAULT 0,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS public."CUSTOM_QUIZZES"
 
 CREATE TABLE IF NOT EXISTS public."CUSTOM_QUIZZES_QUESTIONS"
 (
-    "CUSTOM_QUIZ_ID" integer NOT NULL,
+    "CUSTOM_QUIZ_ID" integer NOT NULL UNIQUE,
     "QUESTION_ID" integer NOT NULL,
     CONSTRAINT "CUSTOM_QUIZZES_QUESTIONS_pkey" PRIMARY KEY ("CUSTOM_QUIZ_ID", "QUESTION_ID"),
     CONSTRAINT "CUSTOM_QUIZZES" FOREIGN KEY ("CUSTOM_QUIZ_ID")

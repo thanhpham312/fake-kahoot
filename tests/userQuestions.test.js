@@ -4,7 +4,7 @@ const db = require.requireActual('../models/database')
 
 beforeAll(async () => {
   await db.executeQuery(
-    `INSERT INTO public."ACCOUNTS" VALUES ($1, $2, $3);`, ['0', 'test', 'test'])
+    `INSERT INTO public."ACCOUNTS" VALUES ($1, $2, $3);`, [0, 'test', 'test'])
     .then(result => {
       return result
     })
@@ -18,7 +18,7 @@ afterAll(async () => {
     `DELETE FROM public."ACCOUNTS" WHERE "USERNAME" = 'test';`, [])
 })
 
-test.skip('Test if createQuestion works', async () => {
+test('Test if createQuestion works', async () => {
   await userQuestions.createQuestion(
     'What is my name?',
     'Shanyu',
@@ -70,7 +70,7 @@ it('should ', () => {
   })
 })
 
-test.skip('Test if getRandomQuestions() works', async () => {
+test('Test if getRandomQuestions() works', async () => {
   expect.assertions(1)
   await expect(userQuestions.getRandomQuestions()).resolves.toBeTruthy()
 })
