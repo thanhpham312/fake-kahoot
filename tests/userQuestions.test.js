@@ -16,6 +16,16 @@ beforeAll(async () => {
     .then(result => {
       return result
     })
+  await db.executeQuery(
+    `INSERT INTO public."QUIZ_CATEGORY" VALUES ($1, $2);`, ['0', 'test'])
+    .then(result => {
+      return result
+    })
+  await db.executeQuery(
+    `INSERT INTO public."QUIZ_DIFFICULTY" VALUES ($1, $2);`, ['0', 'test'])
+    .then(result => {
+      return result
+    })
 })
 
 afterAll(async () => {
