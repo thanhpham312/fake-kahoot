@@ -19,6 +19,9 @@ afterAll(async () => {
 })
 
 test('Test if createQuestion works', async () => {
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
   await userQuestions.createQuestion(
     'What is my name?',
     'Shanyu',
@@ -26,7 +29,7 @@ test('Test if createQuestion works', async () => {
     'Derek',
     'Maksym',
     0,
-    0
+    timeStamp
   ).then(result => {
     expect.assertions(1)
     expect(result).toBeTruthy()
