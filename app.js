@@ -254,10 +254,24 @@ app.post('/getnextquestion', (request, response) => {
   if (Object.keys(playingUsers).includes(sessionID)) {
     if (playingUsers[sessionID].questions !== undefined) {
       if (playingUsers[sessionID].questions.currentQuestion < 9) {
+        let questionsObject = playingUsers[sessionID].questions
+        let currIdx = questionsObject.currentQuestion
+        let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
+        playingUsers[sessionID].currentReview.push([
+        questionsObject.questionsList[currIdx].question,
+        questionsObject.questionsList[currIdx][answerIdx]
+        ])
         playingUsers[sessionID].questions.currentQuestion++
         response.send(
           playingUsers[sessionID].questions.minimalQuestionsList[playingUsers[sessionID].questions.currentQuestion])
       } else if (playingUsers[sessionID].questions.currentQuestion === 9) {
+        let questionsObject = playingUsers[sessionID].questions
+        let currIdx = questionsObject.currentQuestion
+        let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
+        playingUsers[sessionID].currentReview.push([
+        questionsObject.questionsList[currIdx].question,
+        questionsObject.questionsList[currIdx][answerIdx]
+        ])
         response.sendStatus(204)
       } else {
         response.sendStatus(401)
@@ -383,12 +397,6 @@ app.post('/validateanswer', (request, response) => {
       questionsObject.currentQuestion,
       request.body.chosenAnswer
     )
-    let currIdx = questionsObject.currentQuestion
-    let answerIdx = `option${questionsObject.questionsList[currIdx].answers}`
-    playingUsers[sessionID].currentReview.push([
-      questionsObject.questionsList[currIdx].question,
-      questionsObject.questionsList[currIdx][answerIdx]
-    ])
     response.send(result)
   } else {
     response.send(403)
