@@ -28,7 +28,7 @@ afterEach(() => {
   scoreInst = undefined
 })
 
-describe.skip('Testing Score', () => {
+describe('Testing Score', () => {
   it('should return an object of score attributes', () => {
     expect(scoreInst.toJSON()).toEqual({
       userScore: expect.anything(),
@@ -38,6 +38,6 @@ describe.skip('Testing Score', () => {
   })
 
   it('should resolve HTML', async () => {
-    expect(await scoreInst.getLeaderboardStats()).resolves.toBeTruthy()
+    expect(scoreInst.getLeaderboardStats()).resolves.toBe('')
   })
 })

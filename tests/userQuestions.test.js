@@ -18,15 +18,18 @@ afterAll(async () => {
     `DELETE FROM public."ACCOUNTS" WHERE "USERNAME" = 'test';`, [])
 })
 
-test.skip('Test if createQuestion works', async () => {
+test('Test if createQuestion works', async () => {
+  let date = new Date()
+  let timeStamp = `${date.toLocaleDateString('en-CA')} 
+      ${date.toLocaleTimeString('en-CA')}`
   await userQuestions.createQuestion(
     'What is my name?',
     'Shanyu',
     'Pedram',
     'Derek',
     'Maksym',
-    0,
-    0
+    '0',
+    timeStamp
   ).then(result => {
     expect.assertions(1)
     expect(result).toBeTruthy()
@@ -70,7 +73,7 @@ it('should ', () => {
   })
 })
 
-test.skip('Test if getRandomQuestions() works', async () => {
+test('Test if getRandomQuestions() works', async () => {
   expect.assertions(1)
   await expect(userQuestions.getRandomQuestions()).resolves.toBeTruthy()
 })
