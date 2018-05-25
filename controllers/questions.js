@@ -29,6 +29,7 @@ class Questions {
     this.currentQuestion = 0
     this.categoryID = undefined
     this.difficultyID = undefined
+    this.questionsListLength = 0
   }
 
   /**

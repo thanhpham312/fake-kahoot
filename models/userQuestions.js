@@ -153,6 +153,7 @@ let getRandomCustomQuiz = (questionsObject, num = 1) => {
                 'option4': answerArray[3]
               })
             }
+            questionsObject.questionsListLength = questionsObject.questionsList.length
             resolve(true)
           })
       }).catch((error) => {
