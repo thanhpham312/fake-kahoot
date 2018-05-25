@@ -87,7 +87,7 @@ class Questions {
           } else if (difficulty === 'hard') {
             this.difficultyID = 3
           }
-
+          this.questionsListLength = this.questionsList.length
           resolve(this.minimalQuestionsList)
         }).catch(error => {
           reject(error)
