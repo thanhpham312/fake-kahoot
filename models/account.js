@@ -215,14 +215,24 @@ class Account {
   userPlayHistory () {
     return new Promise((resolve, reject) => {
       if (this.userID !== undefined) {
-        db.executeQuery(`SELECT  S."SCORE", S."HIGHEST_STREAK", S."DATE", QC."CATEGORY_NAME", QD."DIFFICULTY_LEVEL"
-        FROM public."SCORES" S JOIN public."QUIZ_CATEGORY" QC ON QC."QUIZ_CATEGORY_ID" = S."QUIZ_CATEGORY_ID" 
-        JOIN public."QUIZ_DIFFICULTY" QD on QD."DIFFICULTY_ID" = S."DIFFICULTY_ID" 
-        WHERE S."ACCOUNT_ID" = ${this.userID} ORDER BY S."DATE" DESC;`).then((queryResult) => {
+        db.executeQuery(
+          `SELECT  S."SCORE", S."HIGHEST_STREAK", S."DATE", ` +
+          `QC."CATEGORY_NAME", QD."DIFFICULTY_LEVEL" ` +
+          `FROM public."SCORES" S JOIN public."QUIZ_CATEGORY" QC ` +
+          `ON QC."QUIZ_CATEGORY_ID" = S."QUIZ_CATEGORY_ID" ` +
+          `JOIN public."QUIZ_DIFFICULTY" QD ` +
+          `ON QD."DIFFICULTY_ID" = S."DIFFICULTY_ID" ` +
+          `WHERE S."ACCOUNT_ID" = ${this.userID} ORDER BY S."DATE" DESC;`
+        ).then((queryResult) => {
           let userHistory = JSON.parse(queryResult)
           let displayString = ''
           for (let i = 0; i < userHistory.length; i++) {
-            displayString += `<div class="cards scoreHistoryCards">Time: ${userHistory[i].DATE} | Score: ${userHistory[i].SCORE} | Highest Streak: ${userHistory[i].HIGHEST_STREAK} | Category: ${userHistory[i].CATEGORY_NAME} | Difficulty: ${userHistory[i].DIFFICULTY_LEVEL} </div>\n`
+            // language=HTML
+            displayString += `<div class="cards scoreHistoryCards">` +
+              `Time: ${userHistory[i].DATE} | Score: ${userHistory[i].SCORE} | ` +
+              `Highest Streak: ${userHistory[i].HIGHEST_STREAK} | ` +
+              `Category: ${userHistory[i].CATEGORY_NAME} | ` +
+              `Difficulty: ${userHistory[i].DIFFICULTY_LEVEL} </div>\n`
           }
           resolve(displayString)
         }).catch((error) => {

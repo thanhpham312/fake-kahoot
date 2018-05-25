@@ -196,8 +196,6 @@ describe('Test encryptPassword()', () => {
   test('unencrypted password should not equal encrypted', async () => {
     await accInst.encryptPassword('Hello1').then(result => {
       expect(result).not.toBe('Hello1')
-    }).catch(error => {
-      console.log(error)
     })
   })
 })
@@ -206,19 +204,13 @@ describe('Test userPlayHistory()', () => {
   test('display string is empty for a valid user with no play history', async () => {
     accInst.userID = 1
     await accInst.userPlayHistory().then(result => {
-      console.log(result)
       expect(result).toBe('')
-    }).catch(error => {
-      console.log(error)
     })
   })
 
   test('returns "Error" for an invalid user', async () => {
     await accInst.userPlayHistory().then(result => {
-      console.log(result)
       expect(result).toBe('Error')
-    }).catch(error => {
-      console.log(error)
     })
   })
 })

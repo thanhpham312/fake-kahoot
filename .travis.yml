@@ -5,10 +5,10 @@ services:
 dist: trusty
 node_js:
 - node
-script: npm test -- --forceExit
 before_script:
 - psql -c 'create database travis;' -U postgres
 - psql -f ./models/tables.sql
+script: npm test
 deploy:
   provider: heroku
   api_key:
